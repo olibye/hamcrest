@@ -123,6 +123,7 @@
   </build>
 
   <properties>
+    <release.version>1.1</release.version>
     <download.dir>target</download.dir>
     <download.name>hamcrest-${release.version}</download.name>
     <artifact.name>${artifactId}-${release.version}</artifact.name>

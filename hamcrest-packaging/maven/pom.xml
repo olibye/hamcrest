@@ -52,6 +52,7 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
+        <version>2.1</version>
         <configuration>
           <archive>
             <compress>false</compress>
@@ -105,7 +106,9 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-release-plugin</artifactId>
+        <version>2.0-beta-6</version>
         <configuration>
+          <autoVersionSubmodules>true</autoVersionSubmodules>
           <tagBase>https://hamcrest.googlecode.com/svn/tags</tagBase>
         </configuration>
       </plugin>

@@ -33,6 +33,46 @@
     <module>hamcrest-library</module>
   </modules>
   
+  
+  <!-- NOTE:  all dependencies are declared at scope provided as they are optional -->
+  <dependencyManagement>
+    <dependencies>
+      <dependency>
+        <groupId>jmock</groupId>
+        <artifactId>jmock</artifactId>
+        <version>1.1.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>junit</groupId>
+        <artifactId>junit</artifactId>
+        <version>4.0</version>
+        <scope>provided</scope>
+      </dependency>
+      <dependency>
+        <groupId>org.easymock</groupId>
+        <artifactId>easymock</artifactId>
+        <version>2.2</version>
+        <scope>provided</scope>
+      </dependency>
+    </dependencies>
+  </dependencyManagement>
+
+  <dependencies>
+    <dependency>
+      <groupId>jmock</groupId>
+      <artifactId>jmock</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+    </dependency>
+    <dependency>
+      <groupId>org.easymock</groupId>
+      <artifactId>easymock</artifactId>
+    </dependency>
+  </dependencies>
+  
   <distributionManagement>
     <!--  
       The id used must match a server id defined in ~/.m2/settings.xml
@@ -70,7 +110,7 @@
               <source>
                 <body>
                   def ant = new AntBuilder()
-                  def script = "${basedir}/src/script/download-jars.sh";
+                  def script = "${basedir}/src/script/download-jars.sh"
                   def version = "${release.version}"
                   if ( version == "null" ){
                     println("ERROR: 'release.version' property not set.")

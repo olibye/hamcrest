@@ -9,4 +9,12 @@
   <packaging>jar</packaging>
   <name>Hamcrest Integration</name>
 
+  <dependencies>
+    <dependency>
+      <groupId>${pom.groupId}</groupId>
+      <artifactId>hamcrest-core</artifactId>
+      <version>${pom.version}</version>
+    </dependency>
+  </dependencies>
+
 </project>

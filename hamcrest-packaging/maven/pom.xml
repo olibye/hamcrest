@@ -1,10 +1,9 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
   <groupId>org.hamcrest</groupId>
   <artifactId>hamcrest-parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.1-SNAPSHOT</version>
+  <version>1.1</version>
   <name>Hamcrest Parent</name>
 
   <inceptionYear>2006</inceptionYear>
@@ -22,10 +21,8 @@
   </licenses>
 
   <scm>
-    <developerConnection>
-      scm:svn:https://hamcrest.googlecode.com/svn/trunk/hamcrest-packaging/maven
-    </developerConnection>
-    <url>https://hamcrest.googlecode.com/svn/trunk/hamcrest-packaging/maven</url>
+    <developerConnection>scm:svn:https://hamcrest.googlecode.com/svn/tags/hamcrest-packaging-maven-1.1</developerConnection>
+    <url>https://hamcrest.googlecode.com/svn/tags/hamcrest-packaging-maven-1.1</url>
   </scm>
 
   <modules>

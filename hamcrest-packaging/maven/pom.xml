@@ -40,6 +40,11 @@
     <!--  
       The id used must match a server id defined in ~/.m2/settings.xml
     -->
+    <repository>
+      <id>hamcrest@repo1.maven.org</id>
+      <name>Central Maven Repository</name>
+      <url>scp://repo1.maven.org/repository</url>
+    </repository>    
   </distributionManagement>
 
   <build>

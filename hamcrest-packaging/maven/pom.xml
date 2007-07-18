@@ -3,7 +3,7 @@
   <groupId>org.hamcrest</groupId>
   <artifactId>hamcrest-parent</artifactId>
   <packaging>pom</packaging>
-  <version>1.2-SNAPSHOT</version>
+  <version>1.1</version>
   <name>Hamcrest Parent</name>
 
   <inceptionYear>2006</inceptionYear>
@@ -21,8 +21,8 @@
   </licenses>
 
   <scm>
-    <developerConnection>scm:svn:https://hamcrest.googlecode.com/svn/trunk/hamcrest-packaging/maven</developerConnection>
-    <url>https://hamcrest.googlecode.com/svn/trunk/hamcrest-packaging/maven</url>
+    <developerConnection>scm:svn:https://hamcrest.googlecode.com/svn/tags/hamcrest-packaging-maven-1.1</developerConnection>
+    <url>https://hamcrest.googlecode.com/svn/tags/hamcrest-packaging-maven-1.1</url>
   </scm>
 
   <modules>

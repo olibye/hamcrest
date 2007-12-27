@@ -14,9 +14,9 @@ abstract class BaseDescription implements Description {
     }
 
     public function appendDescriptionOf(SelfDescribing $value) {
-    	$value->describeTo($this);
+        $value->describeTo($this);
 
-    	return $this;
+        return $this;
     }
 
     public function appendValue($value) {
@@ -31,7 +31,7 @@ abstract class BaseDescription implements Description {
         } else if (is_float($value)) {
             $this->append('<' . $value . 'F>');
         } else if (is_array($value) || (is_object($value) && $value instanceof Iterator)) {
-        	$this->appendList('[', ', ', ']', $value);
+            $this->appendList('[', ', ', ']', $value);
         } else {
             $this->append('<' . $value . '>');
         }

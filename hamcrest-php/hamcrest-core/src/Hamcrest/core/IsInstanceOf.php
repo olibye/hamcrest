@@ -31,7 +31,7 @@ class IsInstanceOf extends BaseMatcher {
         $description->appendText('an instance of ' . $this->theClass);
     }
 
-	/**
+    /**
      * Is the value an instance of a particular type?
      */
     public static function anInstanceOf($type) {

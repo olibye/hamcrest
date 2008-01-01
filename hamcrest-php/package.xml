@@ -36,6 +36,7 @@
      <file baseinstalldir="/" name="AnyOf.php" role="php" />
      <file baseinstalldir="/" name="DescribedAs.php" role="php" />
      <file baseinstalldir="/" name="IsAnything.php" role="php" />
+     <file baseinstalldir="/" name="IsCloseTo.php" role="php" />
      <file baseinstalldir="/" name="IsEqual.php" role="php" />
      <file baseinstalldir="/" name="IsInstanceOf.php" role="php" />
      <file baseinstalldir="/" name="IsNot.php" role="php" />

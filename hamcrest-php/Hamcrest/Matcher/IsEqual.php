@@ -9,13 +9,9 @@ namespace Hamcrest;
  */
 class IsEqual extends BaseMatcher {
     protected $value;
-    protected $delta = 0;
-    protected $maxDepth = 10;
 
-    public function __construct($value, $delta = 0, $maxDepth = 10) {
-        $this->value    = $value;
-        $this->delta    = $delta;
-        $this->maxDepth = $maxDepth;
+    public function __construct($value) {
+        $this->value = $value;
     }
 
     public function matches($arg) {
@@ -31,16 +27,11 @@ class IsEqual extends BaseMatcher {
      * 
      * @param mixed $a
      * @param mixed $b
-     * @param int $depth
      * @return bool
      */
-    protected function recursiveComparison($a, $b, $depth = 0)
+    protected function recursiveComparison($a, $b)
     {
         if ($a === $b) {
-            return TRUE;
-        }
-
-        if ($depth >= $this->maxDepth) {
             return TRUE;
         }
 
@@ -73,7 +64,6 @@ class IsEqual extends BaseMatcher {
         if ((!is_array($a) && !is_object($a)) ||
             (!is_array($b) && !is_object($b))) {
             if (is_numeric($a) && is_numeric($b)) {
-                // Optionally apply delta on numeric values.
                 return $this->numericComparison($a, $b);
             } else {
                 return ($a == $b);
@@ -91,7 +81,7 @@ class IsEqual extends BaseMatcher {
                 return FALSE;
             }
 
-            if (!$this->recursiveComparison($a[$key], $b[$key], $depth + 1)) {
+            if (!$this->recursiveComparison($a[$key], $b[$key])) {
                 // FALSE, if child comparision fails.
                 return FALSE;
             }
@@ -115,11 +105,7 @@ class IsEqual extends BaseMatcher {
      */
     protected function numericComparison($a, $b)
     {
-        if ($this->delta === FALSE) {
-            return ($a == $b);
-        } else {
-            return (abs($a - $b) <= $this->delta);
-        }
+        return ($a == $b);
     }
 
     /**

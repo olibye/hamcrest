@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::Description;
-use Hamcrest::Matcher;
-use Hamcrest::BaseMatcher;
+namespace Hamcrest;
 
 /**
  * Is the value null?
@@ -25,11 +21,11 @@ class IsNull extends BaseMatcher {
     public static function nullValue() {
         return new IsNull;
     }
+}
 
-    /**
-     * Matches if value is not null.
-     */
-    public static function notNullValue() {
-        return IsNot::not(IsNull::nullValue());
-    }
+/**
+ * Matches if value is not null.
+ */
+function notNullValue() {
+    return IsNot::not(IsNull::nullValue());
 }

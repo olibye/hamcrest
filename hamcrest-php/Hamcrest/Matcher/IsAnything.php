@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::Description;
-use Hamcrest::Matcher;
-use Hamcrest::BaseMatcher;
+namespace Hamcrest;
 
 /**
  * A matcher that always returns <code>true</code>.
@@ -24,13 +20,13 @@ class IsAnything extends BaseMatcher {
     public function describeTo(Description $description) {
         $description->appendText($this->description);
     }
+}
 
-    /**
-     * This matcher always evaluates to true.
-     *
-     * @param description A meaningful string used when describing itself.
-     */
-    public static function anything($description = 'ANYTHING') {
-        return new IsAnything($description);
-    }
+/**
+ * This matcher always evaluates to true.
+ *
+ * @param description A meaningful string used when describing itself.
+ */
+function anything($description = 'ANYTHING') {
+    return new IsAnything($description);
 }

@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::BaseMatcher;
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Is the value equal to another value, as tested by the
@@ -141,12 +137,12 @@ class IsEqual extends BaseMatcher {
 
         return $document->saveXML();
     }
+}
 
-    /**
-     * Is the value equal to another value, as tested by the
-     * {@link java.lang.Object#equals} invokedMethod?
-     */
-    public static function equalTo($operand) {
-        return new IsEqual($operand);
-    }
+/**
+ * Is the value equal to another value, as tested by the
+ * {@link java.lang.Object#equals} invokedMethod?
+ */
+function equalTo($operand) {
+    return new IsEqual($operand);
 }

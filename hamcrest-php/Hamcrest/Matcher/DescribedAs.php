@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::BaseMatcher;
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Provides a custom description to another matcher.
@@ -28,11 +24,11 @@ class DescribedAs extends BaseMatcher {
     public function describeTo(Description $description) {
         throw new RuntimeException('Not yet implemented.');
     }
+}
 
-    /**
-     * Wraps an existing matcher and overrides the description when it fails.
-     */
-    public static function describedAs($description, Matcher $matcher, array $values) {
-        return new DescribedAs($description, $matcher, $values);
-    }
+/**
+ * Wraps an existing matcher and overrides the description when it fails.
+ */
+function describedAs($description, Matcher $matcher, array $values) {
+    return new DescribedAs($description, $matcher, $values);
 }

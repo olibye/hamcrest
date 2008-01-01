@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::BaseMatcher;
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Is the value the same object as another value?
@@ -27,8 +23,14 @@ class IsSame extends BaseMatcher {
                     ->appendValue($object)
                     ->appendText(')');
     }
+}
 
-    public static function sameInstance($object) {
-        return new IsSame($object);
-    }
+/**
+ * Matches when one value is identical to another.
+ *
+ * Identity check is performed with PHP's === operator, the operator is explained
+ * in detail at {@url http://www.php.net/manual/en/types.comparisons.php}.
+ */
+function sameInstance($object) {
+    return new IsSame($object);
 }

@@ -1,10 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Calculates the logical disjunction of two matchers. Evaluation is
@@ -19,11 +16,11 @@ class AnyOf extends ShortcutCombination {
     public function describeTo(Description $description) {
         $this->doDescribeTo($description, 'or');
     }
+}
 
-    /**
-     * Evaluates to true if ANY of the passed in matchers evaluate to true.
-     */
-    public static function anyOf($matchers) {
-        return new AnyOf($matchers);
-    }
+/**
+ * Evaluates to true if ANY of the passed in matchers evaluate to true.
+ */
+function anyOf($matchers) {
+    return new AnyOf($matchers);
 }

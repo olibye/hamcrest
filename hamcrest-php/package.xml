@@ -31,7 +31,7 @@
  <contents>
   <dir name="/">
    <dir name="Hamcrest">
-    <dir name="core">
+    <dir name="Matcher">
      <file baseinstalldir="/" name="AllOf.php" role="php" />
      <file baseinstalldir="/" name="AnyOf.php" role="php" />
      <file baseinstalldir="/" name="DescribedAs.php" role="php" />
@@ -43,6 +43,13 @@
      <file baseinstalldir="/" name="Is.php" role="php" />
      <file baseinstalldir="/" name="IsSame.php" role="php" />
      <file baseinstalldir="/" name="ShortcutCombination.php" role="php" />
+    </dir>
+    <dir name="Tests">
+     <file baseinstalldir="/" name="AbstractMatcherTest.php" role="test" />
+     <file baseinstalldir="/" name="AllTests.php" role="test" />
+     <file baseinstalldir="/" name="BaseMatcherTest.php" role="test" />
+     <file baseinstalldir="/" name="MatcherAssertTest.php" role="test" />
+     <file baseinstalldir="/" name="TypeSafeMatcherTest.php" role="test" />
     </dir>
     <file baseinstalldir="/" name="BaseDescription.php" role="php" />
     <file baseinstalldir="/" name="BaseMatcher.php" role="php" />

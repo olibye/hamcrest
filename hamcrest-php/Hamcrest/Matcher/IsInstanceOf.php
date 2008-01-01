@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::BaseMatcher;
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Tests whether the value is an instance of a class.
@@ -30,11 +26,11 @@ class IsInstanceOf extends BaseMatcher {
     public function describeTo(Description $description) {
         $description->appendText('an instance of ' . $this->theClass);
     }
+}
 
-    /**
-     * Is the value an instance of a particular type?
-     */
-    public static function anInstanceOf($type) {
-        return new IsInstanceOf($type);
-    }
+/**
+ * Is the value an instance of a particular type?
+ */
+function anInstanceOf($type) {
+    return new IsInstanceOf($type);
 }

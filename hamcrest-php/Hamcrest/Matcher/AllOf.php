@@ -1,10 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 /**
  * Calculates the logical conjunction of two matchers. Evaluation is
@@ -19,11 +16,11 @@ class AllOf extends ShortcutCombination {
     public function describeTo(Description $description) {
         $this->doDescribeTo($description, 'and');
     }
+}
 
-    /**
-     * Evaluates to true only if ALL of the passed in matchers evaluate to true.
-     */
-    public static function allOf($matchers) {
-        return new AllOf($matchers);
-    }
+/**
+ * Evaluates to true only if ALL of the passed in matchers evaluate to true.
+ */
+function allOf($matchers) {
+    return new AllOf($matchers);
 }

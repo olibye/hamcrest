@@ -1,11 +1,7 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
-namespace Hamcrest::Core;
-
-use Hamcrest::BaseMatcher;
-use Hamcrest::Description;
-use Hamcrest::Matcher;
+namespace Hamcrest;
 
 abstract class ShortcutCombination extends BaseMatcher {
     private $matchers;

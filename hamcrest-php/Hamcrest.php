@@ -14,6 +14,7 @@ require_once 'Hamcrest/Matcher/Logical/ShortcutCombination.php';
 require_once 'Hamcrest/Matcher/Logical/AllOf.php';
 require_once 'Hamcrest/Matcher/Logical/AnyOf.php';
 require_once 'Hamcrest/Matcher/Logical/IsNot.php';
+require_once 'Hamcrest/Matcher/Number/OrderingComparison.php';
 require_once 'Hamcrest/Matcher/String/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Matcher/String/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Matcher/String/SubstringMatcher.php';
@@ -22,7 +23,7 @@ require_once 'Hamcrest/Matcher/String/StringEndsWith.php';
 require_once 'Hamcrest/Matcher/String/StringStartsWith.php';
 require_once 'Hamcrest/Matcher/IsAnything.php';
 require_once 'Hamcrest/Matcher/IsEqual.php';
-require_once 'Hamcrest/Matcher/IsCloseTo.php';
+require_once 'Hamcrest/Matcher/Number/IsCloseTo.php';
 require_once 'Hamcrest/Matcher/IsInstanceOf.php';
 require_once 'Hamcrest/Matcher/IsNull.php';
 require_once 'Hamcrest/Matcher/IsSame.php';
@@ -72,8 +73,24 @@ if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
         return Hamcrest::equalToIgnoringWhiteSpace($string);
     }
 
+    function greaterThan($value) {
+        return Hamcrest::greaterThan($value);
+    }
+
+    function greaterThanOrEqualTo($value) {
+        return Hamcrest::greaterThanOrEqualTo($value);
+    }
+
     function is(Matcher $matcher) {
         return Hamcrest::is($matcher);
+    }
+
+    function lessThan($value) {
+        return Hamcrest::lessThan($value);
+    }
+
+    function lessThanOrEqualTo($value) {
+        return Hamcrest::lessThanOrEqualTo($value);
     }
 
     function not($matcherOrValue) {

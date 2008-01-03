@@ -31,5 +31,5 @@ class IsCloseTo extends IsEqual {
  * Is the value close to another value?
  */
 function closeTo($operand, $error) {
-    return new IsCloseTo($operand, $closeTo);
+    return new IsCloseTo($operand, $error);
 }

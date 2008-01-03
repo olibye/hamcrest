@@ -32,24 +32,30 @@
   <dir name="/">
    <dir name="Hamcrest">
     <dir name="Matcher">
-     <file baseinstalldir="/" name="AllOf.php" role="php" />
-     <file baseinstalldir="/" name="AnyOf.php" role="php" />
-     <file baseinstalldir="/" name="DescribedAs.php" role="php" />
+     <dir name="Decorator">
+      <file baseinstalldir="/" name="DescribedAs.php" role="php" />
+      <file baseinstalldir="/" name="Is.php" role="php" />
+     </dir>
+     <dir name="Logical">
+      <file baseinstalldir="/" name="AllOf.php" role="php" />
+      <file baseinstalldir="/" name="AnyOf.php" role="php" />
+      <file baseinstalldir="/" name="IsNot.php" role="php" />
+      <file baseinstalldir="/" name="ShortcutCombination.php" role="php" />
+     </dir>
+     <dir name="String">
+      <file baseinstalldir="/" name="IsEqualIgnoringCase.php" role="php" />
+      <file baseinstalldir="/" name="IsEqualIgnoringWhiteSpace.php" role="php" />
+      <file baseinstalldir="/" name="StringContains.php" role="php" />
+      <file baseinstalldir="/" name="StringEndsWith.php" role="php" />
+      <file baseinstalldir="/" name="StringStartsWith.php" role="php" />
+      <file baseinstalldir="/" name="SubstringMatcher.php" role="php" />
+     </dir>
      <file baseinstalldir="/" name="IsAnything.php" role="php" />
      <file baseinstalldir="/" name="IsCloseTo.php" role="php" />
-     <file baseinstalldir="/" name="IsEqualIgnoringCase.php" role="php" />
-     <file baseinstalldir="/" name="IsEqualIgnoringWhiteSpace.php" role="php" />
      <file baseinstalldir="/" name="IsEqual.php" role="php" />
      <file baseinstalldir="/" name="IsInstanceOf.php" role="php" />
-     <file baseinstalldir="/" name="IsNot.php" role="php" />
      <file baseinstalldir="/" name="IsNull.php" role="php" />
-     <file baseinstalldir="/" name="Is.php" role="php" />
      <file baseinstalldir="/" name="IsSame.php" role="php" />
-     <file baseinstalldir="/" name="ShortcutCombination.php" role="php" />
-     <file baseinstalldir="/" name="StringContains.php" role="php" />
-     <file baseinstalldir="/" name="StringEndsWith.php" role="php" />
-     <file baseinstalldir="/" name="StringStartsWith.php" role="php" />
-     <file baseinstalldir="/" name="SubstringMatcher.php" role="php" />
     </dir>
     <dir name="Tests">
      <file baseinstalldir="/" name="AbstractMatcherTest.php" role="test" />

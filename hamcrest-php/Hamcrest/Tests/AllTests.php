@@ -4,7 +4,6 @@
 namespace Hamcrest;
 
 require_once 'PHPUnit/Framework.php';
-require_once 'PHPUnit/TextUI/TestRunner.php';
 
 require_once 'Hamcrest.php';
 
@@ -13,17 +12,10 @@ require_once 'BaseMatcherTest.php';
 require_once 'MatcherAssertTest.php';
 require_once 'TypeSafeMatcherTest.php';
 
-if (!defined('PHPUnit_MAIN_METHOD')) {
-    define('PHPUnit_MAIN_METHOD', 'Hamcrest::AllTests::main');
-}
+require_once 'Number/NumberTests.php';
 
 class AllTests
 {
-    public static function main()
-    {
-        ::PHPUnit_TextUI_TestRunner::run(self::suite());
-    }
-
     public static function suite()
     {
         $suite = new ::PHPUnit_Framework_TestSuite('Hamcrest');
@@ -32,10 +24,8 @@ class AllTests
         $suite->addTestSuite('Hamcrest::MatcherAssertTest');
         $suite->addTestSuite('Hamcrest::TypeSafeMatcherTest');
 
+        $suite->addTest(Hamcrest::NumberTests::suite());
+
         return $suite;
     }
-}
-
-if (PHPUnit_MAIN_METHOD == 'Hamcrest::AllTests::main') {
-    AllTests::main();
 }

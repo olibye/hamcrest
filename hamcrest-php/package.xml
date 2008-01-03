@@ -61,6 +61,11 @@
      <file baseinstalldir="/" name="IsSame.php" role="php" />
     </dir>
     <dir name="Tests">
+     <dir name="Number">
+      <file baseinstalldir="/" name="IsCloseToTest.php" role="test" />
+      <file baseinstalldir="/" name="NumberTests.php" role="test" />
+      <file baseinstalldir="/" name="OrderingComparisonTest.php" role="test" />
+     </dir>
      <file baseinstalldir="/" name="AbstractMatcherTest.php" role="test" />
      <file baseinstalldir="/" name="AllTests.php" role="test" />
      <file baseinstalldir="/" name="BaseMatcherTest.php" role="test" />

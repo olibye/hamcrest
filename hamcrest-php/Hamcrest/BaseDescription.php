@@ -67,7 +67,7 @@ abstract class BaseDescription implements Description {
     protected abstract function append($str);
 
     private function toPhpSyntax($unformatted) {
-        $bufer == '"';
+        $buffer = '"';
 
         $length = strlen($unformatted);
 

@@ -24,8 +24,15 @@ class IsNull extends BaseMatcher {
 }
 
 /**
+ * Matches if value is null.
+ */
+function nullValue() {
+    return IsNull::nullValue();
+}
+
+/**
  * Matches if value is not null.
  */
 function notNullValue() {
-    return IsNot::not(IsNull::nullValue());
+    return not(IsNull::nullValue());
 }

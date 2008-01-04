@@ -15,12 +15,12 @@ class IsSame extends BaseMatcher {
     }
 
     public function matches($arg) {
-        return $arg === $object;
+        return $arg === $this->object;
     }
 
     public function describeTo(Description $description) {
         $description->appendText('same(')
-                    ->appendValue($object)
+                    ->appendValue($this->object)
                     ->appendText(')');
     }
 }

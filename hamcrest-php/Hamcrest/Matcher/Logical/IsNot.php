@@ -29,6 +29,6 @@ function not($matcherOrValue) {
     if ($matcherOrValue instanceof Matcher) {
         return new IsNot($matcherOrValue);
     } else {
-        return new IsNot(IsEqual::equalTo($matcherOrValue));
+        return new IsNot(equalTo($matcherOrValue));
     }
 }

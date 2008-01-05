@@ -1,12 +1,14 @@
 <?php
 /*  Copyright (c) 2000-2008 hamcrest.org
  */
+require_once 'Hamcrest/AssertionError.php';
 require_once 'Hamcrest/SelfDescribing.php';
 require_once 'Hamcrest/Description.php';
 require_once 'Hamcrest/BaseDescription.php';
 require_once 'Hamcrest/StringDescription.php';
 require_once 'Hamcrest/Matcher.php';
 require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/MatcherAssert.php';
 
 require_once 'Hamcrest/Matcher/Decorator/DescribedAs.php';
 require_once 'Hamcrest/Matcher/Decorator/Is.php';
@@ -29,6 +31,11 @@ require_once 'Hamcrest/Matcher/IsNull.php';
 require_once 'Hamcrest/Matcher/IsSame.php';
 
 if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
+    function assertThat() {
+        $args = func_get_args();
+        call_user_func_array('Hamcrest::assertThat', $args);
+    }
+
     function allOf($matchers) {
         return Hamcrest::allOf($matchers);
     }
@@ -53,8 +60,9 @@ if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
         return Hamcrest::containsString($substring);
     }
 
-    function describedAs($description, Matcher $matcher, array $values) {
-        return Hamcrest::describedAs($description, $matcher, $values);
+    function describedAs() {
+        $args = func_get_args();
+        call_user_func_array('Hamcrest::describedAs', $args);
     }
 
     function endsWith($substring) {
@@ -81,7 +89,7 @@ if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
         return Hamcrest::greaterThanOrEqualTo($value);
     }
 
-    function is(Matcher $matcher) {
+    function is($matcher) {
         return Hamcrest::is($matcher);
     }
 
@@ -99,6 +107,10 @@ if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
 
     function notNullValue() {
         return Hamcrest::notNullValue();
+    }
+
+    function nullValue() {
+        return Hamcrest::nullValue();
     }
 
     function sameInstance($object) {

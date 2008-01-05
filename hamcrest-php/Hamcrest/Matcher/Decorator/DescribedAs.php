@@ -29,6 +29,7 @@ class DescribedAs extends BaseMatcher {
 /**
  * Wraps an existing matcher and overrides the description when it fails.
  */
-function describedAs($description, Matcher $matcher, array $values) {
-    return new DescribedAs($description, $matcher, $values);
+function describedAs() {
+    $args = func_get_args();
+    return new DescribedAs(array_shift($args), array_shift($args), $args);
 }

@@ -33,6 +33,16 @@ class Is extends BaseMatcher {
  * eg. assertThat(cheese, equalTo(smelly))
  * vs  assertThat(cheese, is(equalTo(smelly)))
  */
-function is(Matcher $matcher) {
-    return new Is($matcher);
+function is($matcher) {
+    if ($matcher instanceof Matcher) {
+        return new Is($matcher);
+    }
+
+    if (is_string($matcher) && (class_exists($matcher) || interface_exists($matcher))) {
+        return is(anInstanceOf($matcher));
+    }
+
+    else {
+        return is(equalTo($matcher));
+    }
 }

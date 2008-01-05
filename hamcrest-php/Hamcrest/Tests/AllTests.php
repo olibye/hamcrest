@@ -10,9 +10,8 @@ require_once 'Hamcrest.php';
 require_once 'AbstractMatcherTest.php';
 require_once 'BaseMatcherTest.php';
 require_once 'MatcherAssertTest.php';
-require_once 'TypeSafeMatcherTest.php';
 
-require_once 'Number/NumberTests.php';
+require_once 'Matcher/MatcherTests.php';
 
 class AllTests
 {
@@ -20,11 +19,10 @@ class AllTests
     {
         $suite = new ::PHPUnit_Framework_TestSuite('Hamcrest');
 
+        $suite->addTest(Hamcrest::MatcherTests::suite());
+
         $suite->addTestSuite('Hamcrest::BaseMatcherTest');
         $suite->addTestSuite('Hamcrest::MatcherAssertTest');
-        $suite->addTestSuite('Hamcrest::TypeSafeMatcherTest');
-
-        $suite->addTest(Hamcrest::NumberTests::suite());
 
         return $suite;
     }

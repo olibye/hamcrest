@@ -26,7 +26,7 @@ abstract class AbstractMatcherTest extends ::PHPUnit_Framework_TestCase {
     public function assertDescription($expected, Matcher $matcher) {
         $description = new StringDescription;
         $description->appendDescriptionOf($matcher);
-        $this->assertEquals('Expected description', $expected, $description->toString());
+        $this->assertEquals('Expected description', $expected, (string)$description);
     }
 
     public function testIsNullSafe() {

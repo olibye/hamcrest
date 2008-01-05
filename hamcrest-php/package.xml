@@ -61,21 +61,41 @@
      <file baseinstalldir="/" name="IsSame.php" role="php" />
     </dir>
     <dir name="Tests">
-     <dir name="Number">
-      <file baseinstalldir="/" name="IsCloseToTest.php" role="test" />
-      <file baseinstalldir="/" name="NumberTests.php" role="test" />
-      <file baseinstalldir="/" name="OrderingComparisonTest.php" role="test" />
+     <dir name="Matcher">
+      <dir name="Decorator">
+       <file baseinstalldir="/" name="DecoratorTests.php" role="test" />
+       <file baseinstalldir="/" name="DescribedAsTest.php" role="test" />
+       <file baseinstalldir="/" name="IsTest.php" role="test" />
+      </dir>
+      <dir name="Logical">
+       <file baseinstalldir="/" name="AllOfTest.php" role="test" />
+       <file baseinstalldir="/" name="AnyOfTest.php" role="test" />
+       <file baseinstalldir="/" name="LogicalTests.php" role="test" />
+       <file baseinstalldir="/" name="IsNotTest.php" role="test" />
+      </dir>
+      <dir name="Number">
+       <file baseinstalldir="/" name="IsCloseToTest.php" role="test" />
+       <file baseinstalldir="/" name="NumberTests.php" role="test" />
+       <file baseinstalldir="/" name="OrderingComparisonTest.php" role="test" />
+      </dir>
+      <file baseinstalldir="/" name="IsAnythingTest.php" role="test" />
+      <file baseinstalldir="/" name="IsEqualTest.php" role="test" />
+      <file baseinstalldir="/" name="IsInstanceOfTest.php" role="test" />
+      <file baseinstalldir="/" name="IsNullTest.php" role="test" />
+      <file baseinstalldir="/" name="IsSameTest.php" role="test" />
+      <file baseinstalldir="/" name="MatcherTests.php" role="test" />
      </dir>
      <file baseinstalldir="/" name="AbstractMatcherTest.php" role="test" />
      <file baseinstalldir="/" name="AllTests.php" role="test" />
      <file baseinstalldir="/" name="BaseMatcherTest.php" role="test" />
      <file baseinstalldir="/" name="MatcherAssertTest.php" role="test" />
-     <file baseinstalldir="/" name="TypeSafeMatcherTest.php" role="test" />
     </dir>
+    <file baseinstalldir="/" name="AssertionError.php" role="php" />
     <file baseinstalldir="/" name="BaseDescription.php" role="php" />
     <file baseinstalldir="/" name="BaseMatcher.php" role="php" />
     <file baseinstalldir="/" name="Description.php" role="php" />
     <file baseinstalldir="/" name="Matcher.php" role="php" />
+    <file baseinstalldir="/" name="MatcherAssert.php" role="php" />
     <file baseinstalldir="/" name="SelfDescribing.php" role="php" />
     <file baseinstalldir="/" name="StringDescription.php" role="php" />
    </dir>

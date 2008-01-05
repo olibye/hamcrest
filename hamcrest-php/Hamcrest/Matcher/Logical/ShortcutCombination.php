@@ -21,6 +21,6 @@ abstract class ShortcutCombination extends BaseMatcher {
     }
 
     protected function doDescribeTo(Description $description, $operator) {
-        $description->appendList('(', ' ' . $operator . ' ', ')', $matchers);
+        $description->appendList('(', ' ' . $operator . ' ', ')', $this->matchers);
     }
 }

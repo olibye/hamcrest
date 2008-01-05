@@ -18,7 +18,7 @@ class IsNot extends BaseMatcher  {
     }
 
     public function describeTo(Description $description) {
-        $description->appendText('not ')->appendDescriptionOf($matcher);
+        $description->appendText('not ')->appendDescriptionOf($this->matcher);
     }
 }
 

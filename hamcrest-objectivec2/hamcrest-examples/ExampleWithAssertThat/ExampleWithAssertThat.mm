@@ -2,8 +2,6 @@
 
 #define HC_SHORTHAND
 #import <hamcrest/hamcrest.h>
-#import <hamcrest/HCBaseMatcher.h>
-#import <hamcrest/HCDescription.h>
 
 @interface ExampleWithAssertThat : SenTestCase
 @end

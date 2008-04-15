@@ -17,5 +17,10 @@ void HC_assertThatWithLocation(id actual, id<HCMatcher> matcher,
 
 
 #ifdef HC_SHORTHAND
+
+/**
+    Shorthand for HC_assertThat, available if HC_SHORTHAND is defined.
+*/
 #define assertThat HC_assertThat
+
 #endif

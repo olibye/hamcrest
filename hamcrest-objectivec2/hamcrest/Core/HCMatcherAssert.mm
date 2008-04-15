@@ -7,7 +7,8 @@
 
 extern "C" {
 
-void HC_assertThat(id actual, id<HCMatcher> matcher, const char* fileName, int lineNumber)
+void HC_assertThatWithLocation(id actual, id<HCMatcher> matcher,
+                               const char* fileName, int lineNumber)
 {
     if (![matcher matches:actual])
     {

@@ -23,7 +23,7 @@
     }
     @catch (NSException* exception)
     {
-        STAssertEqualObjects([exception reason], expectedMessage, nil);
+        STAssertTrue([[exception reason] rangeOfString:expectedMessage].location != NSNotFound, nil);
         return;
     }
     

@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		0F0A12E50DA0A35F00AE4705 /* MatcherAssertTest.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F0A12E40DA0A35F00AE4705 /* MatcherAssertTest.mm */; };
-		0F2A4A960D8B454200051BCF /* SenTestingKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0F2A4A950D8B454200051BCF /* SenTestingKit.framework */; };
 		0F2A4ADB0D8B493600051BCF /* HCAllOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F2A4AB80D8B493600051BCF /* HCAllOf.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0F2A4ADC0D8B493600051BCF /* HCAllOf.mm in Sources */ = {isa = PBXBuildFile; fileRef = 0F2A4AB90D8B493600051BCF /* HCAllOf.mm */; };
 		0F2A4ADD0D8B493600051BCF /* HCAnyOf.h in Headers */ = {isa = PBXBuildFile; fileRef = 0F2A4ABA0D8B493600051BCF /* HCAnyOf.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -122,7 +121,6 @@
 /* Begin PBXFileReference section */
 		089C1667FE841158C02AAC07 /* English */ = {isa = PBXFileReference; fileEncoding = 10; lastKnownFileType = text.plist.strings; name = English; path = English.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		0F0A12E40DA0A35F00AE4705 /* MatcherAssertTest.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = MatcherAssertTest.mm; sourceTree = "<group>"; };
-		0F2A4A950D8B454200051BCF /* SenTestingKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SenTestingKit.framework; path = Library/Frameworks/SenTestingKit.framework; sourceTree = DEVELOPER_DIR; };
 		0F2A4AB80D8B493600051BCF /* HCAllOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAllOf.h; sourceTree = "<group>"; };
 		0F2A4AB90D8B493600051BCF /* HCAllOf.mm */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.objcpp; path = HCAllOf.mm; sourceTree = "<group>"; };
 		0F2A4ABA0D8B493600051BCF /* HCAnyOf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HCAnyOf.h; sourceTree = "<group>"; };
@@ -240,7 +238,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				0F2A4A960D8B454200051BCF /* SenTestingKit.framework in Frameworks */,
 				0F2A4B040D8B679900051BCF /* Foundation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -507,7 +504,6 @@
 			isa = PBXGroup;
 			children = (
 				0F2A4B030D8B679900051BCF /* Foundation.framework */,
-				0F2A4A950D8B454200051BCF /* SenTestingKit.framework */,
 			);
 			name = "Linked Frameworks";
 			sourceTree = "<group>";

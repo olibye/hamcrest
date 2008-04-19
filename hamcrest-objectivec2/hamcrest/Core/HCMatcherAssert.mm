@@ -1,8 +1,59 @@
 #import "HCMatcherAssert.h"
 
-#import <SenTestingKit/SenTestingKit.h>
+#import <objc/objc-class.h>
 #import "HCStringDescription.h"
 #import "HCMatcher.h"
+
+
+namespace {
+
+/**
+    Create OCUnit failure
+    
+    With OCUnit's extension to NSException, this is effectively the same as
+@code
+[NSException failureInFile: [NSString stringWithUTF8String:fileName]
+                    atLine: lineNumber
+           withDescription: description]
+@endcode
+    except we use an NSInvocation so that OCUnit (SenTestingKit) does not have to be linked.
+*/
+NSException* createOCUnitException(const char* fileName, int lineNumber, NSString* description)
+{
+    NSException* result = nil;
+
+    SEL selector = @selector(failureInFile:atLine:withDescription:);
+    NSMethodSignature* signature =
+        [[NSException class]->isa instanceMethodSignatureForSelector:selector];
+    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
+    [invocation setTarget:[NSException class]];
+    [invocation setSelector:selector];
+    
+    id fileArg = [NSString stringWithUTF8String:fileName];
+    [invocation setArgument:&fileArg atIndex:2];
+    [invocation setArgument:&lineNumber atIndex:3];
+    [invocation setArgument:&description atIndex:4];
+    
+    [invocation retainArguments];
+    [invocation invoke];
+    [invocation getReturnValue:&result];
+
+    return result;
+}
+
+
+NSException* createAssertThatFailure(const char* fileName, int lineNumber, NSString* description)
+{
+    // If the Hamcrest client has linked to OCUnit, generate an OCUnit failure.
+    if (NSClassFromString(@"SenTestCase") != Nil)
+        return createOCUnitException(fileName, lineNumber, description);
+
+    NSString* failureReason = [NSString stringWithFormat:@"%s:%d: matcher error: %@",
+                                                        fileName, lineNumber, description];
+    return [NSException exceptionWithName:@"Hamcrest Error" reason:failureReason userInfo:nil];
+}
+
+}   // namespace
 
 
 extern "C" {
@@ -17,9 +68,7 @@ void HC_assertThatWithLocation(id actual, id<HCMatcher> matcher,
                         appendDescriptionOf:matcher]
                         appendText:@", got: "]
                         appendValue:actual];
-        @throw [NSException failureInFile: [NSString stringWithUTF8String:fileName]
-                                   atLine: lineNumber
-                          withDescription: [description description]];
+        @throw createAssertThatFailure(fileName, lineNumber, [description description]);
     }
 }
 

@@ -8,8 +8,7 @@ using namespace hamstring;
 using namespace std;
 
 
-namespace
-{
+namespace {
 
 void removeTrailingSpace(NSMutableString* string)
 {
@@ -48,7 +47,7 @@ NSMutableString* stripSpace(NSString* string)
     return result;
 }
 
-}   // unnamed namespace
+}   // namespace
 
 
 @implementation HCIsEqualIgnoringWhiteSpace

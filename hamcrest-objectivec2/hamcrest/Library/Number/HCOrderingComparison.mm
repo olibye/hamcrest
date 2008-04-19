@@ -3,8 +3,7 @@
 #import "HCDescription.h"
 
 
-namespace
-{
+namespace {
 
 NSString* comparison(NSComparisonResult compare)
 {
@@ -16,7 +15,7 @@ NSString* comparison(NSComparisonResult compare)
         return @"greater than";
 }
 
-}   // unnamed namespace
+}   // namespace
 
 
 @implementation HCOrderingComparison

@@ -8,8 +8,7 @@
 using namespace std;
 
 
-namespace
-{
+namespace {
 
 /*
     Splits string into decimal number (-1 if not found) and remaining string.
@@ -36,7 +35,7 @@ pair<int, NSString*> separate(NSString* component)
         return make_pair(index, [component substringFromIndex:charIndex]);
 }
 
-}   // unnamed
+}   // namespace
 
 
 @implementation HCDescribedAs

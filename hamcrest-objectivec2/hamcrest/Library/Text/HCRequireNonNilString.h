@@ -1,8 +1,7 @@
 #import <Foundation/Foundation.h>
 
 
-namespace hamstring
-{
+namespace hamstring {
 
 inline
 void requireNonNilString(NSString* string)
@@ -15,4 +14,4 @@ void requireNonNilString(NSString* string)
     }
 }
 
-}   // hamstring
+}   // namespace hamstring

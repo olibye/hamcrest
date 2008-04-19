@@ -22,6 +22,8 @@ NSException* createOCUnitException(const char* fileName, int lineNumber, NSStrin
 {
     NSException* result = nil;
 
+    // See http://www.omnigroup.com/mailman/archive/macosx-dev/2001-February/021441.html
+    // for an explanation of how to use create an NSInvocation of a class method.
     SEL selector = @selector(failureInFile:atLine:withDescription:);
     NSMethodSignature* signature =
         [[NSException class]->isa instanceMethodSignatureForSelector:selector];

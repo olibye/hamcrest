@@ -21,6 +21,7 @@ class AnyOf extends ShortcutCombination {
 /**
  * Evaluates to true if ANY of the passed in matchers evaluate to true.
  */
-function anyOf($matchers) {
+function anyOf() {
+    $matchers = func_get_args();
     return new AnyOf($matchers);
 }

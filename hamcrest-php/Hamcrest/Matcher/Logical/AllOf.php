@@ -21,6 +21,7 @@ class AllOf extends ShortcutCombination {
 /**
  * Evaluates to true only if ALL of the passed in matchers evaluate to true.
  */
-function allOf($matchers) {
+function allOf() {
+    $matchers = func_get_args();
     return new AllOf($matchers);
 }

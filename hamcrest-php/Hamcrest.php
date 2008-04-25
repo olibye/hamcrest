@@ -32,16 +32,18 @@ require_once 'Hamcrest/Matcher/IsSame.php';
 
 if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
     function assertThat() {
-        $args = func_get_args();
-        call_user_func_array('Hamcrest::assertThat', $args);
+        $matchers = func_get_args();
+        call_user_func_array('Hamcrest::assertThat', $matchers);
     }
 
-    function allOf($matchers) {
-        return Hamcrest::allOf($matchers);
+    function allOf() {
+        $matchers = func_get_args();
+        return call_user_func_array('Hamcrest::allOf', $matchers);
     }
 
-    function anyOf($matchers) {
-        return Hamcrest::anyOf($matchers);
+    function anyOf() {
+        $matchers = func_get_args();
+        return call_user_func_array('Hamcrest::anyOf', $matchers);
     }
 
     function anInstanceOf($type) {
@@ -62,7 +64,7 @@ if (!defined('HAMCREST_DO_NOT_ALIAS_FUNCTIONS_IN_GLOBAL_SCOPE')) {
 
     function describedAs() {
         $args = func_get_args();
-        call_user_func_array('Hamcrest::describedAs', $args);
+        return call_user_func_array('Hamcrest::describedAs', $args);
     }
 
     function endsWith($substring) {

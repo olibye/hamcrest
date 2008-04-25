@@ -6,7 +6,7 @@ namespace Hamcrest;
 abstract class ShortcutCombination extends BaseMatcher {
     private $matchers;
 
-    public function __construct($matchers) {
+    public function __construct(array $matchers) {
         $this->matchers = $matchers;
     }
 

@@ -20,10 +20,16 @@ extern "C" {
 #endif
 
 /**
-    Calculates the logical negation of a matcher.
-    
-    If the item is a matcher, calculate its logical negation.
-    Otherwise, this is a shortcut to the frequently used isNot(equalTo(item)).
+    Inverts the rule, providing a shortcut to the frequently used isNot(equalTo(x)).
+
+    For example:
+@code
+assertThat(cheese, isNot(equalTo(smelly)))
+@endcode
+    vs.
+@code
+assertThat(cheese, isNot(smelly))
+@endcode
 */
 id<HCMatcher> HC_isNot(id item);
 

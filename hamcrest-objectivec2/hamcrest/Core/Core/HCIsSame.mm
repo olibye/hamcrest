@@ -36,7 +36,7 @@
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    [[[description appendText:@"same("]
+    [[[description appendText:@"sameInstance("]
                     appendValue:object]
                     appendText:@")"];
 }

@@ -20,7 +20,7 @@ extern "C" {
 #endif
 
 /**
-    Is the value the same object as another value?
+    Evaluates to @c YES only when the argument is this same object.
 */
 id<HCMatcher> HC_sameInstance(id anObject);
 

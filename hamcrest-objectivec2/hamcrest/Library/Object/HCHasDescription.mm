@@ -1,6 +1,7 @@
 #import "HCHasDescription.h"
 
 #import "HCDescription.h"
+#import "HCWrapShortcut.h"
 
 
 @implementation HCHasDescription
@@ -46,9 +47,9 @@
 
 extern "C" {
 
-id<HCMatcher> HC_hasDescription(id<HCMatcher> theDescriptionMatcher)
+id<HCMatcher> HC_hasDescription(id item)
 {
-    return [HCHasDescription hasDescription:theDescriptionMatcher];
+    return [HCHasDescription hasDescription:HC_wrapShortcut(item)];
 }
 
 }   // extern "C"

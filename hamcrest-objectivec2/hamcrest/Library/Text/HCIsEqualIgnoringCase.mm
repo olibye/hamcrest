@@ -44,7 +44,7 @@ using namespace hamstring;
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    [[[description appendText:@"eqIgnoringCase("]
+    [[[description appendText:@"equalToIgnoringCase("]
                     appendValue:string]
                     appendText:@")"];
 }

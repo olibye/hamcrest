@@ -33,11 +33,19 @@ NSString* DESCRIPTION_RESULT = @"description result";
 }
 
 
-- (void) testPassesResultOfToStringToNestedMatcher
+- (void) testPassesResultOfDescriptionToNestedMatcher
 {
     FakeObject* ARG = [[[FakeObject alloc] init] autorelease];
     assertThat(ARG, hasDescription(equalTo(DESCRIPTION_RESULT)));
     assertThat(ARG, isNot(hasDescription(equalTo(@"OTHER STRING"))));
+}
+
+
+- (void) testProvidesConvenientShortcutForDescriptionEqualTo
+{
+    FakeObject* ARG = [[[FakeObject alloc] init] autorelease];
+    assertThat(ARG, hasDescription(DESCRIPTION_RESULT));
+    assertThat(ARG, isNot(hasDescription(@"OTHER STRING")));
 }
 
 

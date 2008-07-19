@@ -16,7 +16,12 @@
 extern "C" {
 #endif
 
-id<HCMatcher> HC_hasDescription(id<HCMatcher> theDescriptionMatcher);
+/**
+    Evaluates whether [item description] satisfies a given matcher.
+
+    Example: hasDescription(equalTo(result))
+*/
+id<HCMatcher> HC_hasDescription(id item);
 
 #ifdef __cplusplus
 }

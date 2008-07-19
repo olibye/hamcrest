@@ -67,7 +67,8 @@
 
 - (void) testHasAReadableDescription
 {
-    assertDescription(@"eqIgnoringWhiteSpace(\"Hello World   how\\n are we? \")", matcher);
+    assertDescription(@"equalToIgnoringWhiteSpace(\"Hello World   how\\n are we? \")",
+                        matcher);
 }
 
 @end

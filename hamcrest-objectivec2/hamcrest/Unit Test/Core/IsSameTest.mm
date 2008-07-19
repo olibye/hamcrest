@@ -29,7 +29,7 @@
 
 - (void) testReturnsReadableDescriptionFromToString
 {
-    assertDescription(@"same(\"ARG\")", sameInstance(@"ARG"));
+    assertDescription(@"sameInstance(\"ARG\")", sameInstance(@"ARG"));
 }
 
 @end

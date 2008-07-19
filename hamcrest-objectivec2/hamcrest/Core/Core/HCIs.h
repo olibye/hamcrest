@@ -5,7 +5,7 @@
     Decorates another HCMatcher, retaining the behavior but allowing tests to be slightly more
     expressive.
 
-    For example,
+    For example:
 @code
 assertThat(cheese, equalTo(smelly))
 @endcode
@@ -30,11 +30,16 @@ extern "C" {
 #endif
 
 /**
-    Decorates another HCMatcher, retaining the behavior but allowing tests to be slightly more
-    expressive.
+    Decorates an item, providing shortcuts to the frequently used is(equalTo(x)).
     
-    If the item is a matcher, use it to determine matches.
-    Otherwise, this is a shortcut to the frequently used is(equalTo(item)).
+    For example:
+@code
+assertThat(cheese, is(equalTo(smelly)))
+@endcode
+    vs.
+@code
+assertThat(cheese, is(smelly))
+@endcode
 */
 id<HCMatcher> HC_is(id item);
 

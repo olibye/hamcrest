@@ -92,7 +92,7 @@ NSMutableString* stripSpace(NSString* string)
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    [[[description appendText:@"eqIgnoringWhiteSpace("]
+    [[[description appendText:@"equalToIgnoringWhiteSpace("]
                     appendValue:originalString]
                     appendText:@")"];
 }

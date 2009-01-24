@@ -22,6 +22,10 @@
 
 /**
     Base class for all Matcher implementations.
+    
+    Most implementations can just implement matches: and let matches:describingMismatchTo: call
+    it. But if it makes more sense to generate the mismatch description during the matching,
+    override matches:describingMismatchTo: and have matches: call it with a nil description.
 */
 @implementation HCBaseMatcher
 
@@ -35,6 +39,21 @@
 {
     ABSTRACT_METHOD;
     return NO;
+}
+
+
+- (BOOL) matches:(id)item describingMismatchTo:(id<HCDescription>)mismatchDescription
+{
+    BOOL matchResult = [self matches:item];
+    if (!matchResult)
+        [self describeMismatchOf:item to:mismatchDescription];
+    return matchResult;
+}
+
+
+- (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
+{
+    [[mismatchDescription appendText:@"was "] appendValue:item];
 }
 
 

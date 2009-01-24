@@ -34,6 +34,13 @@
 }
 
 
+- (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
+{
+    [[mismatchDescription appendText:@"was "] appendValue:item];
+    [mismatchDescription appendText:[NSString stringWithFormat:@": 0x%0x", item]];
+}
+
+
 - (void) describeTo:(id<HCDescription>)description
 {
     [[[description appendText:@"sameInstance("]

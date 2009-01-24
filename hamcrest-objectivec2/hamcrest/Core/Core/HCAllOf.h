@@ -1,4 +1,4 @@
-#import <hamcrest/HCShortcutCombination.h>
+#import <hamcrest/HCBaseMatcher.h>
 
 
 /**
@@ -7,11 +7,13 @@
     Evaluation is shortcut, so subsequent matchers are not called if an earlier matcher returns
     @c NO.
 */
-@interface HCAllOf : HCShortcutCombination
+@interface HCAllOf : HCBaseMatcher
 {
+    NSArray* matchers;
 }
 
 + (HCAllOf*) allOf:(NSArray*)theMatchers;
+- (id) initWithMatchers:(NSArray*)theMatchers;
 
 @end
 

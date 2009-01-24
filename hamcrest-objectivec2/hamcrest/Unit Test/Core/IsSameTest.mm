@@ -4,6 +4,7 @@
 #import <hamcrest/HCIsSame.h>
 #import <hamcrest/HCIsNot.h>
 #import <hamcrest/HCMatcherAssert.h>
+#import <hamcrest/HCStringDescription.h>
 
 
 @interface IsSameTest : AbstractMatcherTest
@@ -30,6 +31,19 @@
 - (void) testReturnsReadableDescriptionFromToString
 {
     assertDescription(@"sameInstance(\"ARG\")", sameInstance(@"ARG"));
+}
+
+
+- (void) testDescribeMismatch
+{
+    id s1 = [NSString stringWithString:@"foo"];
+    id s2 = [NSString stringWithString:@"foo"];
+    id<HCMatcher> matcher = sameInstance(s1);
+    HCStringDescription* description = [HCStringDescription stringDescription];
+    
+    [matcher describeMismatchOf:s2 to:description];
+    NSString* expected = @"was \"foo\": 0x";
+    STAssertEqualObjects(expected, [[description description] substringToIndex:[expected length]], nil);
 }
 
 @end

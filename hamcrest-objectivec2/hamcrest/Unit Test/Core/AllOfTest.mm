@@ -53,4 +53,22 @@
             allOf(equalTo(@"good"), equalTo(@"bad"), equalTo(@"ugly"), nil));
 }
 
+
+- (void) testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(allOf(equalTo(@"good"), equalTo(@"good"), nil), @"good");
+}
+
+
+- (void) testMismatchDescriptionDescribesFirstFailingMatch
+{
+    assertMismatchDescription(@"\"good\" was \"bad\"", allOf(equalTo(@"bad"), equalTo(@"good"), nil), @"bad");
+}
+
+
+- (void) testDescribeMismatch
+{
+    assertDescribeMismatch(@"\"good\" was \"bad\"", allOf(equalTo(@"bad"), equalTo(@"good"), nil), @"bad");
+}
+
 @end

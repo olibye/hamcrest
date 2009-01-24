@@ -1,5 +1,6 @@
 #import "HCAnyOf.h"
 
+#import "HCCollectMatchers.h"
 #import "HCDescription.h"
 
 
@@ -11,15 +12,35 @@
 }
 
 
+- (id) initWithMatchers:(NSArray*)theMatchers
+{
+    self = [super init];
+    if (self != nil)
+        matchers = [theMatchers retain];
+    return self;
+}
+
+
+- (void) dealloc
+{
+    [matchers release];
+    
+    [super dealloc];
+}
+
+
 - (BOOL) matches:(id)item
 {
-    return [self pMatches:item shortcut:YES];
+    for (id<HCMatcher> oneMatcher in matchers)
+        if ([oneMatcher matches:item])
+            return YES;
+    return NO;
 }
 
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    return [self pDescribeTo:description operatorName:@"or"];
+    [description appendList:matchers start:@"(" separator:@" or " end:@")"];
 }
 
 @end

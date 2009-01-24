@@ -20,4 +20,25 @@
 */
 - (BOOL) matches:(id)item;
 
+/**
+    Evaluates the matcher for argument @a item.
+
+    @param item The object against which the matcher is evaluated.
+    @param mismatchDescription The description to be built or appended to if @item does not match.
+    @return @c YES if @a item matches, otherwise @c NO.
+*/
+- (BOOL) matches:(id)item describingMismatchTo:(id<HCDescription>)mismatchDescription;
+
+/**
+    Generates a description of why the matcher has not accepted the item.
+    
+    The description will be part of a larger description of why a matching failed, so it should be
+    concise.
+    This method assumes that @c matches:item is false, but will not check this.
+    
+    @param item The item that the HCMatcher has rejected.
+    @param mismatchDescription The description to be built or appended to.
+*/
+- (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription;
+
 @end

@@ -4,11 +4,7 @@
 #import <hamcrest/HCStringStartsWith.h>
 
 
-namespace {
-
-NSString* EXCERPT = @"EXCERPT";
-
-}   // namespace
+static NSString* EXCERPT = @"EXCERPT";
 
 
 @interface StringStartsWithTest : AbstractMatcherTest

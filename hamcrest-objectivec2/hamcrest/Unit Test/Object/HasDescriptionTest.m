@@ -7,11 +7,7 @@
 #import <hamcrest/HCMatcherAssert.h>
 
 
-namespace {
-
-NSString* DESCRIPTION_RESULT = @"description result";
-
-}   // namespace
+static NSString* DESCRIPTION_RESULT = @"description result";
 
 
 @interface FakeObject : NSObject

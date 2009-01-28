@@ -1,13 +1,16 @@
 @protocol HCMatcher;
 
 
-extern "C"
-{
+#ifdef __cplusplus
+extern "C" {
+#endif
 
 void HC_assertThatWithLocation(id actual, id<HCMatcher> matcher,
                                const char* fileName, int lineNumber);
 
+#ifdef __cplusplus
 }
+#endif
 
 /**
     OCUnit integration asserting that actual value satisfies matcher.

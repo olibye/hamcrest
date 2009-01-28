@@ -4,11 +4,7 @@
 #import <hamcrest/HCStringContains.h>
 
 
-namespace {
-
-NSString* EXCERPT = @"EXCERPT";
-
-}   // namespace
+static NSString* EXCERPT = @"EXCERPT";
 
 
 @interface StringContainsTest : AbstractMatcherTest

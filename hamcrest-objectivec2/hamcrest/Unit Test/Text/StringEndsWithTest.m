@@ -4,11 +4,7 @@
 #import <hamcrest/HCStringEndsWith.h>
 
 
-namespace {
-
-NSString* EXCERPT = @"EXCERPT";
-
-}   // namespace
+static NSString* EXCERPT = @"EXCERPT";
 
 
 @interface StringEndsWithTest : AbstractMatcherTest

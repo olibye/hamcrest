@@ -1,5 +1,7 @@
 <?php
 
+error_reporting(E_ALL | E_STRICT);
+
 define('HAMCREST_TEST_BASE', realpath(dirname(__FILE__)));
 
 require_once 'PHPUnit/Framework.php';

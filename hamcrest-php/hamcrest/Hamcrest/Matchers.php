@@ -236,7 +236,7 @@ class Hamcrest_Matchers
   /**
    * The predicate evaluates to true only when the argument is this object.
    */
-  public function sameInstance($object)
+  public static function sameInstance($object)
   {
     return Hamcrest_Core_IsSame::sameInstance($object);
   }
@@ -244,7 +244,7 @@ class Hamcrest_Matchers
   /**
    * Tests of the value is identical to $value as tested by the "===" operator.
    */
-  public function identicalTo($value)
+  public static function identicalTo($value)
   {
     return Hamcrest_Core_IsIdentical::identicalTo($value);
   }
@@ -317,7 +317,7 @@ class Hamcrest_Matchers
   /**
    * Tests if a string is equal to another string, regardless of the case.
    */
-  public function equalToIgnoringCase($string)
+  public static function equalToIgnoringCase($string)
   {
     return Hamcrest_Text_IsEqualIgnoringCase::equalToIgnoringCase($string);
   }

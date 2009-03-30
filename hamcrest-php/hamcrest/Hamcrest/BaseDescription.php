@@ -52,6 +52,12 @@ abstract class Hamcrest_BaseDescription implements Hamcrest_Description
     {
       $this->appendList('[', ',', ']', $value);
     }
+    elseif (is_object($value) && !method_exists($value, '__toString'))
+    {
+      $this->append('<');
+      $this->append(get_class($value));
+      $this->append('>');
+    }
     else
     {
       $this->append('<');

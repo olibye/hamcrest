@@ -15,6 +15,7 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
 {
   
   /* Types that PHP can compare against */
+  const TYPE_ANY = 0;
   const TYPE_STRING = 1;
   const TYPE_NUMERIC = 2;
   const TYPE_ARRAY = 3;
@@ -70,6 +71,9 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
     switch ($this->_expectedType)
     {
       
+      case self::TYPE_ANY:
+        return true;
+      
       case self::TYPE_STRING:
         return is_string($value) || is_numeric($value);
       
@@ -86,6 +90,9 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
         return is_resource($value);
       
       case self::TYPE_BOOLEAN:
+        return true;
+      
+      default:
         return true;
       
     }

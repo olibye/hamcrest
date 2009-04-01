@@ -344,8 +344,6 @@ function anArray($array)
  * Evaluates to true if any item in an array satisfies the given matcher.
  * 
  * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
- * 
- * @hamcrest(factory)
  */
 function hasItemInArray($item)
 {
@@ -374,4 +372,20 @@ function contains(array $items)
 function arrayContaining(array $items)
 {
   return Hamcrest_Matchers::arrayContaining($items);
+}
+
+/**
+ * Does array size satisfy a given matcher?
+ */
+function arrayWithSize($size)
+{
+  return Hamcrest_Matchers::arrayWithSize($size);
+}
+
+/**
+ * Matches an empty array.
+ */
+function emptyArray()
+{
+  return Hamcrest_Matchers::emptyArray();
 }

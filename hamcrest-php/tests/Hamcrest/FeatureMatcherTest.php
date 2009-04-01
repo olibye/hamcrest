@@ -23,7 +23,7 @@ class Hamcrest_ResultMatcher extends Hamcrest_FeatureMatcher
 {
   public function __construct()
   {
-    parent::__construct(equalTo('bar'), 'Thingy with result', 'result');
+    parent::__construct(self::TYPE_ANY, equalTo('bar'), 'Thingy with result', 'result');
   }
   public function featureValueOf($actual)
   {

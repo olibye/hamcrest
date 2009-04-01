@@ -4,7 +4,7 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/DiagnosingMatcher.php';
+require_once 'Hamcrest/TypeSafeDiagnosingMatcher.php';
 require_once 'Hamcrest/Matcher.php';
 require_once 'Hamcrest/Description.php';
 
@@ -13,7 +13,8 @@ require_once 'Hamcrest/Description.php';
  * <code>featureValueOf()</code> in a subclass to pull out the feature to be
  * matched against.
  */
-abstract class Hamcrest_FeatureMatcher extends Hamcrest_DiagnosingMatcher
+abstract class Hamcrest_FeatureMatcher
+  extends Hamcrest_TypeSafeDiagnosingMatcher
 {
   
   private $_subMatcher;
@@ -27,9 +28,11 @@ abstract class Hamcrest_FeatureMatcher extends Hamcrest_DiagnosingMatcher
    * @param string $featureDescription Descriptive text to use in describeTo
    * @param string $featureName Identifying text for mismatch message
    */
-  public function __construct(Hamcrest_Matcher $subMatcher,
+  public function __construct($type, Hamcrest_Matcher $subMatcher,
     $featureDescription, $featureName)
   {
+    parent::__construct($type);
+    
     $this->_subMatcher = $subMatcher;
     $this->_featureDescription = $featureDescription;
     $this->_featureName = $featureName;
@@ -44,7 +47,7 @@ abstract class Hamcrest_FeatureMatcher extends Hamcrest_DiagnosingMatcher
    */
   abstract protected function featureValueOf($actual);
   
-  public function matchesWithDiagnosticDescription($actual,
+  public function matchesSafelyWithDiagnosticDescription($actual,
     Hamcrest_Description $mismatchDescription)
   {
     $featureValue = $this->featureValueOf($actual);

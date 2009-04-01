@@ -21,7 +21,7 @@ abstract class Hamcrest_DiagnosingMatcher extends Hamcrest_BaseMatcher
     );
   }
   
-  final public function describeMismatch($item,
+  public function describeMismatch($item,
     Hamcrest_Description $mismatchDescription)
   {
     $this->matchesWithDiagnosticDescription($item, $mismatchDescription);

@@ -4,28 +4,25 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/DiagnosingMatcher.php';
+require_once 'Hamcrest/TypeSafeDiagnosingMatcher.php';
 require_once 'Hamcrest/Description.php';
 require_once 'Hamcrest/Matcher.php';
 
-class Hamcrest_Core_Every extends Hamcrest_DiagnosingMatcher
+class Hamcrest_Core_Every extends Hamcrest_TypeSafeDiagnosingMatcher
 {
   
   private $_matcher;
   
   public function __construct(Hamcrest_Matcher $matcher)
   {
+    parent::__construct(self::TYPE_ARRAY);
+    
     $this->_matcher = $matcher;
   }
   
-  public function matchesWithDiagnosticDescription($items,
+  protected function matchesSafelyWithDiagnosticDescription($items,
     Hamcrest_Description $mismatchDescription)
   {
-    if (!is_array($items) && !($items instanceof Iterator))
-    {
-      $items = array($items);
-    }
-    
     foreach ($items as $item)
     {
       if (!$this->_matcher->matches($item))

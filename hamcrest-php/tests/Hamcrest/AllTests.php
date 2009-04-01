@@ -32,6 +32,7 @@ require_once 'Hamcrest/Text/StringContainsInOrderTest.php';
 require_once 'Hamcrest/Array/IsArrayTest.php';
 require_once 'Hamcrest/Array/IsArrayContainingTest.php';
 require_once 'Hamcrest/Array/IsArrayContainingInAnyOrderTest.php';
+require_once 'Hamcrest/Array/IsArrayContainingInOrderTest.php';
 
 class Hamcrest_AllTests
 {
@@ -71,6 +72,7 @@ class Hamcrest_AllTests
     $suite->addTestSuite('Hamcrest_Array_IsArrayTest');
     $suite->addTestSuite('Hamcrest_Array_IsArrayContainingTest');
     $suite->addTestSuite('Hamcrest_Array_IsArrayContainingInAnyOrderTest');
+    $suite->addTestSuite('Hamcrest_Array_IsArrayContainingInOrderTest');
     
     return $suite;
   }

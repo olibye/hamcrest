@@ -31,6 +31,7 @@ require_once 'Hamcrest/Text/StringContainsInOrder.php';
 require_once 'Hamcrest/Array/IsArray.php';
 require_once 'Hamcrest/Array/IsArrayContaining.php';
 require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
+require_once 'Hamcrest/Array/IsArrayContainingInOrder.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -368,6 +369,22 @@ class Hamcrest_Matchers
   public static function containsInAnyOrder(array $items)
   {
     return Hamcrest_Array_IsArrayContainingInAnyOrder::containsInAnyOrder($items);
+  }
+  
+  /**
+   * An array with elements that match the given matchers in the same order.
+   */
+  public static function contains(array $items)
+  {
+    return Hamcrest_Array_IsArrayContainingInOrder::contains($matchers);
+  }
+  
+  /**
+   * An array with elements that match the given matchers in the same order.
+   */
+  public static function arrayContaining(array $items)
+  {
+    return Hamcrest_Array_IsArrayContainingInOrder::arrayContaining($items);
   }
   
 }

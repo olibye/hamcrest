@@ -359,3 +359,19 @@ function containsInAnyOrder(array $items)
 {
   return Hamcrest_Matchers::containsInAnyOrder($items);
 }
+
+/**
+ * An array with elements that match the given matchers in the same order.
+ */
+function contains(array $items)
+{
+  return Hamcrest_Matchers::contains($matchers);
+}
+
+/**
+ * An array with elements that match the given matchers in the same order.
+ */
+function arrayContaining(array $items)
+{
+  return Hamcrest_Matchers::arrayContaining($items);
+}

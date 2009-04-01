@@ -30,6 +30,7 @@ require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
 require_once 'Hamcrest/Array/IsArray.php';
 require_once 'Hamcrest/Array/IsArrayContaining.php';
+require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -359,6 +360,14 @@ class Hamcrest_Matchers
   public static function hasItemInArray($item)
   {
     return Hamcrest_Array_IsArrayContaining::hasItemInArray($item);
+  }
+  
+  /**
+   * An array with elements that match the given matchers.
+   */
+  public static function containsInAnyOrder(array $items)
+  {
+    return Hamcrest_Array_IsArrayContainingInAnyOrder::containsInAnyOrder($items);
   }
   
 }

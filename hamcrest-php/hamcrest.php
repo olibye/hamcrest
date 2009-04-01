@@ -351,3 +351,11 @@ function hasItemInArray($item)
 {
   return Hamcrest_Matchers::hasItemInArray($item);
 }
+
+/**
+ * An array with elements that match the given matchers.
+ */
+function containsInAnyOrder(array $items)
+{
+  return Hamcrest_Matchers::containsInAnyOrder($items);
+}

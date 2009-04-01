@@ -1,14 +1,15 @@
 <?php
 
-require_once 'Hamcrest/DiagnosingMatcher.php';
+require_once 'Hamcrest/BaseMatcher.php';
 require_once 'Hamcrest/Description.php';
+require_once 'Hamcrest/NullDescription.php';
 
 /**
  * Convenient base class for Matchers that require a value of a specific type.
  * This simply checks the type and then casts.
  */
 abstract class Hamcrest_TypeSafeDiagnosingMatcher
-  extends Hamcrest_DiagnosingMatcher
+  extends Hamcrest_BaseMatcher
 {
   
   /* Types that PHP can compare against */
@@ -27,11 +28,10 @@ abstract class Hamcrest_TypeSafeDiagnosingMatcher
     $this->_expectedType = $expectedType;
   }
   
-  protected function matchesWithDiagnosticDescription($item,
-    Hamcrest_Description $mismatchDescription)
+  public function matches($item)
   {
     return $this->_isSafeType($item)
-      && $this->matchesSafelyWithDiagnosticDescription($item, $mismatchDescription);
+      && $this->matchesSafelyWithDiagnosticDescription($item, new Hamcrest_NullDescription());
   }
   
   public function describeMismatch($item,

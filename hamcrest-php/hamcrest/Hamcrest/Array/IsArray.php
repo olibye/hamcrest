@@ -10,6 +10,8 @@ require_once 'Hamcrest/Description.php';
 // NOTE: This class is not exactly a direct port of Java's since Java handles
 //       arrays quite differently than PHP
 
+// TODO: Allow this to take matchers or values within the array
+
 /**
  * Matcher for array whose elements satisfy a sequence of matchers.
  * The array size must equal the number of element matchers.

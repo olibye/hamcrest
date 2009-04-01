@@ -29,6 +29,7 @@ require_once 'Hamcrest/Text/IsEmptyStringTest.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringCaseTest.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpaceTest.php';
 require_once 'Hamcrest/Text/StringContainsInOrderTest.php';
+require_once 'Hamcrest/Array/IsArrayTest.php';
 
 class Hamcrest_AllTests
 {
@@ -65,6 +66,7 @@ class Hamcrest_AllTests
     $suite->addTestSuite('Hamcrest_Text_IsEqualIgnoringCaseTest');
     $suite->addTestSuite('Hamcrest_Text_IsEqualIgnoringWhiteSpaceTest');
     $suite->addTestSuite('Hamcrest_Text_StringContainsInOrderTest');
+    $suite->addTestSuite('Hamcrest_Array_IsArrayTest');
     
     return $suite;
   }

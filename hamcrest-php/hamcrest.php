@@ -331,3 +331,11 @@ function stringContainsInOrder(array $substrings)
 {
   return Hamcrest_Matchers::stringContainsInOrder($substrings);
 }
+
+/**
+ * Evaluates to true only if each $matcher[$i] is satisfied by $array[$i].
+ */
+function anArray($array)
+{
+  return Hamcrest_Matchers::anArray($array);
+}

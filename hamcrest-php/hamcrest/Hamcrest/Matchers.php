@@ -28,6 +28,7 @@ require_once 'Hamcrest/Text/IsEmptyString.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
+require_once 'Hamcrest/Array/IsArray.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -337,6 +338,14 @@ class Hamcrest_Matchers
   public static function stringContainsInOrder(array $substrings)
   {
     return Hamcrest_Text_StringContainsInOrder::stringContainsInOrder($substrings);
+  }
+  
+  /**
+   * Evaluates to true only if each $matcher[$i] is satisfied by $array[$i].
+   */
+  public static function anArray($array)
+  {
+    return Hamcrest_Array_IsArray::anArray($array);
   }
   
 }

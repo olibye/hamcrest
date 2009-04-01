@@ -339,3 +339,15 @@ function anArray($array)
 {
   return Hamcrest_Matchers::anArray($array);
 }
+
+/**
+ * Evaluates to true if any item in an array satisfies the given matcher.
+ * 
+ * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
+ * 
+ * @hamcrest(factory)
+ */
+function hasItemInArray($item)
+{
+  return Hamcrest_Matchers::hasItemInArray($item);
+}

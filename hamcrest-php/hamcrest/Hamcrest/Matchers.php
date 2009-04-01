@@ -29,6 +29,7 @@ require_once 'Hamcrest/Text/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
 require_once 'Hamcrest/Array/IsArray.php';
+require_once 'Hamcrest/Array/IsArrayContaining.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -346,6 +347,18 @@ class Hamcrest_Matchers
   public static function anArray($array)
   {
     return Hamcrest_Array_IsArray::anArray($array);
+  }
+  
+  /**
+   * Evaluates to true if any item in an array satisfies the given matcher.
+   * 
+   * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
+   * 
+   * @hamcrest(factory)
+   */
+  public static function hasItemInArray($item)
+  {
+    return Hamcrest_Array_IsArrayContaining::hasItemInArray($item);
   }
   
 }

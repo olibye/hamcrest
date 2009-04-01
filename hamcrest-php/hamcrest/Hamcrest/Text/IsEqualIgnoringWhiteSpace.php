@@ -59,7 +59,7 @@ class Hamcrest_Text_IsEqualIgnoringWhiteSpace extends Hamcrest_BaseMatcher
   
   private function _stripSpace($string)
   {
-    $parts = split("[\r\n\t ]+", $string);
+    $parts = preg_split("/[\r\n\t ]+/", $string);
     foreach ($parts as $i => $part)
     {
       $parts[$i] = trim($part, " \r\n\t");

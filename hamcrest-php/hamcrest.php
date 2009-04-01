@@ -397,3 +397,23 @@ function hasKeyValuePair($key, $value)
 {
   return Hamcrest_Matchers::hasKeyValuePair($key, $value);
 }
+
+/**
+ * Evaluates to true if any key in an array matches the given matcher.
+ * 
+ * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
+ */
+function hasKeyInArray($key)
+{
+  return Hamcrest_Matchers::hasKeyInArray($key);
+}
+
+/**
+ * Evaluates to true if any key in an array matches the given matcher.
+ * 
+ * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
+ */
+function hasKey($key)
+{
+  return Hamcrest_Matchers::hasKey($key);
+}

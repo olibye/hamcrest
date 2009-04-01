@@ -34,6 +34,7 @@ require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
 require_once 'Hamcrest/Array/IsArrayContainingInOrder.php';
 require_once 'Hamcrest/Array/IsArrayWithSize.php';
 require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
+require_once 'Hamcrest/Array/IsArrayContainingKey.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -409,6 +410,26 @@ class Hamcrest_Matchers
   public static function hasKeyValuePair($key, $value)
   {
     return Hamcrest_Array_IsArrayContainingKeyValuePair::hasKeyValuePair($key, $value);
+  }
+  
+  /**
+   * Evaluates to true if any key in an array matches the given matcher.
+   * 
+   * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
+   */
+  public static function hasKeyInArray($key)
+  {
+    return Hamcrest_Array_IsArrayContainingKey::hasKeyInArray($key);
+  }
+  
+  /**
+   * Evaluates to true if any key in an array matches the given matcher.
+   * 
+   * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
+   */
+  public static function hasKey($key)
+  {
+    return Hamcrest_Array_IsArrayContainingKey::hasKey($key);
   }
   
 }

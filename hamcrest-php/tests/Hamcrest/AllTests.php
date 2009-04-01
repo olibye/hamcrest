@@ -35,6 +35,7 @@ require_once 'Hamcrest/Array/IsArrayContainingInAnyOrderTest.php';
 require_once 'Hamcrest/Array/IsArrayContainingInOrderTest.php';
 require_once 'Hamcrest/Array/IsArrayWithSizeTest.php';
 require_once 'Hamcrest/Array/IsArrayContainingKeyValuePairTest.php';
+require_once 'Hamcrest/Array/IsArrayContainingKeyTest.php';
 
 class Hamcrest_AllTests
 {
@@ -77,6 +78,7 @@ class Hamcrest_AllTests
     $suite->addTestSuite('Hamcrest_Array_IsArrayContainingInOrderTest');
     $suite->addTestSuite('Hamcrest_Array_IsArrayWithSizeTest');
     $suite->addTestSuite('Hamcrest_Array_IsArrayContainingKeyValuePairTest');
+    $suite->addTestSuite('Hamcrest_Array_IsArrayContainingKeyTest');
     
     return $suite;
   }

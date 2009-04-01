@@ -50,7 +50,7 @@ abstract class Hamcrest_BaseDescription implements Hamcrest_Description
     }
     elseif (is_array($value) || $value instanceof Iterator)
     {
-      $this->appendList('[', ',', ']', $value);
+      $this->appendValueList('[', ', ', ']', $value);
     }
     elseif (is_object($value) && !method_exists($value, '__toString'))
     {

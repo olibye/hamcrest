@@ -6,6 +6,10 @@ require_once 'Hamcrest/Description.php';
 /**
  * Convenient base class for Matchers that require a value of a specific type.
  * This simply checks the type and then casts.
+ * 
+ * While it may seem a useless exercise to have this in PHP, objects cannot
+ * be cast to certain data types such as numerics (or even strings if
+ * __toString() has not be defined).
  */
 abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
 {

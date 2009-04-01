@@ -2,6 +2,7 @@
 
 require_once realpath(dirname(__FILE__)) . '/../includes.php';
 
+require_once 'Hamcrest/StringDescriptionTest.php';
 require_once 'Hamcrest/BaseMatcherTest.php';
 require_once 'Hamcrest/FeatureMatcherTest.php';
 require_once 'Hamcrest/MatcherAssertTest.php';
@@ -37,6 +38,7 @@ class Hamcrest_AllTests
     $suite = new PHPUnit_Framework_TestSuite('Hamcrest');
     
     //TODO: Refactor into suites for Core, Number, Text...
+    $suite->addTestSuite('Hamcrest_StringDescriptionTest');
     $suite->addTestSuite('Hamcrest_BaseMatcherTest');
     $suite->addTestSuite('Hamcrest_FeatureMatcherTest');
     $suite->addTestSuite('Hamcrest_MatcherAssertTest');

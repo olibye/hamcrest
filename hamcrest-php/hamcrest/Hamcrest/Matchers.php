@@ -33,6 +33,7 @@ require_once 'Hamcrest/Array/IsArrayContaining.php';
 require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
 require_once 'Hamcrest/Array/IsArrayContainingInOrder.php';
 require_once 'Hamcrest/Array/IsArrayWithSize.php';
+require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -400,6 +401,14 @@ class Hamcrest_Matchers
   public static function emptyArray()
   {
     return Hamcrest_Array_IsArrayWithSize::emptyArray();
+  }
+  
+  /**
+   * Test if an array has both an key and value in parity with each other.
+   */
+  public static function hasKeyValuePair($key, $value)
+  {
+    return Hamcrest_Array_IsArrayContainingKeyValuePair::hasKeyValuePair($key, $value);
   }
   
 }

@@ -389,3 +389,11 @@ function emptyArray()
 {
   return Hamcrest_Matchers::emptyArray();
 }
+
+/**
+ * Test if an array has both an key and value in parity with each other.
+ */
+function hasKeyValuePair($key, $value)
+{
+  return Hamcrest_Matchers::hasKeyValuePair($key, $value);
+}

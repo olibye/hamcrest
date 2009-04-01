@@ -4,30 +4,26 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Description.php';
 
 /**
  * Tests if the value contains a series of substrings in a constrained order.
  */
-class Hamcrest_Text_StringContainsInOrder extends Hamcrest_BaseMatcher
+class Hamcrest_Text_StringContainsInOrder extends Hamcrest_TypeSafeMatcher
 {
   
   private $_substrings;
   
   public function __construct(array $substrings)
   {
+    parent::__construct(self::TYPE_STRING);
+    
     $this->_substrings = $substrings;
   }
   
-  public function matches($item)
+  protected function matchesSafely($item)
   {
-    if (!is_string($item) &&
-      !(is_object($item) && method_exists($item, '__toString')))
-    {
-      return false;
-    }
-    
     $fromIndex = 0;
     
     foreach ($this->_substrings as $substring)
@@ -41,10 +37,10 @@ class Hamcrest_Text_StringContainsInOrder extends Hamcrest_BaseMatcher
     return true;
   }
   
-  public function descibeMismatch($item,
+  protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription)
   {
-    $mismatchDescription->appendText('was ')->appendValue($item);
+    $mismatchDescription->appendText('was ')->appendText($item);
   }
   
   public function describeTo(Hamcrest_Description $description)

@@ -26,11 +26,6 @@ class Hamcrest_Core_StringContains extends Hamcrest_Core_SubstringMatcher
   
   protected function evalSubstringOf($item)
   {
-    if (is_object($item) && !method_exists($item, '__toString'))
-    {
-      $item = null;
-    }
-    
     return (false !== strpos((string) $item, $this->_substring));
   }
   

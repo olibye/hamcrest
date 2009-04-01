@@ -26,11 +26,6 @@ class Hamcrest_Core_StringStartsWith extends Hamcrest_Core_SubstringMatcher
   
   protected function evalSubstringOf($string)
   {
-    if (is_object($string) && !method_exists($string, '__toString'))
-    {
-      $string = null;
-    }
-    
     return (substr($string, 0, strlen($this->_substring)) === $this->_substring);
   }
   

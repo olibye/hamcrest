@@ -4,33 +4,34 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Description.php';
 
-class Hamcrest_Number_OrderingComparison extends Hamcrest_BaseMatcher
+class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
 {
   
   private $_value;
   private $_minCompare;
   private $_maxCompare;
   
-  private function __construct($value, $minCompare, $maxCompare)
+  public function __construct($value, $minCompare, $maxCompare)
   {
+    parent::__construct(self::TYPE_NUMERIC);
+    
     $this->_value = $value;
     $this->_minCompare = $minCompare;
     $this->_maxCompare = $maxCompare;
   }
   
-  public function matches($other)
+  protected function matchesSafely($other)
   {
     $compare = $this->_compare($this->_value, $other);
     return ($this->_minCompare <= $compare) && ($compare <= $this->_maxCompare);
   }
   
-  public function describeMismatch($item,
+  protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription)
   {
-    //TODO: While this is working, I'm not sure why I've got this order back-to-front compared to hamcrest-java
     $mismatchDescription
       ->appendValue($item)->appendText(' was ')
       ->appendText($this->_comparison($this->_compare($this->_value, $item)))
@@ -98,17 +99,6 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_BaseMatcher
   {
     $a = $left;
     $b = $right;
-    
-    //Compare as array object passed
-    if (is_object($left))
-    {
-      $a = (array) $left;
-    }
-    
-    if (is_object($right))
-    {
-      $b = (array) $right;
-    }
     
     if ($a < $b)
     {

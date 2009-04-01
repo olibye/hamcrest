@@ -4,28 +4,30 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Description.php';
 
-abstract class Hamcrest_Core_SubstringMatcher extends Hamcrest_BaseMatcher
+abstract class Hamcrest_Core_SubstringMatcher extends Hamcrest_TypeSafeMatcher
 {
   
   protected $_substring;
   
   public function __construct($substring)
   {
+    parent::__construct(self::TYPE_STRING);
+    
     $this->_substring = $substring;
   }
   
-  public function matches($item)
+  protected function matchesSafely($item)
   {
     return $this->evalSubstringOf($item);
   }
   
-  public function describeMismatch($item,
+  protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription)
   {
-    $mismatchDescription->appendText('was ')->appendValue($item);
+    $mismatchDescription->appendText('was "')->appendText($item)->appendText('"');
   }
   
   public function describeTo(Hamcrest_Description $description)

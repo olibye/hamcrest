@@ -4,39 +4,35 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Description.php';
 
 /**
  * Tests if a string is equal to another string, ignoring any changes in
  * whitespace.
  */
-class Hamcrest_Text_IsEqualIgnoringWhiteSpace extends Hamcrest_BaseMatcher
+class Hamcrest_Text_IsEqualIgnoringWhiteSpace extends Hamcrest_TypeSafeMatcher
 {
   
   private $_string;
   
   public function __construct($string)
   {
+    parent::__construct(self::TYPE_STRING);
+    
     $this->_string = $string;
   }
   
-  public function matches($item)
+  protected function matchesSafely($item)
   {
-    if (!is_string($item) &&
-      !(is_object($item) && method_exists($item, '__toString')))
-    {
-      return false;
-    }
-    
     return (strtolower($this->_stripSpace($item))
         === strtolower($this->_stripSpace($this->_string)));
   }
   
-  public function describeMismatch($item,
+  protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription)
   {
-    $mismatchDescription->appendText('was ')->appendValue($item);
+    $mismatchDescription->appendText('was ')->appendText($item);
   }
   
   public function describeTo(Hamcrest_Description $description)

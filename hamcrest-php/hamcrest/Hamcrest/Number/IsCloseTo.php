@@ -4,14 +4,14 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Description.php';
 
 /**
  * Is the value a number equal to a value within some range of
  * acceptable error?
  */
-class Hamcrest_Number_IsCloseTo extends Hamcrest_BaseMatcher
+class Hamcrest_Number_IsCloseTo extends Hamcrest_TypeSafeMatcher
 {
   
   private $_value;
@@ -19,21 +19,18 @@ class Hamcrest_Number_IsCloseTo extends Hamcrest_BaseMatcher
   
   public function __construct($value, $delta)
   {
+    parent::__construct(self::TYPE_NUMERIC);
+    
     $this->_value = $value;
     $this->_delta = $delta;
   }
   
-  public function matches($item)
+  protected function matchesSafely($item)
   {
-    if (!is_numeric($item))
-    {
-      return false;
-    }
-    
     return $this->_actualDelta($item) <= 0.0;
   }
   
-  public function describeMismatch($item,
+  protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription)
   {
     $mismatchDescription->appendValue($item)
@@ -60,10 +57,6 @@ class Hamcrest_Number_IsCloseTo extends Hamcrest_BaseMatcher
   
   private function _actualDelta($item)
   {
-    $item = is_numeric($item)
-      ? $item
-      : 0
-      ;
     return (abs(($item - $this->_value)) - $this->_delta);
   }
   

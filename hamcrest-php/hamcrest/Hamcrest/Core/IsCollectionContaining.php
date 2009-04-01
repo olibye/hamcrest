@@ -4,7 +4,7 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/BaseMatcher.php';
+require_once 'Hamcrest/TypeSafeMatcher.php';
 require_once 'Hamcrest/Matcher.php';
 require_once 'Hamcrest/Description.php';
 require_once 'Hamcrest/Core/AllOf.php';
@@ -13,23 +13,20 @@ require_once 'Hamcrest/Core/IsEqual.php';
 /**
  * Tests if an array contains values that match one or more Matchers.
  */
-class Hamcrest_Core_IsCollectionContaining extends Hamcrest_BaseMatcher
+class Hamcrest_Core_IsCollectionContaining extends Hamcrest_TypeSafeMatcher
 {
   
   private $_elementMatcher;
   
   public function __construct(Hamcrest_Matcher $elementMatcher)
   {
+    parent::__construct(self::TYPE_ARRAY);
+    
     $this->_elementMatcher = $elementMatcher;
   }
   
-  public function matches($items)
+  protected function matchesSafely($items)
   {
-    if (!is_array($items) && !($items instanceof Iterator))
-    {
-      $items = array($items);
-    }
-    
     foreach ($items as $item)
     {
       if ($this->_elementMatcher->matches($item))
@@ -41,7 +38,7 @@ class Hamcrest_Core_IsCollectionContaining extends Hamcrest_BaseMatcher
     return false;
   }
   
-  public function describeMismatch($items,
+  protected function describeMismatchSafely($items,
     Hamcrest_Description $mismatchDescription)
   {
     $mismatchDescription->appendText('was ')->appendValue($items);

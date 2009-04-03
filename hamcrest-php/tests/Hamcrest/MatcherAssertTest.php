@@ -1,7 +1,4 @@
 <?php
-
-require_once realpath(dirname(__FILE__)) . '/../includes.php';
-
 require_once 'hamcrest.php';
 require_once 'Hamcrest/MatcherAssert.php';
 require_once 'Hamcrest/AssertionError.php';

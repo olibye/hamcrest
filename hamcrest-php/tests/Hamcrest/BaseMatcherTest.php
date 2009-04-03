@@ -1,7 +1,4 @@
 <?php
-
-require_once realpath(dirname(__FILE__)) . '/../includes.php';
-
 require_once 'Hamcrest/BaseMatcher.php';
 
 /* Test-specific subclass only */

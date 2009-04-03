@@ -1,7 +1,4 @@
 <?php
-
-require_once realpath(dirname(__FILE__)) . '/../includes.php';
-
 require_once 'Hamcrest/StringDescription.php';
 require_once 'Hamcrest/SelfDescribing.php';
 require_once 'Hamcrest/Description.php';

@@ -32,9 +32,19 @@
 - (BOOL) matches:(id)dict
 {
     if ([dict respondsToSelector:@selector(allValues)])
+    {
+#if defined(OBJC_API_VERSION) && OBJC_API_VERSION >= 2
         for (id oneValue in [dict allValues])
+#else
+    NSEnumerator* enumerator = [dict objectEnumerator];
+    id oneValue;
+    while ((oneValue = [enumerator nextObject]) != nil)
+#endif
+        {
             if ([valueMatcher matches:oneValue])
                 return YES;
+        }
+    }
     return NO;
 }
 

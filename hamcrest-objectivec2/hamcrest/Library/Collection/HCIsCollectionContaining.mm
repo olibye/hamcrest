@@ -32,10 +32,23 @@
 
 - (BOOL) matches:(id)collection
 {
+    {
+#if defined(OBJC_API_VERSION) && OBJC_API_VERSION >= 2
     if ([collection conformsToProtocol:@protocol(NSFastEnumeration)])
         for (id item in collection)
+#else
+    if (![collection respondsToSelector:@selector(objectEnumerator)])
+        return NO;
+
+    NSEnumerator* enumerator = [collection objectEnumerator];
+    id item;
+    while ((item = [enumerator nextObject]) != nil)
+#endif
+        {
             if ([elementMatcher matches:item])
                 return YES;
+        }
+    }
     return NO;
 }
 

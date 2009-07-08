@@ -1,5 +1,6 @@
 #import "HCBaseDescription.h"
 
+#import "HCIntegerTypes.h"
 #import "HCMatcher.h"
 #import "HCSelfDescribing.h"
 
@@ -46,7 +47,13 @@
     BOOL separate = NO;
     
     [self append:start];
+#if defined(OBJC_API_VERSION) && OBJC_API_VERSION >= 2
     for (id item in values)
+#else
+    NSEnumerator* enumerator = [values objectEnumerator];
+    id item;
+    while ((item = [enumerator nextObject]) != nil)
+#endif
     {
         if (separate)
             [self append:separator];

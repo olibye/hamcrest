@@ -2,6 +2,7 @@
 
 #import <cctype>
 #import "HCDescription.h"
+#import "HCIntegerTypes.h"
 #import "HCRequireNonNilString.h"
 
 using namespace hamstring;

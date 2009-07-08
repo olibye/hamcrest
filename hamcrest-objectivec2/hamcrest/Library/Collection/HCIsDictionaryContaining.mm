@@ -38,9 +38,19 @@
 - (BOOL) matches:(id)dict
 {
     if ([dict isKindOfClass:[NSDictionary class]])
+    {
+#if defined(OBJC_API_VERSION) && OBJC_API_VERSION >= 2
         for (id oneKey in dict)
+#else
+    NSEnumerator* enumerator = [dict keyEnumerator];
+    id oneKey;
+    while ((oneKey = [enumerator nextObject]) != nil)
+#endif
+        {
             if ([keyMatcher matches:oneKey] && [valueMatcher matches:[dict objectForKey:oneKey]])
                 return YES;
+        }
+    }
     return NO;
 }
 

@@ -66,14 +66,29 @@ protected:
         push_back(m4.copy());
     }
     
-    template <typename Matcher1, typename Matcher2, typename Matcher3, typename Matcher4, typename Matcher5>
-    shortcut_combination(const Matcher1& m1, const Matcher2& m2, const Matcher3& m3, const Matcher4& m4, const Matcher5& m5)
+    template <typename Matcher1, typename Matcher2, typename Matcher3, typename Matcher4,
+                typename Matcher5>
+    shortcut_combination(const Matcher1& m1, const Matcher2& m2, const Matcher3& m3, const Matcher4& m4,
+                const Matcher5& m5)
     {
         push_back(m1.copy());
         push_back(m2.copy());
         push_back(m3.copy());
         push_back(m4.copy());
         push_back(m5.copy());
+    }
+
+    template <typename Matcher1, typename Matcher2, typename Matcher3, typename Matcher4,
+                typename Matcher5, typename Matcher6>
+    shortcut_combination(const Matcher1& m1, const Matcher2& m2, const Matcher3& m3, const Matcher4& m4,
+                const Matcher5& m5, const Matcher6& m6)
+    {
+        push_back(m1.copy());
+        push_back(m2.copy());
+        push_back(m3.copy());
+        push_back(m4.copy());
+        push_back(m5.copy());
+        push_back(m6.copy());
     }
 
     ~shortcut_combination()

@@ -10,7 +10,7 @@ using namespace hamcrest;
 
 SUITE(AllOfTest) {
 
-TEST(EvaluatesToTheTheLogicalConjunctionOfTwoOtherMatchers2)
+TEST(EvaluatesToTheTheLogicalConjunctionOfTwoOtherMatchers)
 {
     ASSERT_THAT("good", all_of(equal_to("good"), equal_to("good")));
     
@@ -27,32 +27,54 @@ TEST(EvaluatesToTheTheLogicalConjunctionOfThreeOtherMatchers)
 }
 
 
-
 TEST(EvaluatesToTheTheLogicalConjunctionOfFourOtherMatchers)
 {
-    ASSERT_THAT("good", all_of(equal_to("good"),
+    ASSERT_THAT("good", all_of(
+                                equal_to("good"),
                                 equal_to("good"),
                                 equal_to("good"),
                                 equal_to("good")));
-    ASSERT_THAT("good", is_not(all_of(equal_to("good"),
-                                    equal_to("good"),
-                                    equal_to("bad"),
-                                    equal_to("good"))));
+    ASSERT_THAT("good", is_not(all_of(
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("bad"),
+                                equal_to("good"))));
 }
 
 
 TEST(EvaluatesToTheTheLogicalConjunctionOfFiveOtherMatchers)
 {
-    ASSERT_THAT("good", all_of(equal_to("good"),
+    ASSERT_THAT("good", all_of(
+                                equal_to("good"),
                                 equal_to("good"),
                                 equal_to("good"),
                                 equal_to("good"),
                                 equal_to("good")));
-    ASSERT_THAT("good", is_not(all_of(equal_to("good"),
-                                    equal_to("good"),
-                                    equal_to("bad"),
-                                    equal_to("good"),
-                                    equal_to("good"))));
+    ASSERT_THAT("good", is_not(all_of(
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("bad"),
+                                equal_to("good"),
+                                equal_to("good"))));
+}
+
+
+TEST(EvaluatesToTheTheLogicalConjunctionOfSixOtherMatchers)
+{
+    ASSERT_THAT("good", all_of(
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("good")));
+    ASSERT_THAT("good", is_not(all_of(
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("bad"),
+                                equal_to("good"),
+                                equal_to("good"),
+                                equal_to("good"))));
 }
 
 

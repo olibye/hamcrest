@@ -27,32 +27,54 @@ TEST(EvaluatesToTheTheLogicalDisjunctionOfThreeOtherMatchers)
 }
 
 
-
 TEST(EvaluatesToTheTheLogicalDisjunctionOfFourOtherMatchers)
 {
-    ASSERT_THAT("good", any_of(equal_to("bad"),
+    ASSERT_THAT("good", any_of(
+                                equal_to("bad"),
                                 equal_to("good"),
                                 equal_to("bad"),
                                 equal_to("bad")));
-    ASSERT_THAT("good", is_not(any_of(equal_to("bad"),
-                                    equal_to("bad"),
-                                    equal_to("bad"),
-                                    equal_to("bad"))));
+    ASSERT_THAT("good", is_not(any_of(
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"))));
 }
 
 
 TEST(EvaluatesToTheTheLogicalDisjunctionOfFiveOtherMatchers)
 {
-    ASSERT_THAT("good", any_of(equal_to("bad"),
+    ASSERT_THAT("good", any_of(
+                                equal_to("bad"),
                                 equal_to("bad"),
                                 equal_to("good"),
                                 equal_to("bad"),
                                 equal_to("bad")));
-    ASSERT_THAT("good", is_not(any_of(equal_to("bad"),
-                                    equal_to("bad"),
-                                    equal_to("bad"),
-                                    equal_to("bad"),
-                                    equal_to("bad"))));
+    ASSERT_THAT("good", is_not(any_of(
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"))));
+}
+
+
+TEST(EvaluatesToTheTheLogicalDisjunctionOfSixOtherMatchers)
+{
+    ASSERT_THAT("good", any_of(
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("good"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad")));
+    ASSERT_THAT("good", is_not(any_of(
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"),
+                                equal_to("bad"))));
 }
 
 

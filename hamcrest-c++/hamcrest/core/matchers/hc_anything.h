@@ -18,6 +18,11 @@ namespace hamcrest {
 template <typename T>
 struct anything : public matcher<T>
 {
+    /**
+        Create matcher that always evaluates to true
+
+        @param description A meaningful string used when describing itself.
+    */
     explicit anything(const std::string& description = "ANYTHING") : description_m(description) { }
 
     bool operator()(const T& /*item*/) const { return true; }

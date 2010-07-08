@@ -363,7 +363,7 @@ function containsInAnyOrder(array $items)
  */
 function contains(array $items)
 {
-  return Hamcrest_Matchers::contains($matchers);
+  return Hamcrest_Matchers::contains($items);
 }
 
 /**

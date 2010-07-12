@@ -1,5 +1,10 @@
 == Version ?: unreleased ==
 
+* assertThat() accepts a single boolean parameter and
+  wraps any non-Matcher third parameter with equalTo().
+
+* [114] Removed null return value from assertThat().
+
 * [109] Fixed wrong variable name in contains().
 
 * Added MatchesPattern for regex matching with preg_match().

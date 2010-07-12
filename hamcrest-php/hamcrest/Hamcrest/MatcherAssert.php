@@ -7,43 +7,65 @@
 require_once 'Hamcrest/Matcher.php';
 require_once 'Hamcrest/StringDescription.php';
 require_once 'Hamcrest/AssertionError.php';
+require_once 'Hamcrest/Core/IsEqual.php';
 
 class Hamcrest_MatcherAssert
 {
   
   /**
-   * Make an assertion and throw {@link Hamcrest_AssertionError} if fails.
+   * Make an assertion and throw {@link Hamcrest_AssertionError} if it fails.
+   *
+   * If the third parameter is not a matcher it is wrapped
+   * with {@link Hamcrest_Core_IsEqual#equalTo}.
    * 
    * Example:
    * <pre>
-   * //With an identifier
+   * // With an identifier
    * assertThat("assertion identifier", $apple->flavour(), equalTo("tasty"));
-   * //Without an identifier
+   * // Without an identifier
    * assertThat($apple->flavour(), equalTo("tasty"));
-   * //Evaluating a boolean expression
+   * // Evaluating a boolean expression
    * assertThat("some error", $a > $b);
+   * assertThat($a > $b);
    * </pre>
    */
   public static function assertThat(/* $args ... */)
   {
     $args = func_get_args();
-    if (isset($args[2]) && $args[2] instanceof Hamcrest_Matcher)
+    switch (count($args))
     {
-      return self::doAssert($args[0], $args[1], $args[2]);
+      case 1:
+        if (!$args[0])
+        {
+          throw new Hamcrest_AssertionError();
+        }
+        break;
+
+      case 2:
+        if ($args[1] instanceof Hamcrest_Matcher)
+        {
+          self::doAssert('', $args[0], $args[1]);
+        }
+        elseif (!$args[1])
+        {
+          throw new Hamcrest_AssertionError($args[0]);
+        }
+        break;
+
+      case 3:
+        if ($args[2] instanceof Hamcrest_Matcher)
+        {
+          self::doAssert($args[0], $args[1], $args[2]);
+        }
+        else
+        {
+          self::doAssert($args[0], $args[1], Hamcrest_Core_IsEqual::equalTo($args[2]));
+        }
+        break;
+      
+      default:
+        throw new InvalidArgumentException();
     }
-    elseif (isset($args[1]) && $args[1] instanceof Hamcrest_Matcher)
-    {
-      return self::assertThat('', $args[0], $args[1]);
-    }
-    elseif (array_key_exists(1, $args))
-    {
-      if (!$args[1])
-      {
-        throw new Hamcrest_AssertionError($args[0]);
-      }
-    }
-    
-    throw new InvalidArgumentException();
   }
   
   // -- Private Methods

@@ -24,7 +24,7 @@ require_once 'Hamcrest/Matchers.php';
 function assertThat()
 {
   $args = func_get_args();
-  return call_user_func_array(
+  call_user_func_array(
     array('Hamcrest_MatcherAssert', 'assertThat'),
     $args
   );

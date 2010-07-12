@@ -1,0 +1,22 @@
+== Version ?: unreleased ==
+
+* Added MatchesPattern for regex matching with preg_match().
+  assertThat('foobar', matchesPattern('/o+b/'));
+
+* Added Set to assert isset().
+  assertThat($anArray, set('foo'));  // isset($anArray['foo'])
+
+* Added IsTypeOf to assert gettype().
+  assertThat($count, typeOf('int'));
+
+* Added synonyms:
+  atLeast() for greaterThanOrEqualTo()
+  atMost() for lessThanOrEqualTo()
+
+
+== Version 0.1.0: Released Jul 7 2010 ==
+
+* Created PEAR package
+
+* Initial core matchers
+

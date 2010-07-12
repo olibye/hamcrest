@@ -13,7 +13,7 @@
 * Added Set to assert isset().
   assertThat($anArray, set('foo'));  // isset($anArray['foo'])
 
-* Added IsTypeOf to assert gettype().
+* [115] Added IsTypeOf to assert gettype().
   assertThat($count, typeOf('int'));
 
 * Added synonyms:

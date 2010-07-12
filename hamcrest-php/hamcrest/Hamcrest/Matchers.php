@@ -412,7 +412,7 @@ class Hamcrest_Matchers
    */
   public static function contains(array $items)
   {
-    return Hamcrest_Array_IsArrayContainingInOrder::contains($matchers);
+    return Hamcrest_Array_IsArrayContainingInOrder::contains($items);
   }
   
   /**

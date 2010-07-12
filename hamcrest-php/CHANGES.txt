@@ -1,5 +1,7 @@
 == Version ?: unreleased ==
 
+* [109] Fixed wrong variable name in contains().
+
 * Added MatchesPattern for regex matching with preg_match().
   assertThat('foobar', matchesPattern('/o+b/'));
 

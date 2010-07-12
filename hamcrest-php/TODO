@@ -15,6 +15,7 @@ Aliasing/Deprecation (questionable):
       * assertThat($a, is(not(emptyString())))
 
 Just for PHP (names subject to change):
+[currently supported via typeOf('<type>') but named methods would be nicer]
   - Hamcrest_Type_IsNumeric::numericValue()
   - Hamcrest_Type_IsString::stringValue()
   - Hamcrest_Type_IsInteger::integerValue()

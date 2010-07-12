@@ -128,6 +128,20 @@ function anything($description = 'ANYTHING')
 }
 
 /**
+ * Is the property set in the object/class/array.
+ */
+function set($property) {
+  return Hamcrest_Matchers::set($property);
+}
+
+/**
+ * Is the property not set in the object/class/array.
+ */
+function notSet($property) {
+  return Hamcrest_Matchers::notSet($property);
+}
+
+/**
  * Is the value equal to another value, as tested by the use of the "=="
  * comparison operator?
  */
@@ -161,6 +175,13 @@ function startsWith($substring)
 }
 
 /**
+ * Tests if the argument is a string that matches a regular expression.
+ */
+function matchesPattern($pattern) {
+  return Hamcrest_Matchers::matchesPattern($pattern);
+}
+
+/**
  * Test if the value is an array containing this matcher.
  * 
  * Example:
@@ -189,6 +210,18 @@ function hasItems()
 {
   $args = func_get_args();
   return call_user_func_array(array('Hamcrest_Matchers', 'hasItems'), $args);
+}
+
+/**
+ * Is the value a particular built-in type?
+ *
+ * Example:
+ * <pre>
+ * assertThat(array('a', 'b'), typeOf('array'));
+ * </pre>
+ */
+function typeOf($theType) {
+  return Hamcrest_Matchers::typeOf($theType);
 }
 
 /**
@@ -276,6 +309,16 @@ function greaterThanOrEqualTo($value)
 }
 
 /**
+ * The value is >= $value.
+ *
+ * Synonym for {@link greaterThanOrEqualTo}.
+ */
+function atLeast($value)
+{
+  return Hamcrest_Matchers::greaterThanOrEqualTo($value);
+}
+
+/**
  * The value is < $value.
  */
 function lessThan($value)
@@ -287,6 +330,16 @@ function lessThan($value)
  * The value is <= $value.
  */
 function lessThanOrEqualTo($value)
+{
+  return Hamcrest_Matchers::lessThanOrEqualTo($value);
+}
+
+/**
+ * The value is <= $value.
+ *
+ * Synonym for {@link lessThanOrEqualTo}.
+ */
+function atMost($value)
 {
   return Hamcrest_Matchers::lessThanOrEqualTo($value);
 }

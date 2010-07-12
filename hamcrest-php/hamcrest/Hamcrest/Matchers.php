@@ -17,8 +17,11 @@ require_once 'Hamcrest/Core/IsEqual.php';
 require_once 'Hamcrest/Core/IsInstanceOf.php';
 require_once 'Hamcrest/Core/IsNot.php';
 require_once 'Hamcrest/Core/IsNull.php';
-require_once 'Hamcrest/Core/IsSame.php';
 require_once 'Hamcrest/Core/IsIdentical.php';
+require_once 'Hamcrest/Core/IsSame.php';
+require_once 'Hamcrest/Core/IsTypeOf.php';
+require_once 'Hamcrest/Core/MatchesPattern.php';
+require_once 'Hamcrest/Core/Set.php';
 require_once 'Hamcrest/Core/StringContains.php';
 require_once 'Hamcrest/Core/StringEndsWith.php';
 require_once 'Hamcrest/Core/StringStartsWith.php';
@@ -140,6 +143,22 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsAnything::anything($description);
   }
+
+  /**
+   * Tests if the argument (class, object, or array) has the named property.
+   */
+  public static function set($property)
+  {
+    return Hamcrest_Core_Set::set($property);
+  }
+
+  /**
+   * Tests if the argument (class, object, or array) doesn't have the named property.
+   */
+  public static function notSet($property)
+  {
+    return Hamcrest_Core_Set::notSet($property);
+  }
   
   /**
    * Is the value equal to another value, as tested by the use of the "=="
@@ -173,6 +192,14 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_StringStartsWith::startsWith($substring);
   }
+
+  /**
+   * Tests if the argument is a string that matches a regular expression.
+   */
+  public static function matchesPattern($pattern)
+  {
+    return Hamcrest_Core_MatchesPattern::matchesPattern($pattern);
+  }
   
   /**
    * Test if the value is an array containing this matcher.
@@ -203,6 +230,14 @@ class Hamcrest_Matchers
   {
     $args = func_get_args();
     return call_user_func_array(array('Hamcrest_Core_IsCollectionContaining', 'hasItems'), $args);
+  }
+
+  /**
+   * Is the value a particular built-in type?
+   */
+  public static function typeOf($theType)
+  {
+    return Hamcrest_Core_IsTypeOf::typeOf($theType);
   }
   
   /**

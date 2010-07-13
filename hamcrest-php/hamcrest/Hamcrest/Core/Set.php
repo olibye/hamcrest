@@ -23,7 +23,7 @@ class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
   private $_property;
   private $_not;
   
-  public function __construct($property, $not = FALSE)
+  public function __construct($property, $not = false)
   {
     $this->_property = $property;
     $this->_not = $not;
@@ -31,6 +31,9 @@ class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
   
   public function matches($item)
   {
+    if ($item === null) {
+      return false;
+    }
     $property = $this->_property;
     if (is_array($item)) {
       $result = isset($item[$property]);
@@ -39,7 +42,7 @@ class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
       $result = isset($item->$property);
     }
     elseif (is_string($item)) {
-      $result = isset($item::$property);
+      $result = isset($item::$$property);
     }
     else {
       throw new InvalidArgumentException(
@@ -58,7 +61,7 @@ class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
   }
   
   public function describeMismatch($item,
-    Hamcrest_Description $mismatchDescription)
+    Hamcrest_Description $description)
   {
     if (!$this->_not) {
       $description->appendText('was not set');
@@ -85,7 +88,7 @@ class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
 
   public static function notSet($property)
   {
-    return new self($property, TRUE);
+    return new self($property, true);
   }
   
 }

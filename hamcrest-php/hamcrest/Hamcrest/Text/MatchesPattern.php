@@ -9,7 +9,7 @@ require_once 'Hamcrest/Core/SubstringMatcher.php';
 /**
  * Tests if the argument is a string that matches a regular expression.
  */
-class Hamcrest_Core_MatchesPattern extends Hamcrest_Core_SubstringMatcher
+class Hamcrest_Text_MatchesPattern extends Hamcrest_Core_SubstringMatcher
 {
   
   public function __construct($pattern)
@@ -17,7 +17,7 @@ class Hamcrest_Core_MatchesPattern extends Hamcrest_Core_SubstringMatcher
     parent::__construct($pattern);
   }
   
-  public static function containsString($pattern)
+  public static function matchesPattern($pattern)
   {
     return new self($pattern);
   }

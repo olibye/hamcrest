@@ -20,7 +20,6 @@ require_once 'Hamcrest/Core/IsNull.php';
 require_once 'Hamcrest/Core/IsIdentical.php';
 require_once 'Hamcrest/Core/IsSame.php';
 require_once 'Hamcrest/Core/IsTypeOf.php';
-require_once 'Hamcrest/Core/MatchesPattern.php';
 require_once 'Hamcrest/Core/Set.php';
 require_once 'Hamcrest/Core/StringContains.php';
 require_once 'Hamcrest/Core/StringEndsWith.php';
@@ -30,6 +29,7 @@ require_once 'Hamcrest/Number/OrderingComparison.php';
 require_once 'Hamcrest/Text/IsEmptyString.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
+require_once 'Hamcrest/Text/MatchesPattern.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
 require_once 'Hamcrest/Array/IsArray.php';
 require_once 'Hamcrest/Array/IsArrayContaining.php';
@@ -198,7 +198,7 @@ class Hamcrest_Matchers
    */
   public static function matchesPattern($pattern)
   {
-    return Hamcrest_Core_MatchesPattern::matchesPattern($pattern);
+    return Hamcrest_Text_MatchesPattern::matchesPattern($pattern);
   }
   
   /**

@@ -225,6 +225,122 @@ function typeOf($theType) {
 }
 
 /**
+ * Is the value an array?
+ *
+ * Example:
+ * <pre>
+ * assertThat(array('a', 'b'), arrayValue());
+ * </pre>
+ */
+function arrayValue() {
+  return Hamcrest_Matchers::arrayValue();
+}
+
+/**
+ * Is the value a boolean?
+ *
+ * Example:
+ * <pre>
+ * assertThat(TRUE, booleanValue());
+ * </pre>
+ */
+function booleanValue() {
+  return Hamcrest_Matchers::booleanValue();
+}
+
+/**
+ * Is the value a boolean?
+ *
+ * Synonym for {@link booleanValue()}
+ */
+function boolValue() {
+  return Hamcrest_Matchers::booleanValue();
+}
+
+/**
+ * Is the value a double?
+ *
+ * Example:
+ * <pre>
+ * assertThat(5, integerValue());
+ * </pre>
+ */
+function doubleValue() {
+  return Hamcrest_Matchers::doubleValue();
+}
+
+/**
+ * Is the value a float?
+ *
+ * PHP returns "double" for values of type "float".
+ *
+ * Example:
+ * <pre>
+ * assertThat(5, integerValue());
+ * </pre>
+ */
+function floatValue() {
+  return Hamcrest_Matchers::doubleValue();
+}
+
+/**
+ * Is the value an integer?
+ *
+ * Example:
+ * <pre>
+ * assertThat(5, integerValue());
+ * </pre>
+ */
+function integerValue() {
+  return Hamcrest_Matchers::integerValue();
+}
+
+/**
+ * Is the value an object?
+ *
+ * Example:
+ * <pre>
+ * assertThat($anObject, objectValue());
+ * </pre>
+ */
+function objectValue() {
+  return Hamcrest_Matchers::objectValue();
+}
+
+/**
+ * Is the value a resource?
+ *
+ * Example:
+ * <pre>
+ * assertThat(fopen('readme.txt'), resourceValue());
+ * </pre>
+ */
+function resourceValue() {
+  return Hamcrest_Matchers::resourceValue();
+}
+
+/**
+ * Is the value a string?
+ *
+ * Example:
+ * <pre>
+ * assertThat('a string', stringValue());
+ * </pre>
+ */
+function stringValue() {
+  return Hamcrest_Matchers::stringValue();
+}
+
+/**
+ * Is the value an object?
+ *
+ * Synonym for {@link objectValue()}
+ */
+function anObject() {
+  return Hamcrest_Matchers::objectValue();
+}
+
+/**
  * Is the value an instance of a particular type?
  * This version assumes no relationship between the required type and
  * the signature of the method that sets it up, for example in

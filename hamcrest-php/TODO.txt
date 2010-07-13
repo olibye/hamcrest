@@ -15,16 +15,8 @@ Aliasing/Deprecation (questionable):
       * assertThat($a, is(not(emptyString())))
 
 Just for PHP (names subject to change):
-[currently supported via typeOf('<type>') but named methods would be nicer]
   - Hamcrest_Type_IsNumeric::numericValue()
-  - Hamcrest_Type_IsString::stringValue()
-  - Hamcrest_Type_IsInteger::integerValue()
-  - Hamcrest_Type_IsFloat::floatValue()
-  - Hamcrest_Type_IsObject::objectValue()
   - Hamcrest_Type_IsCallable::callable()
-  - Hamcrest_Type_IsResource::resourceValue()
-  - Hamcrest_Type_IsBoolean::booleanValue()
-  - Hamcrest_Type_IsArray::arrayValue()
 
 Namespaces:
   - Investigate adding PHP 5.3+ namespace support in a way that still permits

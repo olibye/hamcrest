@@ -3,18 +3,20 @@
 * assertThat() accepts a single boolean parameter and
   wraps any non-Matcher third parameter with equalTo().
 
-* [114] Removed null return value from assertThat().
+* Removed null return value from assertThat(). [114]
 
-* [109] Fixed wrong variable name in contains().
+* Fixed wrong variable name in contains(). [109]
 
-* Added MatchesPattern for regex matching with preg_match().
-  assertThat('foobar', matchesPattern('/o+b/'));
-
-* Added Set to assert isset().
+* Added Hamcrest_Core_Set to assert isset().
   assertThat($anArray, set('foo'));  // isset($anArray['foo'])
 
-* [115] Added IsTypeOf to assert gettype().
+* Added Hamcrest_Core_IsTypeOf and Hamcrest_Type_Is* to assert gettype(). [115]
   assertThat($count, typeOf('int'));
+  assertThat($count, integerValue());
+  assertThat('foo', stringValue());
+
+* Added Hamcrest_Text_MatchesPattern for regex matching with preg_match().
+  assertThat('foobar', matchesPattern('/o+b/'));
 
 * Added synonyms:
   atLeast() for greaterThanOrEqualTo()

@@ -31,6 +31,13 @@ require_once 'Hamcrest/Text/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Text/MatchesPattern.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
+require_once 'Hamcrest/Type/IsArray.php';
+require_once 'Hamcrest/Type/IsBoolean.php';
+require_once 'Hamcrest/Type/IsDouble.php';
+require_once 'Hamcrest/Type/IsInteger.php';
+require_once 'Hamcrest/Type/IsObject.php';
+require_once 'Hamcrest/Type/IsResource.php';
+require_once 'Hamcrest/Type/IsString.php';
 require_once 'Hamcrest/Array/IsArray.php';
 require_once 'Hamcrest/Array/IsArrayContaining.php';
 require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
@@ -46,7 +53,7 @@ require_once 'Hamcrest/Array/IsArrayContainingKey.php';
  */
 class Hamcrest_Matchers
 {
-  
+
   /**
    * Evaluates to true only if ALL of the passed in matchers evaluate to true.
    */
@@ -55,7 +62,7 @@ class Hamcrest_Matchers
     $args = func_get_args();
     return call_user_func_array(array('Hamcrest_Core_AllOf', 'allOf'), $args);
   }
-  
+
   /**
    * Evaluates to true if ANY of the passed in matchers evaluate to true.
    */
@@ -64,35 +71,35 @@ class Hamcrest_Matchers
     $args = func_get_args();
     return call_user_func_array(array('Hamcrest_Core_AnyOf', 'anyOf'), $args);
   }
-  
+
   /**
    * This is useful for fluently combining matchers that must both pass.
    * For example:
    * <pre>
    *   assertThat($string, both(containsString("a"))->andAlso(containsString("b")));
    * </pre>
-   * 
+   *
    * @param Hamcrest_Matcher $itemMatcher
    */
   public static function both(Hamcrest_Matcher $matcher)
   {
     return Hamcrest_Core_CombinableMatcher::both($matcher);
   }
-  
+
   /**
    * This is useful for fluently combining matchers where either may pass,
    * for example:
    * <pre>
    *   assertThat($string, either(containsString("a"))->orElse(containsString("b")));
    * </pre>
-   * 
+   *
    * @param Hamcrest_Matcher $matcher
    */
   public static function either(Hamcrest_Matcher $matcher)
   {
     return Hamcrest_Core_CombinableMatcher::either($matcher);
   }
-  
+
   /**
    * Wraps an existing matcher and overrides the description when it fails.
    */
@@ -101,10 +108,10 @@ class Hamcrest_Matchers
     $args = func_get_args();
     return call_user_func_array(array('Hamcrest_Core_DescribedAs', 'describedAs'), $args);
   }
-  
+
   /**
    * Tests each item in an array against the given matcher.
-   * 
+   *
    * @param Hamcrest_Matcher $itemMatcher
    *   A matcher to apply to every element in an array.
    */
@@ -112,7 +119,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_Every::everyItem($itemMatcher);
   }
-  
+
   /**
    * Decorates another Matcher, retaining the behavior but allowing tests
    * to be slightly more expressive.
@@ -124,7 +131,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_Is::is($value);
   }
-  
+
   /**
    * Calculates the logical negation of a matcher.
    */
@@ -132,7 +139,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsNot::not($value);
   }
-  
+
   /**
    * This matcher always evaluates to true.
    *
@@ -159,7 +166,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_Set::notSet($property);
   }
-  
+
   /**
    * Is the value equal to another value, as tested by the use of the "=="
    * comparison operator?
@@ -168,7 +175,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsEqual::equalTo($item);
   }
-  
+
   /**
    * Tests if the argument is a string that contains a substring.
    */
@@ -176,7 +183,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_StringContains::containsString($substring);
   }
-  
+
   /**
    * Tests if the argument is a string that contains a substring.
    */
@@ -184,7 +191,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_StringEndsWith::endsWith($substring);
   }
-  
+
   /**
    * Tests if the argument is a string that contains a substring.
    */
@@ -200,10 +207,10 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_MatchesPattern::matchesPattern($pattern);
   }
-  
+
   /**
    * Test if the value is an array containing this matcher.
-   * 
+   *
    * Example:
    * <pre>
    * assertThat(array('a', 'b'), hasItem(equalTo('b')));
@@ -216,11 +223,11 @@ class Hamcrest_Matchers
     $args = func_get_args();
     return call_user_func_array(array('Hamcrest_Core_IsCollectionContaining', 'hasItem'), $args);
   }
-  
+
   /**
    * Test if the value is an array containing elements that match all of these
    * matchers.
-   * 
+   *
    * Example:
    * <pre>
    * assertThat(array('a', 'b', 'c'), hasItems(equalTo('a'), equalTo('b')));
@@ -239,7 +246,73 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsTypeOf::typeOf($theType);
   }
-  
+
+  /**
+   * Is the value an array?
+   */
+  public static function arrayValue()
+  {
+    return Hamcrest_Type_IsArray::arrayValue();
+  }
+
+  /**
+   * Is the value a boolean?
+   */
+  public static function booleanValue()
+  {
+    return Hamcrest_Type_IsBoolean::booleanValue();
+  }
+
+  /**
+   * Is the value a double?
+   */
+  public static function doubleValue()
+  {
+    return Hamcrest_Type_IsDouble::doubleValue();
+  }
+
+  /**
+   * Is the value a float?
+   *
+   * PHP returns "double" for values of type "float".
+   */
+  public static function floatValue()
+  {
+    return Hamcrest_Type_IsDouble::doubleValue();
+  }
+
+  /**
+   * Is the value an integer?
+   */
+  public static function integerValue()
+  {
+    return Hamcrest_Type_IsInteger::integerValue();
+  }
+
+  /**
+   * Is the value an object?
+   */
+  public static function objectValue()
+  {
+    return Hamcrest_Type_IsObject::objectValue();
+  }
+
+  /**
+   * Is the value a resource?
+   */
+  public static function resourceValue()
+  {
+    return Hamcrest_Type_IsResource::resourceValue();
+  }
+
+  /**
+   * Is the value a string?
+   */
+  public static function stringValue()
+  {
+    return Hamcrest_Type_IsString::stringValue();
+  }
+
   /**
    * Is the value an instance of a particular type?
    * This version assumes no relationship between the required type and
@@ -250,7 +323,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsInstanceOf::anInstanceOf($theClass);
   }
-  
+
   /**
    * Alias for {@link anInstanceOf()}.
    */
@@ -258,7 +331,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsInstanceOf::any($theClass);
   }
-  
+
   /**
    * Matches if value is null.
    */
@@ -266,7 +339,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsNull::nullValue();
   }
-  
+
   /**
    * Matches if value is not null.
    */
@@ -274,7 +347,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsNull::notNullValue();
   }
-  
+
   /**
    * The predicate evaluates to true only when the argument is this object.
    */
@@ -282,7 +355,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsSame::sameInstance($object);
   }
-  
+
   /**
    * Tests of the value is identical to $value as tested by the "===" operator.
    */
@@ -290,7 +363,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Core_IsIdentical::identicalTo($value);
   }
-  
+
   /**
    * Is the value a number equal to a value within some range of
    * acceptable error?
@@ -299,7 +372,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_IsCloseTo::closeTo($value, $delta);
   }
-  
+
   /**
    * The value is not > $value, nor < $value.
    */
@@ -307,7 +380,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_OrderingComparison::comparesEqualTo($value);
   }
-  
+
   /**
    * The value is > $value.
    */
@@ -315,7 +388,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_OrderingComparison::greaterThan($value);
   }
-  
+
   /**
    * The value is >= $value.
    */
@@ -323,7 +396,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_OrderingComparison::greaterThanOrEqualTo($value);
   }
-  
+
   /**
    * The value is < $value.
    */
@@ -331,7 +404,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_OrderingComparison::lessThan($value);
   }
-  
+
   /**
    * The value is <= $value.
    */
@@ -339,7 +412,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Number_OrderingComparison::lessThanOrEqualTo($value);
   }
-  
+
   /**
    * Matches if value is zero-length string.
    */
@@ -347,7 +420,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_IsEmptyString::isEmptyString();
   }
-  
+
   /**
    * Matches if value is null or zero-length string.
    */
@@ -355,7 +428,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_IsEmptyString::isEmptyOrNullString();
   }
-  
+
   /**
    * Tests if a string is equal to another string, regardless of the case.
    */
@@ -363,7 +436,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_IsEqualIgnoringCase::equalToIgnoringCase($string);
   }
-  
+
   /**
    * Tests if a string is equal to another string, ignoring any changes in
    * whitespace.
@@ -372,7 +445,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_IsEqualIgnoringWhiteSpace::equalToIgnoringWhiteSpace($string);
   }
-  
+
   /**
    * Tests if the value contains a series of substrings in a constrained order.
    */
@@ -380,7 +453,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Text_StringContainsInOrder::stringContainsInOrder($substrings);
   }
-  
+
   /**
    * Evaluates to true only if each $matcher[$i] is satisfied by $array[$i].
    */
@@ -388,17 +461,17 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArray::anArray($array);
   }
-  
+
   /**
    * Evaluates to true if any item in an array satisfies the given matcher.
-   * 
+   *
    * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
    */
   public static function hasItemInArray($item)
   {
     return Hamcrest_Array_IsArrayContaining::hasItemInArray($item);
   }
-  
+
   /**
    * An array with elements that match the given matchers.
    */
@@ -406,7 +479,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayContainingInAnyOrder::containsInAnyOrder($items);
   }
-  
+
   /**
    * An array with elements that match the given matchers in the same order.
    */
@@ -414,7 +487,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayContainingInOrder::contains($items);
   }
-  
+
   /**
    * An array with elements that match the given matchers in the same order.
    */
@@ -422,7 +495,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayContainingInOrder::arrayContaining($items);
   }
-  
+
   /**
    * Does array size satisfy a given matcher?
    */
@@ -430,7 +503,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayWithSize::arrayWithSize($size);
   }
-  
+
   /**
    * Matches an empty array.
    */
@@ -438,7 +511,7 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayWithSize::emptyArray();
   }
-  
+
   /**
    * Test if an array has both an key and value in parity with each other.
    */
@@ -446,25 +519,25 @@ class Hamcrest_Matchers
   {
     return Hamcrest_Array_IsArrayContainingKeyValuePair::hasKeyValuePair($key, $value);
   }
-  
+
   /**
    * Evaluates to true if any key in an array matches the given matcher.
-   * 
+   *
    * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
    */
   public static function hasKeyInArray($key)
   {
     return Hamcrest_Array_IsArrayContainingKey::hasKeyInArray($key);
   }
-  
+
   /**
    * Evaluates to true if any key in an array matches the given matcher.
-   * 
+   *
    * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
    */
   public static function hasKey($key)
   {
     return Hamcrest_Array_IsArrayContainingKey::hasKey($key);
   }
-  
+
 }

@@ -4,7 +4,7 @@
  Copyright (c) 2010 hamcrest.org
  */
 
-require_once 'Hamcrest/DiagnosingMatcher.php';
+require_once 'Hamcrest/BaseMatcher.php';
 require_once 'Hamcrest/Description.php';
 
 /**
@@ -33,16 +33,25 @@ class Hamcrest_Core_IsTypeOf extends Hamcrest_BaseMatcher
   
   public function describeTo(Hamcrest_Description $description)
   {
-    $description->appendText('a value of type ')
-                ->appendValue($this->_theType)
-                ;
+    $description->appendText($this->getTypeDescription($this->_theType));
   }
 
   public function describeMismatch($item, Hamcrest_Description $description)
   {
-    $description->appendText('a value of type ')
-                ->appendValue($this->_theType)
+    $description->appendText('was ')
+                ->appendText($this->getTypeDescription(
+                              strtolower(gettype($item))))
                 ;
+  }
+
+  protected function getTypeDescription($type)
+  {
+    if ($type == 'null')
+    {
+      return $type;
+    }
+    return (strpos('aeiou', substr($type, 0, 1)) === false ? 'a ' : 'an ')
+        . $type;
   }
   
   /**

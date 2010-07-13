@@ -32,7 +32,7 @@ class Hamcrest_Type_IsIntegerTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', integerValue(), null);
-    $this->assertMismatchDescription('was a string', integerValue(), 'foo');
+    $this->assertMismatchDescription('was a string "foo"', integerValue(), 'foo');
   }
   
 }

@@ -41,9 +41,7 @@ class Hamcrest_Core_IsTypeOfTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', typeOf('boolean'), null);
-    $this->assertMismatchDescription('was an object', typeOf('string'),
-        new stdClass
-    );
+    $this->assertMismatchDescription('was an integer <5>', typeOf('float'), 5);
   }
   
 }

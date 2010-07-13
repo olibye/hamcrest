@@ -1,7 +1,9 @@
-== Version ?: unreleased ==
+== Version 0.2.0: unreleased ==
 
-* Description::addValues() and addValueList() accept Iterator and IteratorAggregate. [111]
-  BaseDescription::addValue() accepts IteratorAggregate.
+Issues Fixed: 109, 111, 114, 115
+
+* Description::appendValues() and appendValueList() accept Iterator and IteratorAggregate. [111]
+  BaseDescription::appendValue() handles IteratorAggregate.
 
 * assertThat() accepts a single boolean parameter and
   wraps any non-Matcher third parameter with equalTo().
@@ -10,18 +12,28 @@
 
 * Fixed wrong variable name in contains(). [109]
 
-* Added Hamcrest_Core_Set to assert isset().
-  assertThat($anArray, set('foo'));  // isset($anArray['foo'])
+* Added Hamcrest_Core_IsSet to assert isset().
+  assertThat($anArray, set('foo'));
+  assertThat($anArray, notSet('bar'));
 
-* Added Hamcrest_Core_IsTypeOf and Hamcrest_Type_Is* to assert gettype(). [115]
+* Added Hamcrest_Core_IsTypeOf to assert gettype(). [115]
   assertThat($count, typeOf('integer'));
+
+* Added Hamcrest_Type_IsInteger, IsBoolean, etc.
   assertThat($count, integerValue());
+  assertThat('5', numericValue());
   assertThat('foo', stringValue());
+
+* Added Hamcrest_Type_IsCallable to assert is_callable().
+  assertThat('preg_match', callable());
+  assertThat(array('SomeClass', 'SomeMethod'), callable());
+  assertThat(array($object, 'SomeMethod'), callable());
+  assertThat($object, callable());
 
 * Added Hamcrest_Text_MatchesPattern for regex matching with preg_match().
   assertThat('foobar', matchesPattern('/o+b/'));
 
-* Added synonyms:
+* Added aliases:
   atLeast() for greaterThanOrEqualTo()
   atMost() for lessThanOrEqualTo()
 
@@ -30,5 +42,5 @@
 
 * Created PEAR package
 
-* Initial core matchers
+* Core matchers
 

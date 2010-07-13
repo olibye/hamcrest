@@ -31,7 +31,7 @@ class Hamcrest_Type_IsStringTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', stringValue(), null);
-    $this->assertMismatchDescription('was a double', stringValue(), 5.2);
+    $this->assertMismatchDescription('was a double <5.2F>', stringValue(), 5.2);
   }
   
 }

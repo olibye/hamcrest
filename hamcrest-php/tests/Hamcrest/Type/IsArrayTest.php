@@ -31,7 +31,7 @@ class Hamcrest_Type_IsArrayTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', arrayValue(), null);
-    $this->assertMismatchDescription('was a string', arrayValue(), 'foo');
+    $this->assertMismatchDescription('was a string "foo"', arrayValue(), 'foo');
   }
   
 }

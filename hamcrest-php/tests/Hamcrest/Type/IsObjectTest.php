@@ -30,7 +30,7 @@ class Hamcrest_Type_IsObjectTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', objectValue(), null);
-    $this->assertMismatchDescription('was a string', objectValue(), 'foo');
+    $this->assertMismatchDescription('was a string "foo"', objectValue(), 'foo');
   }
   
 }

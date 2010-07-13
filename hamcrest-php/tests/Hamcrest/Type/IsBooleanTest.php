@@ -31,7 +31,7 @@ class Hamcrest_Type_IsBooleanTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', booleanValue(), null);
-    $this->assertMismatchDescription('was a string', booleanValue(), 'foo');
+    $this->assertMismatchDescription('was a string "foo"', booleanValue(), 'foo');
   }
   
 }

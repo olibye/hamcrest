@@ -17,7 +17,7 @@ require_once 'Hamcrest/Description.php';
  * assertThat('Server', notSet('defaultPort'));
  * </pre>
  */
-class Hamcrest_Core_Set extends Hamcrest_BaseMatcher
+class Hamcrest_Core_IsSet extends Hamcrest_BaseMatcher
 {
   
   private $_property;

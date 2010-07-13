@@ -33,22 +33,31 @@ class Hamcrest_Core_IsTypeOf extends Hamcrest_BaseMatcher
   
   public function describeTo(Hamcrest_Description $description)
   {
-    $description->appendText($this->getTypeDescription($this->_theType));
+    $description->appendText(self::getTypeDescription($this->_theType));
   }
 
   public function describeMismatch($item, Hamcrest_Description $description)
   {
-    $description->appendText('was ')
-                ->appendText($this->getTypeDescription(
-                              strtolower(gettype($item))))
-                ;
+    if ($item === null)
+    {
+      $description->appendText('was null');
+    }
+    else
+    {
+      $description->appendText('was ')
+                  ->appendText(self::getTypeDescription(
+                               strtolower(gettype($item))))
+                  ->appendText(' ')
+                  ->appendValue($item)
+                  ;
+    }
   }
 
-  protected function getTypeDescription($type)
+  public static function getTypeDescription($type)
   {
     if ($type == 'null')
     {
-      return $type;
+      return 'null';
     }
     return (strpos('aeiou', substr($type, 0, 1)) === false ? 'a ' : 'an ')
         . $type;

@@ -30,7 +30,7 @@ class Hamcrest_Type_IsResourceTest extends Hamcrest_AbstractMatcherTest
   public function testDecribesActualTypeInMismatchMessage()
   {
     $this->assertMismatchDescription('was null', resourceValue(), null);
-    $this->assertMismatchDescription('was a string', resourceValue(), 'foo');
+    $this->assertMismatchDescription('was a string "foo"', resourceValue(), 'foo');
   }
   
 }

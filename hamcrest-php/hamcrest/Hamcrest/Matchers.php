@@ -156,7 +156,7 @@ class Hamcrest_Matchers
    */
   public static function set($property)
   {
-    return Hamcrest_Core_Set::set($property);
+    return Hamcrest_Core_IsSet::set($property);
   }
 
   /**
@@ -164,7 +164,7 @@ class Hamcrest_Matchers
    */
   public static function notSet($property)
   {
-    return Hamcrest_Core_Set::notSet($property);
+    return Hamcrest_Core_IsSet::notSet($property);
   }
 
   /**
@@ -290,6 +290,14 @@ class Hamcrest_Matchers
   }
 
   /**
+   * Is the value numeric?
+   */
+  public static function numericValue()
+  {
+    return Hamcrest_Type_IsNumeric::numericValue();
+  }
+
+  /**
    * Is the value an object?
    */
   public static function objectValue()
@@ -311,6 +319,14 @@ class Hamcrest_Matchers
   public static function stringValue()
   {
     return Hamcrest_Type_IsString::stringValue();
+  }
+
+  /**
+   * Is the value callable?
+   */
+  public static function callable()
+  {
+    return Hamcrest_Type_IsCallable::callable();
   }
 
   /**

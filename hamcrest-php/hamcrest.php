@@ -215,6 +215,8 @@ function hasItems()
 /**
  * Is the value a particular built-in type?
  *
+ * Prefer to use the named xxxValue() methods below such as arrayValue().
+ *
  * Example:
  * <pre>
  * assertThat(array('a', 'b'), typeOf('array'));
@@ -251,7 +253,7 @@ function booleanValue() {
 /**
  * Is the value a boolean?
  *
- * Synonym for {@link booleanValue()}
+ * Alias for {@link booleanValue()}
  */
 function boolValue() {
   return Hamcrest_Matchers::booleanValue();
@@ -262,7 +264,7 @@ function boolValue() {
  *
  * Example:
  * <pre>
- * assertThat(5, integerValue());
+ * assertThat(5, doubleValue());
  * </pre>
  */
 function doubleValue() {
@@ -276,7 +278,7 @@ function doubleValue() {
  *
  * Example:
  * <pre>
- * assertThat(5, integerValue());
+ * assertThat(5, floatValue());
  * </pre>
  */
 function floatValue() {
@@ -296,6 +298,28 @@ function integerValue() {
 }
 
 /**
+ * Is the value an integer?
+ *
+ * Alias for {@link integerValue()}
+ */
+function intValue() {
+  return Hamcrest_Matchers::integerValue();
+}
+
+/**
+ * Is the value numeric?
+ *
+ * Example:
+ * <pre>
+ * assertThat(5, numericValue());
+ * assertThat('5', numericValue());
+ * </pre>
+ */
+function numericValue() {
+  return Hamcrest_Matchers::numericValue();
+}
+
+/**
  * Is the value an object?
  *
  * Example:
@@ -312,7 +336,7 @@ function objectValue() {
  *
  * Example:
  * <pre>
- * assertThat(fopen('readme.txt'), resourceValue());
+ * assertThat(fopen('readme.txt', 'r'), resourceValue());
  * </pre>
  */
 function resourceValue() {
@@ -332,9 +356,25 @@ function stringValue() {
 }
 
 /**
+ * Is the value a string?
+ *
+ * Example:
+ * <pre>
+ * assertThat('preg_match', callable());
+ * assertThat(array('SomeClass', 'StaticMethod'), callable());
+ * assertThat(array($object, 'InstanceMethod'), callable());
+ * assertThat($instanceOfClassThatImplementsMagicInvokeMethod, callable());
+ * assertThat(function() {}, callable());
+ * </pre>
+ */
+function callable() {
+  return Hamcrest_Type_IsCallable::callable();
+}
+
+/**
  * Is the value an object?
  *
- * Synonym for {@link objectValue()}
+ * Alias for {@link objectValue()}
  */
 function anObject() {
   return Hamcrest_Matchers::objectValue();
@@ -427,7 +467,7 @@ function greaterThanOrEqualTo($value)
 /**
  * The value is >= $value.
  *
- * Synonym for {@link greaterThanOrEqualTo}.
+ * Alias for {@link greaterThanOrEqualTo}.
  */
 function atLeast($value)
 {
@@ -453,7 +493,7 @@ function lessThanOrEqualTo($value)
 /**
  * The value is <= $value.
  *
- * Synonym for {@link lessThanOrEqualTo}.
+ * Alias for {@link lessThanOrEqualTo}.
  */
 function atMost($value)
 {

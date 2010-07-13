@@ -1,5 +1,8 @@
 == Version ?: unreleased ==
 
+* Description::addValues() and addValueList() accept Iterator and IteratorAggregate. [111]
+  BaseDescription::addValue() accepts IteratorAggregate.
+
 * assertThat() accepts a single boolean parameter and
   wraps any non-Matcher third parameter with equalTo().
 
@@ -11,7 +14,7 @@
   assertThat($anArray, set('foo'));  // isset($anArray['foo'])
 
 * Added Hamcrest_Core_IsTypeOf and Hamcrest_Type_Is* to assert gettype(). [115]
-  assertThat($count, typeOf('int'));
+  assertThat($count, typeOf('integer'));
   assertThat($count, integerValue());
   assertThat('foo', stringValue());
 

@@ -49,11 +49,11 @@ interface Hamcrest_Description
    * @param string $start
    * @param string $separator
    * @param string $end
-   * @param array $values
+   * @param array|IteratorAggregate|Iterator $values
    * 
    * @return Hamcrest_Description
    */
-  public function appendValueList($start, $separator, $end, array $values);
+  public function appendValueList($start, $separator, $end, $values);
   
   /**
    * Appends a list of {@link Hamcrest_SelfDescribing} objects to the
@@ -62,11 +62,11 @@ interface Hamcrest_Description
    * @param string $start
    * @param string $separator
    * @param string $end
-   * @param array $values
+   * @param array|IteratorAggregate|Iterator $values
    *   must be instances of {@link Hamcrest_SelfDescribing}
    * 
    * @return Hamcrest_Description
    */
-  public function appendList($start, $separator, $end, array $values);
+  public function appendList($start, $separator, $end, $values);
   
 }

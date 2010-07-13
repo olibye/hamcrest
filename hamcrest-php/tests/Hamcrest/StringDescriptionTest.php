@@ -81,10 +81,44 @@ class Hamcrest_StringDescriptionTest extends PHPUnit_Framework_TestCase
     $this->_description->appendValue(false);
     $this->assertEquals('<false>', (string) $this->_description);
   }
-  
+
   public function testListsOfvaluesCanBeAppended()
   {
+    $this->_description->appendValue(array('foo', 42.78));
+    $this->assertEquals('["foo", <42.78F>]', (string) $this->_description);
+  }
+
+  public function testIterableOfvaluesCanBeAppended()
+  {
+    $items = new ArrayObject(array('foo', 42.78));
+    $this->_description->appendValue($items);
+    $this->assertEquals('["foo", <42.78F>]', (string) $this->_description);
+  }
+
+  public function testIteratorOfvaluesCanBeAppended()
+  {
+    $items = new ArrayObject(array('foo', 42.78));
+    $this->_description->appendValue($items->getIterator());
+    $this->assertEquals('["foo", <42.78F>]', (string) $this->_description);
+  }
+
+  public function testListsOfvaluesCanBeAppendedManually()
+  {
     $this->_description->appendValueList('@start@', '@sep@ ', '@end@', array('foo', 42.78));
+    $this->assertEquals('@start@"foo"@sep@ <42.78F>@end@', (string) $this->_description);
+  }
+
+  public function testIterableOfvaluesCanBeAppendedManually()
+  {
+    $items = new ArrayObject(array('foo', 42.78));
+    $this->_description->appendValueList('@start@', '@sep@ ', '@end@', $items);
+    $this->assertEquals('@start@"foo"@sep@ <42.78F>@end@', (string) $this->_description);
+  }
+
+  public function testIteratorOfvaluesCanBeAppendedManually()
+  {
+    $items = new ArrayObject(array('foo', 42.78));
+    $this->_description->appendValueList('@start@', '@sep@ ', '@end@', $items->getIterator());
     $this->assertEquals('@start@"foo"@sep@ <42.78F>@end@', (string) $this->_description);
   }
   
@@ -103,6 +137,26 @@ class Hamcrest_StringDescriptionTest extends PHPUnit_Framework_TestCase
       new Hamcrest_SampleSelfDescriber('foo'),
       new Hamcrest_SampleSelfDescriber('bar')
     ));
+    $this->assertEquals('@start@foo@sep@ bar@end@', (string) $this->_description);
+  }
+
+  public function testSelfDescribingObjectsCanBeAppendedAsIteratedLists()
+  {
+    $items = new ArrayObject(array(
+      new Hamcrest_SampleSelfDescriber('foo'),
+      new Hamcrest_SampleSelfDescriber('bar')
+    ));
+    $this->_description->appendList('@start@', '@sep@ ', '@end@', $items);
+    $this->assertEquals('@start@foo@sep@ bar@end@', (string) $this->_description);
+  }
+
+  public function testSelfDescribingObjectsCanBeAppendedAsIterators()
+  {
+    $items = new ArrayObject(array(
+      new Hamcrest_SampleSelfDescriber('foo'),
+      new Hamcrest_SampleSelfDescriber('bar')
+    ));
+    $this->_description->appendList('@start@', '@sep@ ', '@end@', $items->getIterator());
     $this->assertEquals('@start@foo@sep@ bar@end@', (string) $this->_description);
   }
   

@@ -48,7 +48,7 @@ abstract class Hamcrest_BaseDescription implements Hamcrest_Description
       $this->append($value ? 'true' : 'false');
       $this->append('>');
     }
-    elseif (is_array($value) || $value instanceof Iterator)
+    elseif (is_array($value) || $value instanceof Iterator || $value instanceof IteratorAggregate)
     {
       $this->appendValueList('[', ', ', ']', $value);
     }
@@ -67,7 +67,7 @@ abstract class Hamcrest_BaseDescription implements Hamcrest_Description
     return $this;
   }
   
-  public function appendValueList($start, $separator, $end, array $values)
+  public function appendValueList($start, $separator, $end, $values)
   {
     $list = array();
     foreach ($values as $v)
@@ -79,7 +79,7 @@ abstract class Hamcrest_BaseDescription implements Hamcrest_Description
     return $this;
   }
   
-  public function appendList($start, $separator, $end, array $values)
+  public function appendList($start, $separator, $end, $values)
   {
     $this->append($start);
     

@@ -28,12 +28,12 @@ class Hamcrest_NullDescription implements Hamcrest_Description
     return $this;
   }
   
-  public function appendValueList($start, $separator, $end, array $values)
+  public function appendValueList($start, $separator, $end, $values)
   {
     return $this;
   }
   
-  public function appendList($start, $separator, $end, array $values)
+  public function appendList($start, $separator, $end, $values)
   {
     return $this;
   }

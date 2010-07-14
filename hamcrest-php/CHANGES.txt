@@ -1,4 +1,4 @@
-== Version 0.2.0: unreleased ==
+== Version 0.2.0: Released Jul 14 2010 ==
 
 Issues Fixed: 109, 111, 114, 115
 
@@ -17,9 +17,13 @@ Issues Fixed: 109, 111, 114, 115
     assertThat(array('foo' => 'bar'), set('foo'));
     assertThat(array('foo' => 'bar'), notSet('bar'));
 
-* Added Hamcrest_Core_IsTypeOf to assert gettype(). [115]
+* Added Hamcrest_Core_IsTypeOf to assert built-in types with gettype(). [115]
+  Types: array, boolean, double, integer, null, resource, and string.
+  Note that gettype() returns "double" for float values.
 
     assertThat($count, typeOf('integer'));
+    assertThat(3.14159, typeOf('double'));
+    assertThat(array('foo', 'bar'), typeOf('array'));
 
 * Added Hamcrest_Type_IsInteger, IsBoolean, etc.
 

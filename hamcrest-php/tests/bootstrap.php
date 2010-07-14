@@ -7,14 +7,15 @@ if (defined('E_DEPRECATED'))
 }
 
 define('HAMCREST_TEST_BASE', realpath(dirname(__FILE__)));
+define('HAMCREST_BASE', realpath(dirname(dirname(__FILE__))));
 
 require_once 'PHPUnit/Framework.php';
 
-set_include_path(
-  get_include_path() . PATH_SEPARATOR .
-  HAMCREST_TEST_BASE . PATH_SEPARATOR .
-  realpath(HAMCREST_TEST_BASE . '/..') . PATH_SEPARATOR .
-  realpath(HAMCREST_TEST_BASE . '/../hamcrest')
-);
+set_include_path(implode(PATH_SEPARATOR, array(
+  get_include_path(),
+  HAMCREST_TEST_BASE,
+  HAMCREST_BASE,
+  HAMCREST_BASE . '/hamcrest'
+)));
 
-require_once HAMCREST_TEST_BASE . '/../hamcrest.php';
+require_once 'hamcrest.php';

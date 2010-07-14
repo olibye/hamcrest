@@ -13,29 +13,34 @@ Issues Fixed: 109, 111, 114, 115
 * Fixed wrong variable name in contains(). [109]
 
 * Added Hamcrest_Core_IsSet to assert isset().
-  assertThat($anArray, set('foo'));
-  assertThat($anArray, notSet('bar'));
+
+    assertThat(array('foo' => 'bar'), set('foo'));
+    assertThat(array('foo' => 'bar'), notSet('bar'));
 
 * Added Hamcrest_Core_IsTypeOf to assert gettype(). [115]
-  assertThat($count, typeOf('integer'));
+
+    assertThat($count, typeOf('integer'));
 
 * Added Hamcrest_Type_IsInteger, IsBoolean, etc.
-  assertThat($count, integerValue());
-  assertThat('5', numericValue());
-  assertThat('foo', stringValue());
+
+    assertThat($count, integerValue());
+    assertThat('5', numericValue());
+    assertThat('foo', stringValue());
 
 * Added Hamcrest_Type_IsCallable to assert is_callable().
-  assertThat('preg_match', callable());
-  assertThat(array('SomeClass', 'SomeMethod'), callable());
-  assertThat(array($object, 'SomeMethod'), callable());
-  assertThat($object, callable());
+
+    assertThat('preg_match', callable());
+    assertThat(array('SomeClass', 'SomeMethod'), callable());
+    assertThat(array($object, 'SomeMethod'), callable());
+    assertThat($object, callable());
 
 * Added Hamcrest_Text_MatchesPattern for regex matching with preg_match().
-  assertThat('foobar', matchesPattern('/o+b/'));
+
+    assertThat('foobar', matchesPattern('/o+b/'));
 
 * Added aliases:
-  atLeast() for greaterThanOrEqualTo()
-  atMost() for lessThanOrEqualTo()
+  - atLeast() for greaterThanOrEqualTo()
+  - atMost() for lessThanOrEqualTo()
 
 
 == Version 0.1.0: Released Jul 7 2010 ==

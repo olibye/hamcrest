@@ -1,8 +1,8 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
-require_once 'Hamcrest/Core/Set.php';
+require_once 'Hamcrest/Core/IsSet.php';
 
-class Hamcrest_Core_SetTest extends Hamcrest_AbstractMatcherTest
+class Hamcrest_Core_IsSetTest extends Hamcrest_AbstractMatcherTest
 {
 
   public static $_classProperty;
@@ -16,7 +16,7 @@ class Hamcrest_Core_SetTest extends Hamcrest_AbstractMatcherTest
   
   protected function createMatcher()
   {
-    return Hamcrest_Core_Set::set('property_name');
+    return Hamcrest_Core_IsSet::set('property_name');
   }
 
   public function testEvaluatesToTrueIfArrayPropertyIsSet()
@@ -24,33 +24,62 @@ class Hamcrest_Core_SetTest extends Hamcrest_AbstractMatcherTest
     assertThat(array('foo' => 'bar'), set('foo'));
   }
 
+  public function testNegatedEvaluatesToFalseIfArrayPropertyIsSet()
+  {
+    assertThat(array('foo' => 'bar'), not(notSet('foo')));
+  }
+
   public function testEvaluatesToTrueIfClassPropertyIsSet()
   {
-    self::$_classProperty = 'foo';
-    assertThat('Hamcrest_Core_SetTest', set('_classProperty'));
+    self::$_classProperty = 'bar';
+    assertThat('Hamcrest_Core_IsSetTest', set('_classProperty'));
+  }
+
+  public function testNegatedEvaluatesToFalseIfClassPropertyIsSet()
+  {
+    self::$_classProperty = 'bar';
+    assertThat('Hamcrest_Core_IsSetTest', not(notSet('_classProperty')));
   }
 
   public function testEvaluatesToTrueIfObjectPropertyIsSet()
   {
-    $this->_instanceProperty = 'foo';
+    $this->_instanceProperty = 'bar';
     assertThat($this, set('_instanceProperty'));
+  }
+
+  public function testNegatedEvaluatesToFalseIfObjectPropertyIsSet()
+  {
+    $this->_instanceProperty = 'bar';
+    assertThat($this, not(notSet('_instanceProperty')));
   }
 
   public function testEvaluatesToFalseIfArrayPropertyIsNotSet()
   {
     assertThat(array('foo' => 'bar'), not(set('baz')));
+  }
+
+  public function testNegatedEvaluatesToTrueIfArrayPropertyIsNotSet()
+  {
     assertThat(array('foo' => 'bar'), notSet('baz'));
   }
 
   public function testEvaluatesToFalseIfClassPropertyIsNotSet()
   {
-    assertThat('Hamcrest_Core_SetTest', not(set('_classProperty')));
-    assertThat('Hamcrest_Core_SetTest', notSet('_classProperty'));
+    assertThat('Hamcrest_Core_IsSetTest', not(set('_classProperty')));
+  }
+
+  public function testNegatedEvaluatesToTrueIfClassPropertyIsNotSet()
+  {
+    assertThat('Hamcrest_Core_IsSetTest', notSet('_classProperty'));
   }
 
   public function testEvaluatesToFalseIfObjectPropertyIsNotSet()
   {
     assertThat($this, not(set('_instanceProperty')));
+  }
+
+  public function testNegatedEvaluatesToTrueIfObjectPropertyIsNotSet()
+  {
     assertThat($this, notSet('_instanceProperty'));
   }
   
@@ -67,6 +96,14 @@ class Hamcrest_Core_SetTest extends Hamcrest_AbstractMatcherTest
     );
     $this->assertMismatchDescription('was "bar"', notSet('foo'),
         array('foo' => 'bar')
+    );
+    self::$_classProperty = 'bar';
+    $this->assertMismatchDescription('was "bar"', notSet('_classProperty'),
+        'Hamcrest_Core_IsSetTest'
+    );
+    $this->_instanceProperty = 'bar';
+    $this->assertMismatchDescription('was "bar"', notSet('_instanceProperty'),
+        $this
     );
   }
   

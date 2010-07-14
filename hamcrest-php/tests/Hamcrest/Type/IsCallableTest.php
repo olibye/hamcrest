@@ -54,12 +54,19 @@ class Hamcrest_Type_IsCallableTest extends Hamcrest_AbstractMatcherTest
 
   public function testEvaluatesToFalseIfArgumentIsInvalidFunctionName()
   {
-    assertThat('not_a_function_' . time(), not(callable()));
+    if (function_exists('not_a_Hamcrest_function'))
+    {
+      $this->markTestSkipped(
+          'Function "not_a_Hamcrest_function" must not exist');
+    }
+    assertThat('not_a_Hamcrest_function', not(callable()));
   }
 
   public function testEvaluatesToFalseIfArgumentIsInvalidStaticMethodCallback()
   {
-    assertThat(array('Hamcrest_Type_IsCallableTest', 'noMethod'), not(callable()));
+    assertThat(array('Hamcrest_Type_IsCallableTest', 'noMethod'), 
+        not(callable())
+    );
   }
 
   public function testEvaluatesToFalseIfArgumentIsInvalidInstanceMethodCallback()

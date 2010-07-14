@@ -75,7 +75,7 @@ class Hamcrest_Core_IsSet extends Hamcrest_BaseMatcher
         $value = $item->$property;
       }
       elseif (is_string($item)) {
-        $value = $item::$property;
+        $value = $item::$$property;
       }
       parent::describeMismatch($value, $description);
     }

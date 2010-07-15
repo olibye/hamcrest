@@ -368,7 +368,7 @@ function stringValue() {
  * </pre>
  */
 function callable() {
-  return Hamcrest_Type_IsCallable::callable();
+  return Hamcrest_Matchers::callable();
 }
 
 /**

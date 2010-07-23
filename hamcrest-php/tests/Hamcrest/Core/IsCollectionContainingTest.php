@@ -36,7 +36,7 @@ class Hamcrest_Core_IsCollectionContainingTest
   public function testDoesNotMatchNull()
   {
     $this->assertDoesNotMatch(hasItem(equalTo('a')), null,
-      'should not matches null'
+      'should not match null'
     );
   }
   

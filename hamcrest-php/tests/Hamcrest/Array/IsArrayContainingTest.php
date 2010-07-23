@@ -34,7 +34,7 @@ class Hamcrest_Array_IsArrayContainingTest extends Hamcrest_AbstractMatcherTest
   {
     $this->assertDoesNotMatch(
       hasItemInArray('a'), null,
-      'should not matches null'
+      'should not match null'
     );
   }
   

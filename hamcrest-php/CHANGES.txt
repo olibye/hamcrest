@@ -2,6 +2,10 @@
 
 * Added running count to Hamcrest_MatcherAssert with methods to get and reset it.
 
+* Added Hamcrest_Type_IsScalar to assert is_scalar() (bool, int, float, double, string).
+
+    assertThat($count, scalarValue());
+
 == Version 0.2.0: Released Jul 14 2010 ==
 
 Issues Fixed: 109, 111, 114, 115

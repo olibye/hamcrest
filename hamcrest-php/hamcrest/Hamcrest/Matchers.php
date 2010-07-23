@@ -37,6 +37,7 @@ require_once 'Hamcrest/Type/IsDouble.php';
 require_once 'Hamcrest/Type/IsInteger.php';
 require_once 'Hamcrest/Type/IsObject.php';
 require_once 'Hamcrest/Type/IsResource.php';
+require_once 'Hamcrest/Type/IsScalar.php';
 require_once 'Hamcrest/Type/IsString.php';
 require_once 'Hamcrest/Array/IsArray.php';
 require_once 'Hamcrest/Array/IsArrayContaining.php';
@@ -311,6 +312,14 @@ class Hamcrest_Matchers
   public static function resourceValue()
   {
     return Hamcrest_Type_IsResource::resourceValue();
+  }
+
+  /**
+   * Is the value a scalar (bool, int, double, or string)?
+   */
+  public static function scalarValue()
+  {
+    return Hamcrest_Type_IsScalar::scalarValue();
   }
 
   /**

@@ -344,6 +344,18 @@ function resourceValue() {
 }
 
 /**
+ * Is the value a scalar (bool, int, double, or string)?
+ *
+ * Example:
+ * <pre>
+ * assertThat(3.14159, scalarValue());
+ * </pre>
+ */
+function scalarValue() {
+  return Hamcrest_Matchers::scalarValue();
+}
+
+/**
  * Is the value a string?
  *
  * Example:

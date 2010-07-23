@@ -7,7 +7,7 @@
 require_once 'Hamcrest/Core/IsTypeOf.php';
 
 /**
- * Tests whether the value is an integer.
+ * Tests whether the value is numeric.
  */
 class Hamcrest_Type_IsNumeric extends Hamcrest_Core_IsTypeOf
 {
@@ -22,7 +22,7 @@ class Hamcrest_Type_IsNumeric extends Hamcrest_Core_IsTypeOf
   }
   
   /**
-   * Is the value an integer?
+   * Is the value a numeric?
    */
   public static function numericValue()
   {

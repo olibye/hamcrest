@@ -57,12 +57,9 @@ class Hamcrest_MatcherAssert
         {
           self::doAssert('', $args[0], $args[1]);
         }
-        else
+        elseif (!$args[1])
         {
-          if (!$args[1])
-          {
-            throw new Hamcrest_AssertionError($args[0]);
-          }
+          throw new Hamcrest_AssertionError($args[0]);
         }
         break;
 

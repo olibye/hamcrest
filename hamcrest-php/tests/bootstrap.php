@@ -12,10 +12,10 @@ define('HAMCREST_BASE', realpath(dirname(dirname(__FILE__))));
 require_once 'PHPUnit/Framework.php';
 
 set_include_path(implode(PATH_SEPARATOR, array(
-  get_include_path(),
   HAMCREST_TEST_BASE,
   HAMCREST_BASE,
-  HAMCREST_BASE . '/hamcrest'
+  HAMCREST_BASE . '/hamcrest',
+  get_include_path()
 )));
 
 require_once 'hamcrest.php';

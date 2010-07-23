@@ -151,6 +151,14 @@ function equalTo($item)
 }
 
 /**
+ * Is the result of toString() or __toString() equal to the string/matcher?
+ */
+function hasToString($string)
+{
+  return Hamcrest_Matchers::hasToString($string);
+}
+
+/**
  * Tests if the argument is a string that contains a substring.
  */
 function containsString($substring)

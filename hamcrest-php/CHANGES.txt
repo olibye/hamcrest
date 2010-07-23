@@ -2,6 +2,10 @@
 
 * Added running count to Hamcrest_MatcherAssert with methods to get and reset it.
 
+* Added Hamcrest_Core_HasToString to assert return value of toString() or __toString().
+
+    assertThat($anObject, hasToString('foo'));
+
 * Added Hamcrest_Type_IsScalar to assert is_scalar() (bool, int, float, double, string).
 
     assertThat($count, scalarValue());

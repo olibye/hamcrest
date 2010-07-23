@@ -179,6 +179,14 @@ class Hamcrest_Matchers
   }
 
   /**
+   * Is the result of toString() or __toString() equal to the string/matcher?
+   */
+  public static function hasToString($string)
+  {
+    return Hamcrest_Core_HasToString::hasToString($string);
+  }
+
+  /**
    * Tests if the argument is a string that contains a substring.
    */
   public static function containsString($substring)

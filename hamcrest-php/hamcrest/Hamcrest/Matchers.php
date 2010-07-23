@@ -44,8 +44,8 @@ require_once 'Hamcrest/Array/IsArrayContaining.php';
 require_once 'Hamcrest/Array/IsArrayContainingInAnyOrder.php';
 require_once 'Hamcrest/Array/IsArrayContainingInOrder.php';
 require_once 'Hamcrest/Array/IsArrayWithSize.php';
-require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
 require_once 'Hamcrest/Array/IsArrayContainingKey.php';
+require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -500,17 +500,9 @@ class Hamcrest_Matchers
   /**
    * An array with elements that match the given matchers.
    */
-  public static function containsInAnyOrder(array $items)
+  public static function arrayContainingInAnyOrder(array $items)
   {
-    return Hamcrest_Array_IsArrayContainingInAnyOrder::containsInAnyOrder($items);
-  }
-
-  /**
-   * An array with elements that match the given matchers in the same order.
-   */
-  public static function contains(array $items)
-  {
-    return Hamcrest_Array_IsArrayContainingInOrder::contains($items);
+    return Hamcrest_Array_IsArrayContainingInAnyOrder::arrayContainingInAnyOrder($items);
   }
 
   /**

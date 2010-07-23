@@ -6,6 +6,13 @@
 
     assertThat($count, scalarValue());
 
+* Added aliases to match the Java API.
+
+    hasEntry() -> hasKeyValuePair()
+    hasValue() -> hasItemInArray()
+    contains() -> arrayContaining()
+    containsInAnyOrder() -> arrayContainingInAnyOrder()
+
 * Added subtype to TypeSafeMatcher to enforce object class or resource type.
 
 * TypeSafeDiagnosingMatcher now extends TypeSafeMatcher.

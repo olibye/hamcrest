@@ -54,7 +54,7 @@ class Hamcrest_Array_IsArrayContainingInAnyOrder
   /**
    * An array with elements that match the given matchers.
    */
-  public static function containsInAnyOrder(array $items)
+  public static function arrayContainingInAnyOrder(array $items)
   {
     $matchers = array();
     foreach ($items as $item)

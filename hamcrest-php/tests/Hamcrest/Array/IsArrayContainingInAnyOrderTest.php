@@ -8,7 +8,7 @@ class Hamcrest_Array_IsArrayContainingInAnyOrderTest
   
   protected function createMatcher()
   {
-    return Hamcrest_Array_IsArrayContainingInAnyOrder::containsInAnyOrder(array(equalTo(1), equalTo(2)));
+    return Hamcrest_Array_IsArrayContainingInAnyOrder::arrayContainingInAnyOrder(array(equalTo(1), equalTo(2)));
   }
   
   public function testHasAReadableDescription()

@@ -52,7 +52,7 @@ class Hamcrest_Array_IsArrayContainingInOrder
   /**
    * An array with elements that match the given matchers in the same order.
    */
-  public static function contains(array $items)
+  public static function arrayContaining(array $items)
   {
     $matchers = array();
     foreach ($items as $item)
@@ -64,14 +64,6 @@ class Hamcrest_Array_IsArrayContainingInOrder
     }
     
     return new self($matchers);
-  }
-  
-  /**
-   * An array with elements that match the given matchers in the same order.
-   */
-  public static function arrayContaining(array $items)
-  {
-    return self::contains($items);
   }
   
 }

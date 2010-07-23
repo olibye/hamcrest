@@ -572,25 +572,49 @@ function hasItemInArray($item)
 }
 
 /**
- * An array with elements that match the given matchers.
+ * Evaluates to true if any item in an array satisfies the given matcher.
+ *
+ * Alias for {@link hasItemInArray()}
+ *
+ * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
  */
-function containsInAnyOrder(array $items)
+function hasValue($item)
 {
-  return Hamcrest_Matchers::containsInAnyOrder($items);
+  return Hamcrest_Matchers::hasItemInArray($item);
 }
 
 /**
- * An array with elements that match the given matchers in the same order.
+ * An array with elements that match the given matchers.
  */
-function contains(array $items)
+function arrayContainingInAnyOrder(array $items)
 {
-  return Hamcrest_Matchers::contains($items);
+  return Hamcrest_Matchers::arrayContainingInAnyOrder($items);
+}
+
+/**
+ * An array with elements that match the given matchers.
+ *
+ * Alias for {@link arrayContainingInAnyOrder()}.
+ */
+function containsInAnyOrder(array $items)
+{
+  return Hamcrest_Matchers::arrayContainingInAnyOrder($items);
 }
 
 /**
  * An array with elements that match the given matchers in the same order.
  */
 function arrayContaining(array $items)
+{
+  return Hamcrest_Matchers::arrayContaining($items);
+}
+
+/**
+ * An array with elements that match the given matchers in the same order.
+ *
+ * Alias for {@link arrayContaining()}.
+ */
+function contains(array $items)
 {
   return Hamcrest_Matchers::arrayContaining($items);
 }
@@ -615,6 +639,16 @@ function emptyArray()
  * Test if an array has both an key and value in parity with each other.
  */
 function hasKeyValuePair($key, $value)
+{
+  return Hamcrest_Matchers::hasKeyValuePair($key, $value);
+}
+
+/**
+ * Test if an array has both an key and value in parity with each other.
+ *
+ * Alias for {@link hasKeyValuePair()}.
+ */
+function hasEntry($key, $value)
 {
   return Hamcrest_Matchers::hasKeyValuePair($key, $value);
 }

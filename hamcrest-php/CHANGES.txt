@@ -1,3 +1,7 @@
+== Version ?: Not Released ==
+
+* Added running count to Hamcrest_MatcherAssert with methods to get and reset it.
+
 == Version 0.2.0: Released Jul 14 2010 ==
 
 Issues Fixed: 109, 111, 114, 115

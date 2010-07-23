@@ -11,17 +11,27 @@ require_once 'Hamcrest/Core/IsEqual.php';
 
 class Hamcrest_MatcherAssert
 {
-  
+
+  /**
+   * Number of assertions performed.
+   *
+   * @var int
+   */
+  private static $_count = 0;
+
   /**
    * Make an assertion and throw {@link Hamcrest_AssertionError} if it fails.
    *
-   * If the third parameter is not a matcher it is wrapped
-   * with {@link Hamcrest_Core_IsEqual#equalTo}.
-   * 
+   * The first parameter may optionally be a string identifying the assertion
+   * to be included in the failure message.
+   *
+   * If the third parameter is not a matcher it is passed to
+   * {@link Hamcrest_Core_IsEqual#equalTo} to create one.
+   *
    * Example:
    * <pre>
    * // With an identifier
-   * assertThat("assertion identifier", $apple->flavour(), equalTo("tasty"));
+   * assertThat("apple flavour", $apple->flavour(), equalTo("tasty"));
    * // Without an identifier
    * assertThat($apple->flavour(), equalTo("tasty"));
    * // Evaluating a boolean expression
@@ -32,6 +42,7 @@ class Hamcrest_MatcherAssert
   public static function assertThat(/* $args ... */)
   {
     $args = func_get_args();
+    self::$_count++;
     switch (count($args))
     {
       case 1:
@@ -46,45 +57,77 @@ class Hamcrest_MatcherAssert
         {
           self::doAssert('', $args[0], $args[1]);
         }
-        elseif (!$args[1])
+        else
         {
-          throw new Hamcrest_AssertionError($args[0]);
+          if (!$args[1])
+          {
+            throw new Hamcrest_AssertionError($args[0]);
+          }
         }
         break;
 
       case 3:
-        if ($args[2] instanceof Hamcrest_Matcher)
-        {
-          self::doAssert($args[0], $args[1], $args[2]);
-        }
-        else
-        {
-          self::doAssert($args[0], $args[1], Hamcrest_Core_IsEqual::equalTo($args[2]));
-        }
+        self::doAssert($args[0], $args[1],
+                       $args[2] instanceof Hamcrest_Matcher
+                       ? $args[2]
+                       : Hamcrest_Core_IsEqual::equalTo($args[2]));
         break;
-      
+
       default:
-        throw new InvalidArgumentException();
+        self::$_count--;
+        throw new InvalidArgumentException(
+            'assertThat() requires one to three arguments');
     }
   }
-  
-  // -- Private Methods
-  
-  private static function doAssert($reason, $actual,
-    Hamcrest_Matcher $matcher)
+
+  /**
+   * Returns the number of assertions performed.
+   *
+   * @return int
+   */
+  public static function getCount()
+  {
+    return self::$_count;
+  }
+
+  /**
+   * Resets the number of assertions performed to zero.
+   */
+  public static function resetCount()
+  {
+    self::$_count = 0;
+  }
+
+
+  /**
+   * Performs the actual assertion logic.
+   *
+   * If <code>$matcher</code> doesn't match <code>$actual</code>,
+   * throws a {@link Hamcrest_AssertionError} with a description
+   * of the failure along with the optional <code>$identifier</code>.
+   *
+   * @param string $identifier added to the message upon failure
+   * @param mixed $actual value to compare against <code>$matcher</code>
+   * @param Hamcrest_Matcher $matcher applied to <code>$actual</code>
+   */
+  private static function doAssert($identifier, $actual,
+      Hamcrest_Matcher $matcher)
   {
     if (!$matcher->matches($actual))
     {
       $description = new Hamcrest_StringDescription();
-      $description->appendText($reason)
-                  ->appendText(PHP_EOL . 'Expected: ')
+      if (!empty($identifier))
+      {
+        $description->appendText($identifier . PHP_EOL);
+      }
+      $description->appendText('Expected: ')
                   ->appendDescriptionOf($matcher)
                   ->appendText(PHP_EOL . '     but: ');
-      
+
       $matcher->describeMismatch($actual, $description);
-      
+
       throw new Hamcrest_AssertionError((string) $description);
     }
   }
-  
+
 }

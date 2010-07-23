@@ -680,3 +680,11 @@ function traversableWithSize($size)
 {
   return Hamcrest_Matchers::traversableWithSize($size);
 }
+
+/**
+ * Is traversable empty?
+ */
+function emptyTraversable()
+{
+  return Hamcrest_Matchers::emptyTraversable();
+}

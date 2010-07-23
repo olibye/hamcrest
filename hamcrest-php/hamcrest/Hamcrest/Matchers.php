@@ -566,4 +566,12 @@ class Hamcrest_Matchers
     return Hamcrest_Collection_IsTraversableWithSize::traversableWithSize($size);
   }
 
+  /**
+   * Is traversable empty?
+   */
+  public static function emptyTraversable()
+  {
+    return Hamcrest_Collection_IsEmptyTraversable::emptyTraversable();
+  }
+
 }

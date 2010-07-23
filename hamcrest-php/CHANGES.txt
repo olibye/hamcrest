@@ -6,8 +6,12 @@
 
     assertThat($count, scalarValue());
 
-* Added Hamcrest_Collection_IsTraversableWithSize a la Hamcrest_Collection_IsIterableWithSize.
+* Added Hamcrest_Collection package.
 
+  - IsEmptyTraversable
+  - IsTraversableWithSize
+
+    assertThat($iterator, emptyTraversable());
     assertThat($iterator, traversableWithSize(5));
 
 * Added aliases to match the Java API.

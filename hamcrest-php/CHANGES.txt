@@ -8,6 +8,8 @@
 
 * Added subtype to TypeSafeMatcher to enforce object class or resource type.
 
+* TypeSafeDiagnosingMatcher now extends TypeSafeMatcher.
+
 
 == Version 0.2.0: Released Jul 14 2010 ==
 

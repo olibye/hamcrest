@@ -6,6 +6,9 @@
 
     assertThat($count, scalarValue());
 
+* Added subtype to TypeSafeMatcher to enforce object class or resource type.
+
+
 == Version 0.2.0: Released Jul 14 2010 ==
 
 Issues Fixed: 109, 111, 114, 115

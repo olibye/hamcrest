@@ -5,7 +5,7 @@ require_once 'Hamcrest/Description.php';
 
 /**
  * Convenient base class for Matchers that require a value of a specific type.
- * This simply checks the type and then casts.
+ * This simply checks the type.
  * 
  * While it may seem a useless exercise to have this in PHP, objects cannot
  * be cast to certain data types such as numerics (or even strings if
@@ -23,20 +23,32 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
   const TYPE_RESOURCE = 5;
   const TYPE_BOOLEAN = 6;
   
-  /** The type that is required for a safe comparison */
+  /**
+   * The type that is required for a safe comparison
+   *
+   * @var int
+   */
   private $_expectedType;
+
+  /**
+   * The subtype (e.g. class for objects) that is required
+   *
+   * @var string
+   */
+  private $_expectedSubtype;
   
-  public function __construct($expectedType)
+  public function __construct($expectedType, $expectedSubtype=null)
   {
     $this->_expectedType = $expectedType;
+    $this->_expectedSubtype = $expectedSubtype;
   }
   
-  public function matches($item)
+  public final function matches($item)
   {
     return $this->_isSafeType($item) && $this->matchesSafely($item);
   }
   
-  public function describeMismatch($item,
+  public final function describeMismatch($item,
     Hamcrest_Description $mismatchDescription)
   {
     if (!$this->_isSafeType($item))
@@ -52,14 +64,12 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
   // -- Protected Methods
   
   /**
-   * Subclasses should implement these. The item will already have been checked for
-   * the specific type.
+   * The item will already have been checked for the specific type and subtype.
    */
   abstract protected function matchesSafely($item);
   
   /**
-   * Subclasses should implement these. The item will already have been checked for
-   * the specific type.
+   * The item will already have been checked for the specific type and subtype.
    */
   abstract protected function describeMismatchSafely($item,
     Hamcrest_Description $mismatchDescription);
@@ -84,10 +94,14 @@ abstract class Hamcrest_TypeSafeMatcher extends Hamcrest_BaseMatcher
         return is_array($value);
       
       case self::TYPE_OBJECT:
-        return is_object($value);
+        return is_object($value)
+            && ($this->_expectedSubtype === null
+                || $value instanceof $this->_expectedSubtype);
       
       case self::TYPE_RESOURCE:
-        return is_resource($value);
+        return is_resource($value)
+            && ($this->_expectedSubtype === null
+                || get_resource_type($value) == $this->_expectedSubtype);
       
       case self::TYPE_BOOLEAN:
         return true;

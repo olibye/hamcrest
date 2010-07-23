@@ -17,7 +17,7 @@ class Hamcrest_Array_IsArrayWithSize extends Hamcrest_FeatureMatcher
   
   public function __construct(Hamcrest_Matcher $sizeMatcher)
   {
-    parent::__construct(self::TYPE_ARRAY, $sizeMatcher, 'an array with size', 'array size');
+    parent::__construct(self::TYPE_ARRAY, null, $sizeMatcher, 'an array with size', 'array size');
   }
   
   protected function featureValueOf($array)

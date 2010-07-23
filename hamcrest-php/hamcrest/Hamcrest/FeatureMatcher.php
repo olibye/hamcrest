@@ -28,10 +28,10 @@ abstract class Hamcrest_FeatureMatcher
    * @param string $featureDescription Descriptive text to use in describeTo
    * @param string $featureName Identifying text for mismatch message
    */
-  public function __construct($type, Hamcrest_Matcher $subMatcher,
+  public function __construct($type, $subtype, Hamcrest_Matcher $subMatcher,
     $featureDescription, $featureName)
   {
-    parent::__construct($type);
+    parent::__construct($type, $subtype);
     
     $this->_subMatcher = $subMatcher;
     $this->_featureDescription = $featureDescription;

@@ -13,8 +13,6 @@ abstract class Hamcrest_AbstractMatcherTest extends PHPUnit_Framework_TestCase
   
   abstract protected function createMatcher();
   
-  //TODO: Re-order parameters to match SimpleTest's "message last" approach?
-  
   public function assertMatches(Hamcrest_Matcher $matcher, $arg, $message)
   {
     $this->assertTrue($matcher->matches($arg), $message);

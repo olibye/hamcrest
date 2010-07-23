@@ -6,6 +6,10 @@
 
     assertThat($count, scalarValue());
 
+* Added Hamcrest_Collection_IsTraversableWithSize a la Hamcrest_Collection_IsIterableWithSize.
+
+    assertThat($iterator, traversableWithSize(5));
+
 * Added aliases to match the Java API.
 
     hasEntry() -> hasKeyValuePair()

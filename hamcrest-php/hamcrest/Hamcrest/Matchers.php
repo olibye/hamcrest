@@ -46,6 +46,7 @@ require_once 'Hamcrest/Array/IsArrayContainingInOrder.php';
 require_once 'Hamcrest/Array/IsArrayWithSize.php';
 require_once 'Hamcrest/Array/IsArrayContainingKey.php';
 require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
+require_once 'Hamcrest/Collection/IsTraversableWithSize.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 
@@ -555,6 +556,14 @@ class Hamcrest_Matchers
   public static function hasKey($key)
   {
     return Hamcrest_Array_IsArrayContainingKey::hasKey($key);
+  }
+
+  /**
+   * Does traversable size satisfy a given matcher?
+   */
+  public static function traversableWithSize($size)
+  {
+    return Hamcrest_Collection_IsTraversableWithSize::traversableWithSize($size);
   }
 
 }

@@ -672,3 +672,11 @@ function hasKey($key)
 {
   return Hamcrest_Matchers::hasKey($key);
 }
+
+/**
+ * Does traversable size satisfy a given matcher?
+ */
+function traversableWithSize($size)
+{
+  return Hamcrest_Matchers::traversableWithSize($size);
+}

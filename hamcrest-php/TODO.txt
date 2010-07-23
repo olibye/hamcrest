@@ -4,7 +4,6 @@ Still TODO Before Complete for PHP
 Port:
   - Hamcrest_Xml_*
   - Hamcrest_Collection_* as Hamcrest_Array_*
-  - Hamcrest_Object_HasToString
 
 Aliasing/Deprecation (questionable):
   - Some official hamcrest matchers start with "is" where IMHO, they shouldn't

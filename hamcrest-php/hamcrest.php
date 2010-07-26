@@ -696,3 +696,11 @@ function emptyTraversable()
 {
   return Hamcrest_Matchers::emptyTraversable();
 }
+
+/**
+ * Is value an XML or HTML document with XPath, optionally matching matcher?
+ */
+function hasXPath($xpath, $matcher=null)
+{
+  return Hamcrest_Matchers::hasXPath($xpath, $matcher);
+}

@@ -18,6 +18,13 @@
     assertThat($iterator, emptyTraversable());
     assertThat($iterator, traversableWithSize(5));
 
+* Added Hamcrest_Xml_HasXPath to assert XPath expressions or the content of nodes in an XML/HTML DOM.
+
+    assertThat($dom, hasXPath('books/book/title'));
+    assertThat($dom, hasXPath('books/book[contains(title, "Alice")]', 3));
+    assertThat($dom, hasXPath('books/book/title', 'Alice in Wonderland'));
+    assertThat($dom, hasXPath('count(books/book)', greaterThan(10)));
+
 * Added aliases to match the Java API.
 
     hasEntry() -> hasKeyValuePair()

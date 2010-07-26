@@ -582,4 +582,12 @@ class Hamcrest_Matchers
     return Hamcrest_Collection_IsEmptyTraversable::emptyTraversable();
   }
 
+  /**
+   * Is value an XML or HTML document with XPath, optionally matching matcher?
+   */
+  public static function hasXPath($xpath, $matcher=null)
+  {
+    return Hamcrest_Xml_HasXPath::hasXPath($xpath, $matcher);
+  }
+
 }

@@ -194,7 +194,6 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
     $description->appendText('XML or HTML document with XPath "')
                 ->appendText($this->_xpath)
                 ->appendText('"');
-    var_dump($this->_matcher);
     if ($this->_matcher !== null)
     {
       $description->appendText(' ');

@@ -167,7 +167,7 @@ function containsString($substring)
 }
 
 /**
- * Tests if the argument is a string that contains a substring.
+ * Tests if the argument is a string that ends with a substring.
  */
 function endsWith($substring)
 {
@@ -175,7 +175,7 @@ function endsWith($substring)
 }
 
 /**
- * Tests if the argument is a string that contains a substring.
+ * Tests if the argument is a string that starts with a substring.
  */
 function startsWith($substring)
 {

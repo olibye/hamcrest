@@ -1,14 +1,17 @@
 == Version ?: Not Released ==
 
 * Added running count to Hamcrest_MatcherAssert with methods to get and reset it.
+  This can be used by unit testing frameworks for reporting.
 
 * Added Hamcrest_Core_HasToString to assert return value of toString() or __toString().
 
     assertThat($anObject, hasToString('foo'));
 
-* Added Hamcrest_Type_IsScalar to assert is_scalar() (bool, int, float, double, string).
+* Added Hamcrest_Type_IsScalar to assert is_scalar().
+  Matches values of type bool, int, float, double, and string.
 
     assertThat($count, scalarValue());
+    assertThat('foo', scalarValue());
 
 * Added Hamcrest_Collection package.
 
@@ -32,9 +35,9 @@
     contains() -> arrayContaining()
     containsInAnyOrder() -> arrayContainingInAnyOrder()
 
-* Added subtype to TypeSafeMatcher to enforce object class or resource type.
+* Added optional subtype to Hamcrest_TypeSafeMatcher to enforce object class or resource type.
 
-* TypeSafeDiagnosingMatcher now extends TypeSafeMatcher.
+* Hamcrest_TypeSafeDiagnosingMatcher now extends Hamcrest_TypeSafeMatcher.
 
 
 == Version 0.2.0: Released Jul 14 2010 ==
@@ -57,18 +60,33 @@ Issues Fixed: 109, 111, 114, 115
     assertThat(array('foo' => 'bar'), notSet('bar'));
 
 * Added Hamcrest_Core_IsTypeOf to assert built-in types with gettype(). [115]
-  Types: array, boolean, double, integer, null, resource, and string.
+  Types: array, boolean, double, integer, null, object, resource, and string.
   Note that gettype() returns "double" for float values.
 
     assertThat($count, typeOf('integer'));
     assertThat(3.14159, typeOf('double'));
     assertThat(array('foo', 'bar'), typeOf('array'));
+    assertThat(new stdClass(), typeOf('object'));
 
-* Added Hamcrest_Type_IsInteger, IsBoolean, etc.
+* Added type-specific matchers in new Hamcrest_Type package.
+
+  - IsArray
+  - IsBoolean
+  - IsDouble (includes float values)
+  - IsInteger
+  - IsObject
+  - IsResource
+  - IsString
 
     assertThat($count, integerValue());
-    assertThat('5', numericValue());
+    assertThat(3.14159, floatValue());
     assertThat('foo', stringValue());
+
+* Added Hamcrest_Type_IsNumeric to assert is_numeric().
+  Matches values of type int and float/double or strings that are formatted as numbers.
+
+    assertThat(5, numericValue());
+    assertThat('-5e+3', numericValue());
 
 * Added Hamcrest_Type_IsCallable to assert is_callable().
 

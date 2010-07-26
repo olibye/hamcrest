@@ -9,13 +9,26 @@ require_once 'Hamcrest/Matcher.php';
 require_once 'Hamcrest/Core/IsEqual.php';
 
 /**
- * Matches if array size satisfies a nested matcher.
+ * Matches if XPath applied to XML/HTML/XHTML document either
+ * evaluates to result matching the matcher or returns at least
+ * one node, matching the matcher if present.
  */
 class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
 {
 
+  /**
+   * XPath to apply to the DOM.
+   *
+   * @var string
+   */
   private $_xpath;
 
+  /**
+   * Optional matcher to apply to the XPath expression result
+   * or the content of the returned nodes.
+   *
+   * @var Hamcrest_Matcher
+   */
   private $_matcher;
 
   public function __construct($xpath, Hamcrest_Matcher $matcher=null)
@@ -25,9 +38,9 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
   }
 
   /**
-   * Matches if the XPath matches against the DOM node.
+   * Matches if the XPath matches against the DOM node and the matcher.
    *
-   * @param DOMNode $actual
+   * @param string|DOMNode $actual
    * @param Hamcrest_Description $mismatchDescription
    * @return bool
    */
@@ -43,28 +56,31 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
       $mismatchDescription->appendText('was ')->appendValue($actual);
       return false;
     }
-    $results = $this->evaluate($actual);
-    if ($results instanceof DOMNodeList)
+    $result = $this->evaluate($actual);
+    if ($result instanceof DOMNodeList)
     {
-      return $this->matchesContent($results, $mismatchDescription);
-    }
-    elseif ($this->_matcher === null || $this->_matcher->matches($results))
-    {
-      return true;
+      return $this->matchesContent($result, $mismatchDescription);
     }
     else
     {
-      $this->_matcher->describeMismatch($results, $mismatchDescription);
-      return false;
+      return $this->matchesExpression($result, $mismatchDescription);
     }
   }
 
-  protected function createDocument($actual)
+  /**
+   * Creates and returns a <code>DOMDocument</code> from the given
+   * XML or HTML string.
+   *
+   * @param string $text
+   * @return DOMDocument built from <code>$text</code>
+   * @throws InvalidArgumentException if the document is not valid
+   */
+  protected function createDocument($text)
   {
     $document = new DOMDocument();
-    if (preg_match('/^\s*<\?xml/', $actual))
+    if (preg_match('/^\s*<\?xml/', $text))
     {
-      if (!@$document->loadXML($actual))
+      if (!@$document->loadXML($text))
       {
         throw new InvalidArgumentException(
             'Must pass a valid XML document');
@@ -72,7 +88,7 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
     }
     else
     {
-      if (!@$document->loadHTML($actual))
+      if (!@$document->loadHTML($text))
       {
         throw new InvalidArgumentException(
             'Must pass a valid HTML or XHTML document');
@@ -81,24 +97,39 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
     return $document;
   }
 
-  protected function evaluate(DOMNode $actual)
+  /**
+   * Applies the configurd XPath to the DOM node and returns either
+   * the result if it's an expression or the node list if it's a query.
+   *
+   * @param DOMNode $node context from which to issue query
+   * @return mixed result of expression or DOMNodeList from query
+   */
+  protected function evaluate(DOMNode $node)
   {
-    if ($actual instanceof DOMDocument)
+    if ($node instanceof DOMDocument)
     {
-      $xpathDocument = new DOMXPath($actual);
+      $xpathDocument = new DOMXPath($node);
       return $xpathDocument->evaluate($this->_xpath);
     }
     else
     {
-      $xpathDocument = new DOMXPath($actual->ownerDocument);
-      return $xpathDocument->evaluate($this->_xpath, $actual);
+      $xpathDocument = new DOMXPath($node->ownerDocument);
+      return $xpathDocument->evaluate($this->_xpath, $node);
     }
   }
 
-  protected function matchesContent(DOMNodeList $results,
+  /**
+   * Matches if the list of nodes is not empty and the content of at least
+   * one node matches the configured matcher, if supplied.
+   *
+   * @param DOMNodeList $nodes selected by the XPath query
+   * @param Hamcrest_Description $mismatchDescription
+   * @return bool
+   */
+  protected function matchesContent(DOMNodeList $nodes,
       Hamcrest_Description $mismatchDescription)
   {
-    if ($results->length == 0)
+    if ($nodes->length == 0)
     {
       $mismatchDescription->appendText('XPath returned no results');
     }
@@ -108,7 +139,7 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
     }
     else
     {
-      foreach ($results as $node)
+      foreach ($nodes as $node)
       {
         if ($this->_matcher->matches($node->textContent))
         {
@@ -116,12 +147,44 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
         }
       }
       $content = array();
-      foreach ($results as $node)
+      foreach ($nodes as $node)
       {
         $content[] = $node->textContent;
       }
-      $mismatchDescription->appendText('was ')
+      $mismatchDescription->appendText('XPath returned ')
                           ->appendValue($content);
+    }
+    return false;
+  }
+
+  /**
+   * Matches if the result of the XPath expression matches the configured
+   * matcher or evaluates to <code>true</code> if there is none.
+   *
+   * @param mixed $result result of the XPath expression
+   * @param Hamcrest_Description $mismatchDescription
+   * @return bool
+   */
+  protected function matchesExpression($result,
+      Hamcrest_Description $mismatchDescription)
+  {
+    if ($this->_matcher === null)
+    {
+      if ($result)
+      {
+        return true;
+      }
+      $mismatchDescription->appendText('XPath expression result was ')
+                          ->appendValue($result);
+    }
+    else
+    {
+      if ($this->_matcher->matches($result))
+      {
+        return true;
+      }
+      $mismatchDescription->appendText('XPath expression result ');
+      $this->_matcher->describeMismatch($result, $mismatchDescription);
     }
     return false;
   }
@@ -140,7 +203,9 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
   }
 
   /**
-   * An array with elements that match the given matchers.
+   * Wraps <code>$matcher</code> with {@link Hamcrest_Core_IsEqual)
+   * if it's not a matcher and the XPath in <code>count()</code>
+   * if it's an integer.
    */
   public static function hasXPath($xpath, $matcher=null)
   {

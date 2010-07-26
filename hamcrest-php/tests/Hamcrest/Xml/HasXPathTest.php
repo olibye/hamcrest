@@ -64,6 +64,20 @@ HTML;
     );
   }
 
+  public function testMatchesWhenExpressionWithoutMatcherEvaluatesToTrue()
+  {
+    assertThat('one match', self::$doc,
+        hasXPath('count(user[id = "bob"])')
+    );
+  }
+
+  public function testDoesNotMatchWhenExpressionWithoutMatcherEvaluatesToFalse()
+  {
+    assertThat('no matches', self::$doc,
+        not(hasXPath('count(user[id = "frank"])'))
+    );
+  }
+
   public function testMatchesWhenExpressionIsEqual()
   {
     assertThat('one match', self::$doc, 
@@ -117,12 +131,12 @@ HTML;
 
   public function testMatchesAcceptsXmlString()
   {
-    assertThat('no strings', self::$xml, hasXPath('user'));
+    assertThat('accepts XML string', self::$xml, hasXPath('user'));
   }
 
   public function testMatchesAcceptsHtmlString()
   {
-    assertThat('no strings', self::$html, hasXPath('body/h1', 'Heading'));
+    assertThat('accepts HTML string', self::$html, hasXPath('body/h1', 'Heading'));
   }
   
   public function testHasAReadableDescription()
@@ -130,8 +144,33 @@ HTML;
     $this->assertDescription('XML or HTML document with XPath "/users/user"',
         hasXPath('/users/user')
     );
-    $this->assertDescription('XML or HTML document with XPath "count(/users/user)" <2>',
+    $this->assertDescription(
+        'XML or HTML document with XPath "count(/users/user)" <2>',
         hasXPath('/users/user', 2)
+    );
+    $this->assertDescription(
+        'XML or HTML document with XPath "/users/user/name"'
+          . ' a string starting with "Alice"',
+        hasXPath('/users/user/name', startsWith('Alice'))
+    );
+  }
+
+  public function testHasAReadableMismatchDescription()
+  {
+    $this->assertMismatchDescription(
+        'XPath returned no results',
+        hasXPath('/users/name'),
+        self::$doc
+    );
+    $this->assertMismatchDescription(
+        'XPath expression result was <3F>',
+        hasXPath('/users/user', 2),
+        self::$doc
+    );
+    $this->assertMismatchDescription(
+        'XPath returned ["alice", "bob", "charlie"]',
+        hasXPath('/users/user/id', 'Frank'),
+        self::$doc
     );
   }
   

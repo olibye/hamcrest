@@ -1,4 +1,4 @@
-== Version ?: Not Released ==
+== Version 0.3.0: Released Jul 26 2010 ==
 
 * Added running count to Hamcrest_MatcherAssert with methods to get and reset it.
   This can be used by unit testing frameworks for reporting.

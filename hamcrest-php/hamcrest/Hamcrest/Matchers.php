@@ -47,6 +47,7 @@ require_once 'Hamcrest/Array/IsArrayWithSize.php';
 require_once 'Hamcrest/Array/IsArrayContainingKey.php';
 require_once 'Hamcrest/Array/IsArrayContainingKeyValuePair.php';
 require_once 'Hamcrest/Collection/IsTraversableWithSize.php';
+require_once 'Hamcrest/Xml/HasXPath.php';
 
 //TODO: Seriously look at code-generation for this file (and for hamcrest.php)
 

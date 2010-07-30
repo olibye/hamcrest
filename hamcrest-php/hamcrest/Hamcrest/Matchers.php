@@ -196,6 +196,17 @@ class Hamcrest_Matchers
   }
 
   /**
+   * Tests if the argument is a string that contains a substring,
+   * ignoring the case of both strings.
+   */
+  public static function containsStringIgnoringCase($substring)
+  {
+    return Hamcrest_Core_StringContains::containsStringIgnoringCase(
+        $substring
+    );
+  }
+
+  /**
    * Tests if the argument is a string that contains a substring.
    */
   public static function endsWith($substring)

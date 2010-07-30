@@ -167,6 +167,18 @@ function containsString($substring)
 }
 
 /**
+ * Tests if the argument is a string that contains a substring,
+ * ignoring the case of both strings.
+ *
+ * For example:  assertThat('foobar', containsStringIgnoringCase('ObA'))
+ *          vs.  assertThat('foobar', containsString('ObA')->ignoringCase())
+ */
+function containsStringIgnoringCase($substring)
+{
+  return Hamcrest_Matchers::containsStringIgnoringCase($substring);
+}
+
+/**
  * Tests if the argument is a string that ends with a substring.
  */
 function endsWith($substring)

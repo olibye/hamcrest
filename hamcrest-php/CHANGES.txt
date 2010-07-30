@@ -1,3 +1,11 @@
+== Version ?: Not Released ==
+
+* Hamcrest_Core_StringContains can ignore case using stripos().
+
+    assertThat('fOObAr', containsStringIgnoringCase('oba'));
+    assertThat('fOObAr', containsString('oba')->ignoringCase());
+
+
 == Version 0.3.0: Released Jul 26 2010 ==
 
 * Added running count to Hamcrest_MatcherAssert with methods to get and reset it.

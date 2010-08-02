@@ -4,12 +4,12 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/Core/SubstringMatcher.php';
+require_once 'Hamcrest/Text/SubstringMatcher.php';
 
 /**
  * Tests if the argument is a string that contains a substring.
  */
-class Hamcrest_Core_StringContains extends Hamcrest_Core_SubstringMatcher
+class Hamcrest_Text_StringContains extends Hamcrest_Text_SubstringMatcher
 {
 
   private $_ignoreCase;

@@ -1,8 +1,8 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
-require_once 'Hamcrest/Core/StringStartsWith.php';
+require_once 'Hamcrest/Text/StringStartsWith.php';
 
-class Hamcrest_Core_StringStartsWithTest extends Hamcrest_AbstractMatcherTest
+class Hamcrest_Text_StringStartsWithTest extends Hamcrest_AbstractMatcherTest
 {
   
   const EXCERPT = 'EXCERPT';
@@ -11,7 +11,7 @@ class Hamcrest_Core_StringStartsWithTest extends Hamcrest_AbstractMatcherTest
   
   public function setUp()
   {
-    $this->_stringStartsWith = Hamcrest_Core_StringStartsWith::startsWith(self::EXCERPT);
+    $this->_stringStartsWith = Hamcrest_Text_StringStartsWith::startsWith(self::EXCERPT);
   }
   
   protected function createMatcher()

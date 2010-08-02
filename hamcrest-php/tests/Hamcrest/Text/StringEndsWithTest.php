@@ -1,8 +1,8 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
-require_once 'Hamcrest/Core/StringEndsWith.php';
+require_once 'Hamcrest/Text/StringEndsWith.php';
 
-class Hamcrest_Core_StringEndsWithTest extends Hamcrest_AbstractMatcherTest
+class Hamcrest_Text_StringEndsWithTest extends Hamcrest_AbstractMatcherTest
 {
   
   const EXCERPT = 'EXCERPT';
@@ -11,7 +11,7 @@ class Hamcrest_Core_StringEndsWithTest extends Hamcrest_AbstractMatcherTest
   
   public function setUp()
   {
-    $this->_stringEndsWith = Hamcrest_Core_StringEndsWith::endsWith(self::EXCERPT);
+    $this->_stringEndsWith = Hamcrest_Text_StringEndsWith::endsWith(self::EXCERPT);
   }
   
   protected function createMatcher()

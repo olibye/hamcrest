@@ -4,12 +4,12 @@
  Copyright (c) 2009 hamcrest.org
  */
 
-require_once 'Hamcrest/Core/SubstringMatcher.php';
+require_once 'Hamcrest/Text/SubstringMatcher.php';
 
 /**
  * Tests if the argument is a string that contains a substring.
  */
-class Hamcrest_Core_StringEndsWith extends Hamcrest_Core_SubstringMatcher
+class Hamcrest_Text_StringStartsWith extends Hamcrest_Text_SubstringMatcher
 {
   
   public function __construct($substring)
@@ -17,7 +17,7 @@ class Hamcrest_Core_StringEndsWith extends Hamcrest_Core_SubstringMatcher
     parent::__construct($substring);
   }
   
-  public static function endsWith($substring)
+  public static function startsWith($substring)
   {
     return new self($substring);
   }
@@ -26,12 +26,12 @@ class Hamcrest_Core_StringEndsWith extends Hamcrest_Core_SubstringMatcher
   
   protected function evalSubstringOf($string)
   {
-    return (substr($string, (-1 * strlen($this->_substring))) === $this->_substring);
+    return (substr($string, 0, strlen($this->_substring)) === $this->_substring);
   }
   
   protected function relationship()
   {
-    return 'ending with';
+    return 'starting with';
   }
   
 }

@@ -4,12 +4,12 @@
  Copyright (c) 2010 hamcrest.org
  */
 
-require_once 'Hamcrest/Core/SubstringMatcher.php';
+require_once 'Hamcrest/Text/SubstringMatcher.php';
 
 /**
  * Tests if the argument is a string that matches a regular expression.
  */
-class Hamcrest_Text_MatchesPattern extends Hamcrest_Core_SubstringMatcher
+class Hamcrest_Text_MatchesPattern extends Hamcrest_Text_SubstringMatcher
 {
   
   public function __construct($pattern)

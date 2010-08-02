@@ -21,9 +21,9 @@ require_once 'Hamcrest/Core/IsIdentical.php';
 require_once 'Hamcrest/Core/IsSame.php';
 require_once 'Hamcrest/Core/IsSet.php';
 require_once 'Hamcrest/Core/IsTypeOf.php';
-require_once 'Hamcrest/Core/StringContains.php';
-require_once 'Hamcrest/Core/StringEndsWith.php';
-require_once 'Hamcrest/Core/StringStartsWith.php';
+require_once 'Hamcrest/Text/StringContains.php';
+require_once 'Hamcrest/Text/StringEndsWith.php';
+require_once 'Hamcrest/Text/StringStartsWith.php';
 require_once 'Hamcrest/Number/IsCloseTo.php';
 require_once 'Hamcrest/Number/OrderingComparison.php';
 require_once 'Hamcrest/Text/IsEmptyString.php';
@@ -192,7 +192,7 @@ class Hamcrest_Matchers
    */
   public static function containsString($substring)
   {
-    return Hamcrest_Core_StringContains::containsString($substring);
+    return Hamcrest_Text_StringContains::containsString($substring);
   }
 
   /**
@@ -201,7 +201,7 @@ class Hamcrest_Matchers
    */
   public static function containsStringIgnoringCase($substring)
   {
-    return Hamcrest_Core_StringContains::containsStringIgnoringCase(
+    return Hamcrest_Text_StringContains::containsStringIgnoringCase(
         $substring
     );
   }
@@ -211,7 +211,7 @@ class Hamcrest_Matchers
    */
   public static function endsWith($substring)
   {
-    return Hamcrest_Core_StringEndsWith::endsWith($substring);
+    return Hamcrest_Text_StringEndsWith::endsWith($substring);
   }
 
   /**
@@ -219,7 +219,7 @@ class Hamcrest_Matchers
    */
   public static function startsWith($substring)
   {
-    return Hamcrest_Core_StringStartsWith::startsWith($substring);
+    return Hamcrest_Text_StringStartsWith::startsWith($substring);
   }
 
   /**

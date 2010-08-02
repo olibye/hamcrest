@@ -1,18 +1,17 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
-require_once 'Hamcrest/Core/StringContains.php';
+require_once 'Hamcrest/Text/StringContains.php';
 
-class Hamcrest_Core_StringContainsIgnoringCaseTest extends Hamcrest_AbstractMatcherTest
+class Hamcrest_Text_StringContainsTest extends Hamcrest_AbstractMatcherTest
 {
-
-  const EXCERPT = 'ExcErPt';
+  
+  const EXCERPT = 'EXCERPT';
   
   private $_stringContains;
   
   public function setUp()
   {
-    $this->_stringContains = Hamcrest_Core_StringContains
-        ::containsStringIgnoringCase(strtolower(self::EXCERPT));
+    $this->_stringContains = Hamcrest_Text_StringContains::containsString(self::EXCERPT);
   }
   
   protected function createMatcher()
@@ -20,7 +19,7 @@ class Hamcrest_Core_StringContainsIgnoringCaseTest extends Hamcrest_AbstractMatc
     return $this->_stringContains;
   }
   
-  public function testEvaluatesToTrueIfArgumentContainsSpecifiedSubstring()
+  public function testEvaluatesToTrueIfArgumentContainsSubstring()
   {
     $this->assertTrue($this->_stringContains->matches(self::EXCERPT . 'END'),
       'should be true if excerpt at beginning'
@@ -50,20 +49,20 @@ class Hamcrest_Core_StringContainsIgnoringCaseTest extends Hamcrest_AbstractMatc
     );
   }
 
-  public function testEvaluatesToTrueIfArgumentContainsExactSubstring()
+  public function testEvaluatesToFalseIfArgumentContainsSubstringIgnoringCase()
   {
-    $this->assertTrue($this->_stringContains->matches(strtolower(self::EXCERPT)),
+    $this->assertFalse($this->_stringContains->matches(strtolower(self::EXCERPT)),
       'should be false if excerpt is entire string ignoring case'
     );
-    $this->assertTrue($this->_stringContains->matches('START' . strtolower(self::EXCERPT) . 'END'),
+    $this->assertFalse($this->_stringContains->matches('START' . strtolower(self::EXCERPT) . 'END'),
       'should be false if excerpt is contained in string ignoring case'
     );
   }
   
   public function testHasAReadableDescription()
   {
-    $this->assertDescription('a string containing in any case "'
-        . strtolower(self::EXCERPT) . '"', $this->_stringContains);
+    $this->assertDescription('a string containing "'
+        . self::EXCERPT . '"', $this->_stringContains);
   }
   
 }

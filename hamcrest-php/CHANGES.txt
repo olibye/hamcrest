@@ -7,6 +7,9 @@
 
 * Hamcrest_Core_IsInstanceOf returns false for native types.
 
+* Moved string-based matchers to Hamcrest_Text package.
+  StringContains, StringEndsWith, StringStartsWith, and SubstringMatcher
+
 
 == Version 0.3.0: Released Jul 26 2010 ==
 

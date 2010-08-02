@@ -1,6 +1,6 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
-require_once 'Hamcrest/Text/StringContains.php';
+require_once 'Hamcrest/Text/StringContainsIgnoringCase.php';
 
 class Hamcrest_Text_StringContainsIgnoringCaseTest extends Hamcrest_AbstractMatcherTest
 {
@@ -11,7 +11,7 @@ class Hamcrest_Text_StringContainsIgnoringCaseTest extends Hamcrest_AbstractMatc
   
   public function setUp()
   {
-    $this->_stringContains = Hamcrest_Text_StringContains
+    $this->_stringContains = Hamcrest_Text_StringContainsIgnoringCase
         ::containsStringIgnoringCase(strtolower(self::EXCERPT));
   }
   

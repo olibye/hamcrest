@@ -1,11 +1,11 @@
 == Version ?: Not Released ==
 
-* Hamcrest_Core_StringContains can ignore case using stripos().
+* Added Hamcrest_Text_StringContainsIgnoringCase to assert using stripos().
 
     assertThat('fOObAr', containsStringIgnoringCase('oba'));
     assertThat('fOObAr', containsString('oba')->ignoringCase());
 
-* Hamcrest_Core_IsInstanceOf returns false for native types.
+* Fixed Hamcrest_Core_IsInstanceOf to return false for native types.
 
 * Moved string-based matchers to Hamcrest_Text package.
   StringContains, StringEndsWith, StringStartsWith, and SubstringMatcher

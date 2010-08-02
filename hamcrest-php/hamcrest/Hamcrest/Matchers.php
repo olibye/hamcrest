@@ -28,6 +28,7 @@ require_once 'Hamcrest/Text/IsEqualIgnoringCase.php';
 require_once 'Hamcrest/Text/IsEqualIgnoringWhiteSpace.php';
 require_once 'Hamcrest/Text/MatchesPattern.php';
 require_once 'Hamcrest/Text/StringContains.php';
+require_once 'Hamcrest/Text/StringContainsIgnoringCase.php';
 require_once 'Hamcrest/Text/StringContainsInOrder.php';
 require_once 'Hamcrest/Text/StringEndsWith.php';
 require_once 'Hamcrest/Text/StringStartsWith.php';
@@ -201,7 +202,7 @@ class Hamcrest_Matchers
    */
   public static function containsStringIgnoringCase($substring)
   {
-    return Hamcrest_Text_StringContains::containsStringIgnoringCase(
+    return Hamcrest_Text_StringContainsIgnoringCase::containsStringIgnoringCase(
         $substring
     );
   }

@@ -58,6 +58,13 @@ class Hamcrest_Text_StringContainsTest extends Hamcrest_AbstractMatcherTest
       'should be false if excerpt is contained in string ignoring case'
     );
   }
+
+  public function testIgnoringCaseReturnsCorrectMatcher()
+  {
+    $this->assertTrue($this->_stringContains->ignoringCase()->matches('EXceRpT'),
+      'should be true if excerpt is entire string ignoring case'
+    );
+  }
   
   public function testHasAReadableDescription()
   {

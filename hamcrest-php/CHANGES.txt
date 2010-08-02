@@ -5,6 +5,8 @@
     assertThat('fOObAr', containsStringIgnoringCase('oba'));
     assertThat('fOObAr', containsString('oba')->ignoringCase());
 
+* Hamcrest_Core_IsInstanceOf returns false for native types.
+
 
 == Version 0.3.0: Released Jul 26 2010 ==
 

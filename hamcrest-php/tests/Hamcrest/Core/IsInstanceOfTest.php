@@ -1,6 +1,8 @@
 <?php
 require_once 'Hamcrest/AbstractMatcherTest.php';
 require_once 'Hamcrest/Core/IsInstanceOf.php';
+require_once 'Hamcrest/Core/SampleBaseClass.php';
+require_once 'Hamcrest/Core/SampleSubClass.php';
 
 class Hamcrest_Core_IsInstanceOfTest extends Hamcrest_AbstractMatcherTest
 {
@@ -25,6 +27,15 @@ class Hamcrest_Core_IsInstanceOfTest extends Hamcrest_AbstractMatcherTest
     assertThat($this->_subClassInstance, anInstanceOf('Hamcrest_Core_SampleSubClass'));
     assertThat(null, not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
     assertThat(new stdClass(), not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
+  }
+
+  public function testEvaluatesToFalseIfArgumentIsNotAnObject()
+  {
+    assertThat(null, not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
+    assertThat(false, not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
+    assertThat(5, not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
+    assertThat('foo', not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
+    assertThat(array(1, 2, 3), not(anInstanceOf('Hamcrest_Core_SampleBaseClass')));
   }
   
   public function testHasAReadableDescription()

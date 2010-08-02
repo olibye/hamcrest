@@ -30,15 +30,16 @@ class Hamcrest_Core_IsInstanceOf extends Hamcrest_DiagnosingMatcher
   protected function matchesWithDiagnosticDescription($item,
     Hamcrest_Description $mismatchDescription)
   {
-    if (is_null($item))
+    if (!is_object($item))
     {
-      $mismatchDescription->appendText('null');
+      $mismatchDescription->appendText('was ')->appendValue($item);
       return false;
     }
     
     if (!($item instanceof $this->_theClass))
     {
-      $mismatchDescription->appendText('[' . get_class($item) . '] ')->appendValue($item);
+      $mismatchDescription->appendText('[' . get_class($item) . '] ')
+                          ->appendValue($item);
       return false;
     }
     

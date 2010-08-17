@@ -42,10 +42,10 @@ class Hamcrest_MatcherAssert
   public static function assertThat(/* $args ... */)
   {
     $args = func_get_args();
-    self::$_count++;
     switch (count($args))
     {
       case 1:
+        self::$_count++;
         if (!$args[0])
         {
           throw new Hamcrest_AssertionError();
@@ -53,6 +53,7 @@ class Hamcrest_MatcherAssert
         break;
 
       case 2:
+        self::$_count++;
         if ($args[1] instanceof Hamcrest_Matcher)
         {
           self::doAssert('', $args[0], $args[1]);
@@ -64,6 +65,7 @@ class Hamcrest_MatcherAssert
         break;
 
       case 3:
+        self::$_count++;
         self::doAssert($args[0], $args[1],
                        $args[2] instanceof Hamcrest_Matcher
                        ? $args[2]
@@ -71,7 +73,6 @@ class Hamcrest_MatcherAssert
         break;
 
       default:
-        self::$_count--;
         throw new InvalidArgumentException(
             'assertThat() requires one to three arguments');
     }

@@ -39,7 +39,7 @@ class Hamcrest_Array_IsArrayContainingKeyTest extends Hamcrest_AbstractMatcherTe
     assertThat($array, hasKey(1));
     
     // very ugly version!
-    assertThat($array, Hamcrest_Array_IsArrayContainingKey::hasKey(2));
+    assertThat($array, Hamcrest_Array_IsArrayContainingKey::hasKeyInArray(2));
   }
   
   public function testHasReadableDescription()

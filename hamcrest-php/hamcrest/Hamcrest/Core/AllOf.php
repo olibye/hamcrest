@@ -56,7 +56,7 @@ class Hamcrest_Core_AllOf extends Hamcrest_DiagnosingMatcher
   /**
    * Evaluates to true only if ALL of the passed in matchers evaluate to true.
    *
-   * @factoryVarArgs
+   * @factory ...
    */
   public static function allOf()
   {

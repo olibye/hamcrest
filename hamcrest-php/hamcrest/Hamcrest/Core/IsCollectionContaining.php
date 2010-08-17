@@ -62,7 +62,7 @@ class Hamcrest_Core_IsCollectionContaining extends Hamcrest_TypeSafeMatcher
    * assertThat(array('a', 'b'), hasItem('b'));
    * </pre>
    *
-   * @factoryVarArgs
+   * @factory ...
    */
   public static function hasItem()
   {
@@ -90,7 +90,7 @@ class Hamcrest_Core_IsCollectionContaining extends Hamcrest_TypeSafeMatcher
    * assertThat(array('a', 'b', 'c'), hasItems(equalTo('a'), equalTo('b')));
    * </pre>
    *
-   * @factoryVarArgs
+   * @factory ...
    */
   public static function hasItems()
   {

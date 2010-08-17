@@ -13,9 +13,8 @@ require_once 'PHPUnit/Framework.php';
 
 set_include_path(implode(PATH_SEPARATOR, array(
   HAMCREST_TEST_BASE,
-  HAMCREST_BASE,
   HAMCREST_BASE . '/hamcrest',
   get_include_path()
 )));
 
-require_once 'hamcrest.php';
+require_once 'Hamcrest.php';

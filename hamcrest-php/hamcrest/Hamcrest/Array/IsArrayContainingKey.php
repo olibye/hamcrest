@@ -69,8 +69,8 @@ class Hamcrest_Array_IsArrayContainingKey extends Hamcrest_TypeSafeMatcher
    * Evaluates to true if any key in an array matches the given matcher.
    * 
    * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory hasKey
    */
   public static function hasKeyInArray($key)
   {
@@ -80,18 +80,6 @@ class Hamcrest_Array_IsArrayContainingKey extends Hamcrest_TypeSafeMatcher
       ;
     
     return new self($matcher);
-  }
-  
-  /**
-   * Evaluates to true if any key in an array matches the given matcher.
-   * 
-   * @param mixed $key as a {@link Hamcrest_Matcher} or a value.
-   * 
-   * @hamcrest(factory)
-   */
-  public static function hasKey($key)
-  {
-    return self::hasKeyInArray($key);
   }
   
 }

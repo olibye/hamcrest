@@ -27,8 +27,8 @@ class Hamcrest_Array_IsArrayWithSize extends Hamcrest_FeatureMatcher
   
   /**
    * Does array size satisfy a given matcher?
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory
    */
   public static function arrayWithSize($size)
   {
@@ -41,8 +41,8 @@ class Hamcrest_Array_IsArrayWithSize extends Hamcrest_FeatureMatcher
   
   /**
    * Matches an empty array.
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory
    */
   public static function emptyArray()
   {

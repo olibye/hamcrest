@@ -22,6 +22,8 @@ class Hamcrest_Type_IsObject extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value an object?
+   *
+   * @factory anObject
    */
   public static function objectValue()
   {

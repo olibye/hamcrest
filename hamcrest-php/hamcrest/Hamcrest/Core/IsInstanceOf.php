@@ -58,16 +58,10 @@ class Hamcrest_Core_IsInstanceOf extends Hamcrest_DiagnosingMatcher
    * This version assumes no relationship between the required type and
    * the signature of the method that sets it up, for example in
    * <code>assertThat($anObject, anInstanceOf('Thing'));</code>
+   *
+   * @factory any
    */
   public static function anInstanceOf($theClass)
-  {
-    return new self($theClass);
-  }
-  
-  /**
-   * Alias for {@link anInstanceOf()}.
-   */
-  public function any($theClass)
   {
     return new self($theClass);
   }

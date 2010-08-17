@@ -16,7 +16,12 @@ class Hamcrest_Text_StringStartsWith extends Hamcrest_Text_SubstringMatcher
   {
     parent::__construct($substring);
   }
-  
+
+  /**
+   * Matches if value is a string that starts with $substring.
+   *
+   * @factory
+   */
   public static function startsWith($substring)
   {
     return new self($substring);

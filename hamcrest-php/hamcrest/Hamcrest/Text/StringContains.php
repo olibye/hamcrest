@@ -21,7 +21,12 @@ class Hamcrest_Text_StringContains extends Hamcrest_Text_SubstringMatcher
   {
     return new Hamcrest_Text_StringContainsIgnoringCase($this->_substring);
   }
-  
+
+  /**
+   * Matches if value is a string that contains $substring.
+   *
+   * @factory
+   */
   public static function containsString($substring)
   {
     return new self($substring);

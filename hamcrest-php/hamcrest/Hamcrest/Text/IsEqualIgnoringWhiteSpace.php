@@ -44,7 +44,9 @@ class Hamcrest_Text_IsEqualIgnoringWhiteSpace extends Hamcrest_TypeSafeMatcher
   }
   
   /**
-   * @hamcrest(factory)
+   * Matches if value is a string equal to $string, regardless of whitespace.
+   *
+   * @factory
    */
   public static function equalToIgnoringWhiteSpace($string)
   {

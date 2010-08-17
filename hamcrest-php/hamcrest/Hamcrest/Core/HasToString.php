@@ -45,7 +45,7 @@ class Hamcrest_Core_HasToString extends Hamcrest_FeatureMatcher
   /**
    * Does array size satisfy a given matcher?
    *
-   * @hamcrest(factory)
+   * @factory
    */
   public static function hasToString($matcher)
   {

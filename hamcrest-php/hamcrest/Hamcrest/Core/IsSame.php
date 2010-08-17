@@ -40,6 +40,8 @@ class Hamcrest_Core_IsSame extends Hamcrest_BaseMatcher
    * @param mixed $object
    *   The predicate evaluates to true only when the argument is
    *   this object.
+   *
+   * @factory
    */
   public static function sameInstance($object)
   {

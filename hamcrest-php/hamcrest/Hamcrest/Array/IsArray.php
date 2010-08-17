@@ -91,6 +91,8 @@ class Hamcrest_Array_IsArray extends Hamcrest_TypeSafeMatcher
   
   /**
    * Evaluates to true only if each $matcher[$i] is satisfied by $array[$i].
+   *
+   * @factory
    */
   public static function anArray($array)
   {

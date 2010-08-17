@@ -32,6 +32,8 @@ class Hamcrest_Core_AnyOf extends Hamcrest_Core_ShortcutCombination
   
   /**
    * Evaluates to true if ANY of the passed in matchers evaluate to true.
+   *
+   * @factoryVarArgs
    */
   public static function anyOf()
   {

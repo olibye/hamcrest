@@ -53,6 +53,8 @@ class Hamcrest_Array_IsArrayContainingInAnyOrder
   
   /**
    * An array with elements that match the given matchers.
+   *
+   * @factory containsInAnyOrder
    */
   public static function arrayContainingInAnyOrder(array $items)
   {

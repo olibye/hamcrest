@@ -55,8 +55,8 @@ class Hamcrest_Array_IsArrayContaining extends Hamcrest_TypeSafeMatcher
    * Evaluates to true if any item in an array satisfies the given matcher.
    * 
    * @param mixed $item as a {@link Hamcrest_Matcher} or a value.
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory hasValue
    */
   public static function hasItemInArray($item)
   {

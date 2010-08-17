@@ -12,7 +12,7 @@ require_once 'Hamcrest/Core/IsNull.php';
 /**
  * Matches empty Strings (and null).
  */
-final class Hamcrest_Text_IsEmptyString extends Hamcrest_BaseMatcher
+class Hamcrest_Text_IsEmptyString extends Hamcrest_BaseMatcher
 {
   
   private static $_INSTANCE;
@@ -30,6 +30,8 @@ final class Hamcrest_Text_IsEmptyString extends Hamcrest_BaseMatcher
   
   /**
    * Matches if value is zero-length string.
+   *
+   * @factory emptyString
    */
   public static function isEmptyString() //Q: Why have Hamcrest added the "is" to this one?
   {
@@ -43,6 +45,8 @@ final class Hamcrest_Text_IsEmptyString extends Hamcrest_BaseMatcher
   
   /**
    * Matches if value is null or zero-length string.
+   *
+   * @factory nullOrEmptyString
    */
   public static function isEmptyOrNullString()
   {

@@ -42,7 +42,9 @@ class Hamcrest_Text_IsEqualIgnoringCase extends Hamcrest_TypeSafeMatcher
   }
   
   /**
-   * @hamcrest(factory)
+   * Matches if value is a string equal to $string, regardless of the case.
+   *
+   * @factory
    */
   public static function equalToIgnoringCase($string)
   {

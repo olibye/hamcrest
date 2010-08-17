@@ -40,7 +40,7 @@ class Hamcrest_Collection_IsEmptyTraversable extends Hamcrest_BaseMatcher
   /**
    * Is traversable empty?
    * 
-   * @hamcrest(factory)
+   * @factory
    */
   public static function emptyTraversable()
   {

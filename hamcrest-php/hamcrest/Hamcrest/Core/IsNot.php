@@ -31,7 +31,12 @@ class Hamcrest_Core_IsNot extends Hamcrest_BaseMatcher
   {
     $description->appendText('not ')->appendDescriptionOf($this->_matcher);
   }
-  
+
+  /**
+   * Matches if value does not match $value.
+   *
+   * @factory
+   */
   public static function not($value)
   {
     $matcher = ($value instanceof Hamcrest_Matcher)

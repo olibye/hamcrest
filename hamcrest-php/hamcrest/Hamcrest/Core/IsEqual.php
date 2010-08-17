@@ -30,7 +30,13 @@ class Hamcrest_Core_IsEqual extends Hamcrest_BaseMatcher
   {
     $description->appendValue($this->_item);
   }
-  
+
+  /**
+   * Is the value equal to another value, as tested by the use of the "=="
+   * comparison operator?
+   *
+   * @factory
+   */
   public static function equalTo($item)
   {
     return new self($item);

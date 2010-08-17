@@ -24,7 +24,9 @@ class Hamcrest_Type_IsCallable extends Hamcrest_BaseMatcher
   }
   
   /**
-   * Is the value an integer?
+   * Is the value callable?
+   *
+   * @factory
    */
   public static function callable()
   {

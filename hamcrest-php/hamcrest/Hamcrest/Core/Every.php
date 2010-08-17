@@ -48,6 +48,8 @@ class Hamcrest_Core_Every extends Hamcrest_TypeSafeDiagnosingMatcher
    * 
    * @return Hamcrest_Core_Every
    *   Evaluates to TRUE for a collection in which every item matches $itemMatcher
+   *
+   * @factory
    */
   public static function everyItem(Hamcrest_Matcher $itemMatcher)
   {

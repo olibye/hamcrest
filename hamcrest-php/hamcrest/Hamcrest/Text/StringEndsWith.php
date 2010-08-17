@@ -7,7 +7,7 @@
 require_once 'Hamcrest/Text/SubstringMatcher.php';
 
 /**
- * Tests if the argument is a string that contains a substring.
+ * Tests if the argument is a string that ends with a substring.
  */
 class Hamcrest_Text_StringEndsWith extends Hamcrest_Text_SubstringMatcher
 {
@@ -16,7 +16,12 @@ class Hamcrest_Text_StringEndsWith extends Hamcrest_Text_SubstringMatcher
   {
     parent::__construct($substring);
   }
-  
+
+  /**
+   * Matches if value is a string that ends with $substring.
+   *
+   * @factory
+   */
   public static function endsWith($substring)
   {
     return new self($substring);

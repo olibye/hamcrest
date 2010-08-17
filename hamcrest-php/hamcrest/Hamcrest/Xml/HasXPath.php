@@ -205,6 +205,8 @@ class Hamcrest_Xml_HasXPath extends Hamcrest_DiagnosingMatcher
    * Wraps <code>$matcher</code> with {@link Hamcrest_Core_IsEqual)
    * if it's not a matcher and the XPath in <code>count()</code>
    * if it's an integer.
+   *
+   * @factory
    */
   public static function hasXPath($xpath, $matcher=null)
   {

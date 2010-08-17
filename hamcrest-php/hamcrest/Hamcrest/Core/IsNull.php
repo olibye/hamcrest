@@ -26,6 +26,8 @@ class Hamcrest_Core_IsNull extends Hamcrest_BaseMatcher
   
   /**
    * Matches if value is null.
+   *
+   * @factory
    */
   public static function nullValue()
   {
@@ -34,6 +36,8 @@ class Hamcrest_Core_IsNull extends Hamcrest_BaseMatcher
   
   /**
    * Matches if value is not null.
+   *
+   * @factory
    */
   public static function notNullValue()
   {

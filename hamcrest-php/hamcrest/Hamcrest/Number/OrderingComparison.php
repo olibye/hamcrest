@@ -55,6 +55,8 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
   
   /**
    * The value is not > $value, nor < $value.
+   *
+   * @factory
    */
   public static function comparesEqualTo($value)
   {
@@ -63,6 +65,8 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
   
   /**
    * The value is > $value.
+   *
+   * @factory
    */
   public static function greaterThan($value)
   {
@@ -71,6 +75,8 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
   
   /**
    * The value is >= $value.
+   *
+   * @factory atLeast
    */
   public static function greaterThanOrEqualTo($value)
   {
@@ -79,6 +85,8 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
   
   /**
    * The value is < $value.
+   *
+   * @factory
    */
   public static function lessThan($value)
   {
@@ -87,6 +95,8 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
   
   /**
    * The value is <= $value.
+   *
+   * @factory atMost
    */
   public static function lessThanOrEqualTo($value)
   {

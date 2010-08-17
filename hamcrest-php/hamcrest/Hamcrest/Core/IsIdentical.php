@@ -29,6 +29,8 @@ class Hamcrest_Core_IsIdentical extends Hamcrest_Core_IsSame
   
   /**
    * Tests of the value is identical to $value as tested by the "===" operator.
+   *
+   * @factory
    */
   public static function identicalTo($value)
   {

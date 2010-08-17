@@ -51,6 +51,8 @@ class Hamcrest_Array_IsArrayContainingInOrder
   
   /**
    * An array with elements that match the given matchers in the same order.
+   *
+   * @factory contains
    */
   public static function arrayContaining(array $items)
   {

@@ -33,8 +33,8 @@ class Hamcrest_Collection_IsTraversableWithSize extends Hamcrest_FeatureMatcher
   
   /**
    * Does traversable size satisfy a given matcher?
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory
    */
   public static function traversableWithSize($size)
   {

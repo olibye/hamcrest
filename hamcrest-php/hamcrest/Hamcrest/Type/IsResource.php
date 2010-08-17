@@ -22,6 +22,8 @@ class Hamcrest_Type_IsResource extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value a resource?
+   *
+   * @factory
    */
   public static function resourceValue()
   {

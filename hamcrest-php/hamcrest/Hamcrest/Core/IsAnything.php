@@ -34,6 +34,8 @@ class Hamcrest_Core_IsAnything extends Hamcrest_BaseMatcher
    * This matcher always evaluates to true.
    *
    * @param string $description A meaningful string used when describing itself.
+   *
+   * @factory
    */
   public static function anything($description = 'ANYTHING')
   {

@@ -16,6 +16,8 @@ require_once 'Hamcrest/Description.php';
  * assertThat($foo, set('bar'));
  * assertThat('Server', notSet('defaultPort'));
  * </pre>
+ *
+ * @todo Replace $property with a matcher and iterate all property names.
  */
 class Hamcrest_Core_IsSet extends Hamcrest_BaseMatcher
 {
@@ -81,11 +83,21 @@ class Hamcrest_Core_IsSet extends Hamcrest_BaseMatcher
     }
   }
 
+  /**
+   * Matches if value (class, object, or array) has named $property.
+   *
+   * @factory
+   */
   public static function set($property)
   {
     return new self($property);
   }
 
+  /**
+   * Matches if value (class, object, or array) does not have named $property.
+   *
+   * @factory
+   */
   public static function notSet($property)
   {
     return new self($property, true);

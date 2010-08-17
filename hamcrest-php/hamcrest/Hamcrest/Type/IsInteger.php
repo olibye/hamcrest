@@ -22,6 +22,8 @@ class Hamcrest_Type_IsInteger extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value an integer?
+   *
+   * @factory intValue
    */
   public static function integerValue()
   {

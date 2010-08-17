@@ -22,6 +22,8 @@ class Hamcrest_Type_IsBoolean extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value a boolean?
+   *
+   * @factory boolValue
    */
   public static function booleanValue()
   {

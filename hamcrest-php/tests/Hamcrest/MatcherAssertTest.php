@@ -1,5 +1,4 @@
 <?php
-require_once 'hamcrest.php';
 require_once 'Hamcrest/MatcherAssert.php';
 require_once 'Hamcrest/AssertionError.php';
 

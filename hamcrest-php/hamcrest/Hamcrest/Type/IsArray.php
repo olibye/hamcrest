@@ -22,6 +22,8 @@ class Hamcrest_Type_IsArray extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value an array?
+   *
+   * @factory
    */
   public static function arrayValue()
   {

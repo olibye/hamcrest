@@ -1,4 +1,7 @@
-== Version ?: Not Released ==
+== Version 1.0.0: Not Released ==
+
+* Moved hamcrest.php into hamcrest folder and renamed to Hamcrest.php.
+  This is more in line with PEAR packaging standards.
 
 * Added Hamcrest_Text_StringContainsIgnoringCase to assert using stripos().
 
@@ -9,6 +12,8 @@
 
 * Moved string-based matchers to Hamcrest_Text package.
   StringContains, StringEndsWith, StringStartsWith, and SubstringMatcher
+
+* Hamcrest.php and Hamcrest_Matchers.php are now built from @factory doctags.
 
 
 == Version 0.3.0: Released Jul 26 2010 ==

@@ -22,6 +22,8 @@ class Hamcrest_Type_IsString extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value a string?
+   *
+   * @factory
    */
   public static function stringValue()
   {

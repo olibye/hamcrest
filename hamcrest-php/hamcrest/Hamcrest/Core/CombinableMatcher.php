@@ -48,6 +48,8 @@ class Hamcrest_Core_CombinableMatcher extends Hamcrest_BaseMatcher
    * <pre>
    *   assertThat($string, both(containsString("a"))->andAlso(containsString("b")));
    * </pre>
+   *
+   * @factory
    */
   public static function both(Hamcrest_Matcher $matcher)
   {
@@ -60,6 +62,8 @@ class Hamcrest_Core_CombinableMatcher extends Hamcrest_BaseMatcher
    * <pre>
    *   assertThat($string, either(containsString("a"))->orElse(containsString("b")));
    * </pre>
+   *
+   * @factory
    */
   public static function either(Hamcrest_Matcher $matcher)
   {

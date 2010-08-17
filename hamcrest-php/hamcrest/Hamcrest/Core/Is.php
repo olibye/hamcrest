@@ -41,7 +41,16 @@ class Hamcrest_Core_Is extends Hamcrest_BaseMatcher
   {
     $this->_matcher->describeMismatch($item, $mismatchDescription);
   }
-  
+
+  /**
+   * Decorates another Matcher, retaining the behavior but allowing tests
+   * to be slightly more expressive.
+   *
+   * For example:  assertThat($cheese, equalTo($smelly))
+   *          vs.  assertThat($cheese, is(equalTo($smelly)))
+   *
+   * @factory
+   */
   public static function is($value)
   {
     $matcher = ($value instanceof Hamcrest_Matcher)

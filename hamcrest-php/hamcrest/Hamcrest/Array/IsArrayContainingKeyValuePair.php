@@ -69,8 +69,8 @@ class Hamcrest_Array_IsArrayContainingKeyValuePair
   
   /**
    * Test if an array has both an key and value in parity with each other.
-   * 
-   * @hamcrest(factory)
+   *
+   * @factory hasEntry
    */
   public static function hasKeyValuePair($key, $value)
   {

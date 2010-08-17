@@ -58,6 +58,8 @@ class Hamcrest_Core_DescribedAs extends Hamcrest_BaseMatcher
   
   /**
    * Wraps an existing matcher and overrides the description when it fails.
+   *
+   * @factoryVarArgs
    */
   public static function describedAs(/* $description, Hamcrest_Matcher $matcher, $values... */)
   {

@@ -24,6 +24,8 @@ class Hamcrest_Type_IsDouble extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value a float/double?
+   *
+   * @factory floatValue
    */
   public static function doubleValue()
   {

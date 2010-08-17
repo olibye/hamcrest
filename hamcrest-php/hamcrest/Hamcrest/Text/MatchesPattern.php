@@ -16,7 +16,12 @@ class Hamcrest_Text_MatchesPattern extends Hamcrest_Text_SubstringMatcher
   {
     parent::__construct($pattern);
   }
-  
+
+  /**
+   * Matches if value is a string that matches regular expression $pattern.
+   *
+   * @factory
+   */
   public static function matchesPattern($pattern)
   {
     return new self($pattern);

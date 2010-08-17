@@ -7,7 +7,7 @@
 require_once 'Hamcrest/Core/IsTypeOf.php';
 
 /**
- * Tests whether the value is a scalar (bool, int, double, or string).
+ * Tests whether the value is a scalar (boolean, integer, double, or string).
  */
 class Hamcrest_Type_IsScalar extends Hamcrest_Core_IsTypeOf
 {
@@ -22,7 +22,9 @@ class Hamcrest_Type_IsScalar extends Hamcrest_Core_IsTypeOf
   }
   
   /**
-   * Is the value a scalar (bool, int, double, or string)?
+   * Is the value a scalar (boolean, integer, double, or string)?
+   *
+   * @factory
    */
   public static function scalarValue()
   {

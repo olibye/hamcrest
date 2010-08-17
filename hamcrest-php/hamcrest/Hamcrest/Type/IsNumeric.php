@@ -23,6 +23,8 @@ class Hamcrest_Type_IsNumeric extends Hamcrest_Core_IsTypeOf
   
   /**
    * Is the value a numeric?
+   *
+   * @factory
    */
   public static function numericValue()
   {

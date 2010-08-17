@@ -47,7 +47,13 @@ class Hamcrest_Number_IsCloseTo extends Hamcrest_TypeSafeMatcher
                 ->appendValue($this->_value)
                 ;
   }
-  
+
+  /**
+   * Matches if value is a number equal to $value within some range of
+   * acceptable error $delta.
+   *
+   * @factory
+   */
   public static function closeTo($value, $delta)
   {
     return new self($value, $delta);

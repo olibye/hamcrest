@@ -17,6 +17,11 @@ class Hamcrest_Text_StringContainsIgnoringCase extends Hamcrest_Text_SubstringMa
     parent::__construct($substring);
   }
 
+  /**
+   * Matches if value is a string that contains $substring regardless of the case.
+   *
+   * @factory
+   */
   public static function containsStringIgnoringCase($substring)
   {
     return new self($substring);

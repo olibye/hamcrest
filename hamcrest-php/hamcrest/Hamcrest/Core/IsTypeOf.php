@@ -65,6 +65,8 @@ class Hamcrest_Core_IsTypeOf extends Hamcrest_BaseMatcher
   
   /**
    * Is the value a particular built-in type?
+   *
+   * @factory
    */
   public static function typeOf($theType)
   {

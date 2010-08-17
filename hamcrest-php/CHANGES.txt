@@ -1,5 +1,7 @@
 == Version 1.0.0: Not Released ==
 
+Issues Fixed: 119
+
 * Moved hamcrest.php into hamcrest folder and renamed to Hamcrest.php.
   This is more in line with PEAR packaging standards.
 
@@ -14,6 +16,7 @@
   StringContains, StringEndsWith, StringStartsWith, and SubstringMatcher
 
 * Hamcrest.php and Hamcrest_Matchers.php are now built from @factory doctags.
+  Added @factory doctag to every static factory method.
 
 
 == Version 0.3.0: Released Jul 26 2010 ==

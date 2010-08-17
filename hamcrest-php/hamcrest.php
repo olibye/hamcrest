@@ -130,14 +130,16 @@ function anything($description = 'ANYTHING')
 /**
  * Is the property set in the object/class/array.
  */
-function set($property) {
+function set($property)
+{
   return Hamcrest_Matchers::set($property);
 }
 
 /**
  * Is the property not set in the object/class/array.
  */
-function notSet($property) {
+function notSet($property)
+{
   return Hamcrest_Matchers::notSet($property);
 }
 
@@ -197,7 +199,8 @@ function startsWith($substring)
 /**
  * Tests if the argument is a string that matches a regular expression.
  */
-function matchesPattern($pattern) {
+function matchesPattern($pattern)
+{
   return Hamcrest_Matchers::matchesPattern($pattern);
 }
 
@@ -242,7 +245,8 @@ function hasItems()
  * assertThat(array('a', 'b'), typeOf('array'));
  * </pre>
  */
-function typeOf($theType) {
+function typeOf($theType)
+{
   return Hamcrest_Matchers::typeOf($theType);
 }
 
@@ -254,7 +258,8 @@ function typeOf($theType) {
  * assertThat(array('a', 'b'), arrayValue());
  * </pre>
  */
-function arrayValue() {
+function arrayValue()
+{
   return Hamcrest_Matchers::arrayValue();
 }
 
@@ -266,7 +271,8 @@ function arrayValue() {
  * assertThat(TRUE, booleanValue());
  * </pre>
  */
-function booleanValue() {
+function booleanValue()
+{
   return Hamcrest_Matchers::booleanValue();
 }
 
@@ -275,7 +281,8 @@ function booleanValue() {
  *
  * Alias for {@link booleanValue()}
  */
-function boolValue() {
+function boolValue()
+{
   return Hamcrest_Matchers::booleanValue();
 }
 
@@ -287,7 +294,8 @@ function boolValue() {
  * assertThat(5, doubleValue());
  * </pre>
  */
-function doubleValue() {
+function doubleValue()
+{
   return Hamcrest_Matchers::doubleValue();
 }
 
@@ -301,7 +309,8 @@ function doubleValue() {
  * assertThat(5, floatValue());
  * </pre>
  */
-function floatValue() {
+function floatValue()
+{
   return Hamcrest_Matchers::doubleValue();
 }
 
@@ -313,7 +322,8 @@ function floatValue() {
  * assertThat(5, integerValue());
  * </pre>
  */
-function integerValue() {
+function integerValue()
+{
   return Hamcrest_Matchers::integerValue();
 }
 
@@ -322,7 +332,8 @@ function integerValue() {
  *
  * Alias for {@link integerValue()}
  */
-function intValue() {
+function intValue()
+{
   return Hamcrest_Matchers::integerValue();
 }
 
@@ -335,7 +346,8 @@ function intValue() {
  * assertThat('5', numericValue());
  * </pre>
  */
-function numericValue() {
+function numericValue()
+{
   return Hamcrest_Matchers::numericValue();
 }
 
@@ -347,7 +359,8 @@ function numericValue() {
  * assertThat($anObject, objectValue());
  * </pre>
  */
-function objectValue() {
+function objectValue()
+{
   return Hamcrest_Matchers::objectValue();
 }
 
@@ -359,7 +372,8 @@ function objectValue() {
  * assertThat(fopen('readme.txt', 'r'), resourceValue());
  * </pre>
  */
-function resourceValue() {
+function resourceValue()
+{
   return Hamcrest_Matchers::resourceValue();
 }
 
@@ -371,7 +385,8 @@ function resourceValue() {
  * assertThat(3.14159, scalarValue());
  * </pre>
  */
-function scalarValue() {
+function scalarValue()
+{
   return Hamcrest_Matchers::scalarValue();
 }
 
@@ -383,7 +398,8 @@ function scalarValue() {
  * assertThat('a string', stringValue());
  * </pre>
  */
-function stringValue() {
+function stringValue()
+{
   return Hamcrest_Matchers::stringValue();
 }
 
@@ -399,7 +415,8 @@ function stringValue() {
  * assertThat(function() {}, callable());
  * </pre>
  */
-function callable() {
+function callable()
+{
   return Hamcrest_Matchers::callable();
 }
 
@@ -408,7 +425,8 @@ function callable() {
  *
  * Alias for {@link objectValue()}
  */
-function anObject() {
+function anObject()
+{
   return Hamcrest_Matchers::objectValue();
 }
 

@@ -89,9 +89,8 @@ class FactoryMethod
   }
 
   public function extractFactoryNamesFromLine($line) {
-    if (preg_match('/^\s*@(factory|factoryVarArgs)(\s+(.*))?$/', $line, $match)) {
-      $this->isVarArgs = $match[1] == 'factoryVarArgs';
-      $this->createCalls($this->extraceFactoryNamesFromAnnotation(trim($match[3])));
+    if (preg_match('/^\s*@factory(\s+(.*))?$/', $line, $match)) {
+      $this->createCalls($this->extraceFactoryNamesFromAnnotation(trim($match[2])));
       return true;
     }
     return false;
@@ -102,8 +101,11 @@ class FactoryMethod
     if (empty($value)) {
       return array($primaryName);
     }
-    preg_match_all('/(-|[a-zA-Z_][a-zA-Z_0-9]*)/', $value, $match);
+    preg_match_all('/(\.{3}|-|[a-zA-Z_][a-zA-Z_0-9]*)/', $value, $match);
     $names = $match[0];
+    if (in_array('...', $names)) {
+      $this->isVarArgs = true;
+    }
     if (!in_array('-', $names) && !in_array($primaryName, $names)) {
       array_unshift($names, $primaryName);
     }
@@ -113,7 +115,7 @@ class FactoryMethod
   public function createCalls(array $names) {
     $names = array_unique($names);
     foreach ($names as $name) {
-      if ($name != '-') {
+      if ($name != '-' && $name != '...') {
         $this->calls[] = new FactoryCall($this, $name);
       }
     }

@@ -6,7 +6,7 @@ def read(fname):
 
 setup(
     name = 'PyHamcrest',
-    version = '1.0',
+    version = '1.1',
     author = 'Jon Reid',
     author_email = 'jon.m.reid@gmail.com',
     maintainer_email = 'hamcrest-dev@googlegroups.com',
@@ -18,7 +18,7 @@ setup(
     packages = find_packages(),
     test_suite = 'hamcrest-unit-test.alltests',
     provides = ['hamcrest'],
-    long_description=read('README.txt'),
+    long_description=read('README.md'),
     classifiers = [
         'Development Status :: 5 - Production/Stable',
         'Environment :: Console',

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsSame.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -45,7 +45,7 @@
 
 - (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
-    [[mismatchDescription appendText:@"was "] appendValue:item];
+    [[mismatchDescription appendText:@"was "] appendDescriptionOf:item];
     [mismatchDescription appendText:[NSString stringWithFormat:@": 0x%0x", item]];
 }
 
@@ -53,8 +53,8 @@
 - (void) describeTo:(id<HCDescription>)description
 {
     [[[description appendText:@"sameInstance("]
-                    appendValue:object]
-                    appendText:@")"];
+                   appendDescriptionOf:object]
+                   appendText:@")"];
 }
 
 @end

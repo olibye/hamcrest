@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingKey.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,7 +10,7 @@
 
 
 /**
-     Matches dictionaries containing a key satisfying a given matcher.
+    Matches dictionaries containing a key satisfying a given matcher.
     @ingroup collection_matchers
  */
 @interface HCIsDictionaryContainingKey : HCBaseMatcher

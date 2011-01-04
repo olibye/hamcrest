@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCBaseDescription.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -27,9 +27,20 @@
 }
 
 
-- (id<HCDescription>) appendDescriptionOf:(id<HCSelfDescribing>)value;
+- (id<HCDescription>) appendDescriptionOf:(id)value;
 {
-    [value describeTo:self];
+    if (value == nil)
+        [self append:@"nil"];
+    else if ([value conformsToProtocol:@protocol(HCSelfDescribing)])
+        [value describeTo:self];
+    else if ([value isKindOfClass:[NSString class]])
+        [self toCSyntaxString:value];
+    else
+    {
+        [self append:@"<"];
+        [self append:[value description]];
+        [self append:@">"];
+    }
     return self;
 }
 
@@ -51,7 +62,9 @@
 
 
 - (id<HCDescription>) appendList:(NSArray*)values
-                        start:(NSString*)start separator:(NSString*)separator end:(NSString*)end
+                           start:(NSString*)start
+                       separator:(NSString*)separator
+                             end:(NSString*)end
 {
     BOOL separate = NO;
     

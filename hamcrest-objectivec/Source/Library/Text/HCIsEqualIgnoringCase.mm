@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqualIgnoringCase.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,7 +10,7 @@
 
     // OCHamcrest
 #import "HCDescription.h"
-#import "HCRequireNonNilString.h"
+#import "HCRequireNonNilObject.h"
 
 
 @implementation HCIsEqualIgnoringCase
@@ -23,7 +23,7 @@
 
 - (id) initWithString:(NSString*)aString
 {
-    HCRequireNonNilString(aString);
+    HCRequireNonNilObject(aString);
     
     self = [super init];
     if (self != nil)
@@ -52,8 +52,8 @@
 - (void) describeTo:(id<HCDescription>)description
 {
     [[[description appendText:@"equalToIgnoringCase("]
-                    appendValue:string]
-                    appendText:@")"];
+                   appendDescriptionOf:string]
+                   appendText:@")"];
 }
 
 @end

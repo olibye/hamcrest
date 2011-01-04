@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCollectionContainingInAnyOrder.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -72,7 +72,7 @@
 {
     if ([matchers count] == 0)
     {
-        [[mismatchDescription appendText:@"Not matched: "] appendValue:item];
+        [[mismatchDescription appendText:@"Not matched: "] appendDescriptionOf:item];
         return NO;
     }
     return YES;
@@ -91,7 +91,7 @@
         }
         ++index;
     }
-    [[mismatchDescription appendText:@"Not matched: "] appendValue:item];
+    [[mismatchDescription appendText:@"Not matched: "] appendDescriptionOf:item];
     return NO;
 }
 
@@ -134,8 +134,9 @@
     if (![collection conformsToProtocol:@protocol(NSFastEnumeration)])
         return NO;
     
-    HCMatchingInAnyOrder *matchSequence = [[[HCMatchingInAnyOrder alloc] initWithMatchers:matchers
-                                                                      mismatchDescription:mismatchDescription] autorelease];
+    HCMatchingInAnyOrder *matchSequence =
+        [[[HCMatchingInAnyOrder alloc] initWithMatchers:matchers 
+                                    mismatchDescription:mismatchDescription] autorelease];
     for (id item in collection)
     {
         if (![matchSequence matches:item])

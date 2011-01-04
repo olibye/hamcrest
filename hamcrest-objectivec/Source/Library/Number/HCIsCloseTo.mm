@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCloseTo.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -48,9 +48,9 @@ using namespace std;
 - (void) describeTo:(id<HCDescription>)description
 {
     [[[[description appendText:@"a numeric value within "]
-                    appendValue:[NSNumber numberWithDouble:error]]
+                    appendDescriptionOf:[NSNumber numberWithDouble:error]]
                     appendText:@" of "]
-                    appendValue:[NSNumber numberWithDouble:value]];
+                    appendDescriptionOf:[NSNumber numberWithDouble:value]];
 }
 
 @end

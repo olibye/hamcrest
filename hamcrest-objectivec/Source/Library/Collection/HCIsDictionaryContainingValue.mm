@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingValue.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,6 +10,7 @@
 
     // OCHamcrest
 #import "HCDescription.h"
+#import "HCRequireNonNilObject.h"
 #import "HCWrapInMatcher.h"
 
 
@@ -55,7 +56,7 @@
 - (void) describeTo:(id<HCDescription>)description
 {
     [[description appendText:@"dictionary with value "]
-                    appendDescriptionOf:valueMatcher];
+                  appendDescriptionOf:valueMatcher];
 }
 
 @end
@@ -63,5 +64,6 @@
 
 OBJC_EXPORT id<HCMatcher> HC_hasValue(id matcherOrValue)
 {
+    HCRequireNonNilObject(matcherOrValue);
     return [HCIsDictionaryContainingValue isDictionaryContainingValue:HCWrapInMatcher(matcherOrValue)];
 }

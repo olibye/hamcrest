@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCInvocationMatcher.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -14,12 +14,21 @@
 
 @implementation HCInvocationMatcher
 
-+ (NSInvocation*) createInvocationForSelector:(SEL)selector onClass:(Class)aClass
+@synthesize shortMismatchDescription;
+
+
++ (NSInvocation*) invocationForSelector:(SEL)selector onClass:(Class)aClass
 {
     NSMethodSignature* signature = [aClass instanceMethodSignatureForSelector:selector];
     NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setSelector:selector];
     return invocation;
+}
+
+
++ (NSInvocation*) createInvocationForSelector:(SEL)selector onClass:(Class)aClass
+{
+    return [self invocationForSelector:selector onClass:aClass];
 }
 
 
@@ -50,38 +59,45 @@
 }
 
 
-- (BOOL) matches:(id)item
+- (id) invokeOn:(id)item
 {
-    return [self matches:item describingMismatchTo:nil];
+    id result = nil;
+    [invocation invokeWithTarget:item];
+    [invocation getReturnValue:&result];
+    return result;
 }
 
 
-- (BOOL) matches:(id)item describingMismatchTo:(id<HCDescription>)mismatchDescription
+- (BOOL) matches:(id)item
 {
     if (![item respondsToSelector:[invocation selector]])
-    {
-        [super describeMismatchOf:item to:mismatchDescription];
         return NO;
-    }
-        
-    id invocationResult = nil;
-    [invocation invokeWithTarget:item];
-    [invocation getReturnValue:&invocationResult];
     
-    if (![subMatcher matches:invocationResult])
+    return [subMatcher matches:[self invokeOn:item]];
+}
+
+
+- (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
+{
+    if (![item respondsToSelector:[invocation selector]])
+        [[mismatchDescription appendText:@"was "] appendDescriptionOf:item];
+    else
     {
-        [[mismatchDescription appendText:[self stringFromSelector]] appendText:@" "];
-        [subMatcher describeMismatchOf:invocationResult to:mismatchDescription];
-        return NO;
+        if (!shortMismatchDescription)
+        {
+            [[[[mismatchDescription appendDescriptionOf:item]
+                                    appendText:@" "]
+                                    appendText:[self stringFromSelector]]
+                                    appendText:@" "];
+        }
+        [subMatcher describeMismatchOf:[self invokeOn:item] to:mismatchDescription];
     }
-    
-    return YES;
 }
 
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    [[[[description appendText:@"with "]
+    [[[[description appendText:@"object with "]
                     appendText:[self stringFromSelector]]
                     appendText:@" "]
                     appendDescriptionOf:subMatcher];

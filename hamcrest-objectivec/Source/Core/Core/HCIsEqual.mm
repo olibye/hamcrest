@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqual.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -48,7 +48,12 @@
 
 - (void) describeTo:(id<HCDescription>)description
 {
-    [description appendValue:object];
+    BOOL nestedMatcher = [object conformsToProtocol:@protocol(HCMatcher)];
+    if (nestedMatcher)
+        [description appendText:@"<"];
+    [description appendDescriptionOf:object];
+    if (nestedMatcher)
+        [description appendText:@">"];
 }
 
 @end

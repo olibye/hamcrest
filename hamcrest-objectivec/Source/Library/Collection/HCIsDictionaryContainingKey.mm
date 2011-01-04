@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsDictionaryContainingKey.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,6 +10,7 @@
 
     // OCHamcrest
 #import "HCDescription.h"
+#import "HCRequireNonNilObject.h"
 #import "HCWrapInMatcher.h"
 
 
@@ -55,7 +56,7 @@
 - (void) describeTo:(id<HCDescription>)description
 {
     [[description appendText:@"dictionary with key "]
-                    appendDescriptionOf:keyMatcher];
+                  appendDescriptionOf:keyMatcher];
 }
 
 @end
@@ -63,5 +64,6 @@
 
 OBJC_EXPORT id<HCMatcher> HC_hasKey(id matcherOrValue)
 {
+    HCRequireNonNilObject(matcherOrValue);
     return [HCIsDictionaryContainingKey isDictionaryContainingKey:HCWrapInMatcher(matcherOrValue)];
 }

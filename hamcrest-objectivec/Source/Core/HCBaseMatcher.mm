@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCBaseMatcher.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -56,7 +56,7 @@
 
 - (void) describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
-    [[mismatchDescription appendText:@"was "] appendValue:item];
+    [[mismatchDescription appendText:@"was "] appendDescriptionOf:item];
 }
 
 

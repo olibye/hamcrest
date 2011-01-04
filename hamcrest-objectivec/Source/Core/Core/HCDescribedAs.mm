@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCDescribedAs.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -51,12 +51,12 @@ pair<int, NSString*> separate(NSString* component)
 @implementation HCDescribedAs
 
 + (id) describedAs:(NSString*)description
-                    forMatcher:(id<HCMatcher>)aMatcher
-                    overValues:(NSArray*)templateValues
+        forMatcher:(id<HCMatcher>)aMatcher
+        overValues:(NSArray*)templateValues
 {
-    return [[[self alloc] initWithDescription: description
-                                   forMatcher: aMatcher
-                                   overValues: templateValues] autorelease];
+    return [[[self alloc] initWithDescription:description
+                                   forMatcher:aMatcher
+                                   overValues:templateValues] autorelease];
 }
 
 
@@ -109,7 +109,7 @@ pair<int, NSString*> separate(NSString* component)
                 [[description appendText:@"%"] appendText:oneComponent];
             else
             {
-                [description appendValue:[values objectAtIndex:parseIndex.first]];
+                [description appendDescriptionOf:[values objectAtIndex:parseIndex.first]];
                 [description appendText:parseIndex.second];
             }
         }

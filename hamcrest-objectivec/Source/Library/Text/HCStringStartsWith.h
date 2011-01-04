@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCStringStartsWith.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -14,8 +14,6 @@
     @ingroup text_matchers
  */
 @interface HCStringStartsWith : HCSubstringMatcher
-{
-}
 
 + (id) stringStartsWith:(NSString*)aSubstring;
 

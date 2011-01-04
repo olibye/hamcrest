@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsCollectionContaining.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -11,6 +11,7 @@
     // OCHamcrest
 #import "HCAllOf.h"
 #import "HCDescription.h"
+#import "HCRequireNonNilObject.h"
 #import "HCWrapInMatcher.h"
 
 
@@ -56,7 +57,7 @@
 - (void) describeTo:(id<HCDescription>)description
 {
     [[description appendText:@"a collection containing "]
-                    appendDescriptionOf:elementMatcher];
+                  appendDescriptionOf:elementMatcher];
 }
 
 @end
@@ -64,6 +65,7 @@
 
 OBJC_EXPORT id<HCMatcher> HC_hasItem(id item)
 {
+    HCRequireNonNilObject(item);
     return [HCIsCollectionContaining isCollectionContaining:HCWrapInMatcher(item)];
 }
 

@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsEqualIgnoringWhiteSpace.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -10,7 +10,7 @@
 
     // OCHamcrest
 #import "HCDescription.h"
-#import "HCRequireNonNilString.h"
+#import "HCRequireNonNilObject.h"
 
     // C++
 #import <cctype>
@@ -69,7 +69,7 @@ NSMutableString* stripSpace(NSString* string)
 
 - (id) initWithString:(NSString*)aString
 {
-    HCRequireNonNilString(aString);
+    HCRequireNonNilObject(aString);
     
     self = [super init];
     if (self != nil)
@@ -102,7 +102,7 @@ NSMutableString* stripSpace(NSString* string)
 - (void) describeTo:(id<HCDescription>)description
 {
     [[[description appendText:@"equalToIgnoringWhiteSpace("]
-                    appendValue:originalString]
+                    appendDescriptionOf:originalString]
                     appendText:@")"];
 }
 

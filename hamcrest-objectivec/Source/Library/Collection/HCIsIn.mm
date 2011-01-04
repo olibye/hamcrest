@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCIsIn.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -24,9 +24,9 @@
 {
     if (![aCollection respondsToSelector:@selector(containsObject:)])
     {
-        @throw [NSException exceptionWithName: @"NotAContainer"
-                                       reason: @"Object must respond to -containsObject:"
-                                     userInfo: nil];
+        @throw [NSException exceptionWithName:@"NotAContainer"
+                                       reason:@"Object must respond to -containsObject:"
+                                     userInfo:nil];
     }
     
     self = [super init];

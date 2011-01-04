@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCOrderingComparison.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -82,7 +82,7 @@ NSString* comparison(NSComparisonResult compare)
     [[description appendText:@"a value "] appendText:comparison(minCompare)];
     if (minCompare != maxCompare)
         [[description appendText:@" or "] appendText:comparison(maxCompare)];
-    [[description appendText:@" "] appendValue:expected];
+    [[description appendText:@" "] appendDescriptionOf:expected];
 }
 
 @end
@@ -90,28 +90,28 @@ NSString* comparison(NSComparisonResult compare)
 
 OBJC_EXPORT id<HCMatcher> HC_greaterThan(id aValue)
 {
-    return [HCOrderingComparison compare: aValue
-                              minCompare: NSOrderedAscending
-                              maxCompare: NSOrderedAscending];
+    return [HCOrderingComparison compare:aValue
+                              minCompare:NSOrderedAscending
+                              maxCompare:NSOrderedAscending];
 }
 
 OBJC_EXPORT id<HCMatcher> HC_greaterThanOrEqualTo(id aValue)
 {
-    return [HCOrderingComparison compare: aValue
-                              minCompare: NSOrderedAscending
-                              maxCompare: NSOrderedSame];
+    return [HCOrderingComparison compare:aValue
+                              minCompare:NSOrderedAscending
+                              maxCompare:NSOrderedSame];
 }
 
 OBJC_EXPORT id<HCMatcher> HC_lessThan(id aValue)
 {
-    return [HCOrderingComparison compare: aValue
-                              minCompare: NSOrderedDescending
-                              maxCompare: NSOrderedDescending];
+    return [HCOrderingComparison compare:aValue
+                              minCompare:NSOrderedDescending
+                              maxCompare:NSOrderedDescending];
 }
 
 OBJC_EXPORT id<HCMatcher> HC_lessThanOrEqualTo(id aValue)
 {
-    return [HCOrderingComparison compare: aValue
-                              minCompare: NSOrderedSame
-                              maxCompare: NSOrderedDescending];
+    return [HCOrderingComparison compare:aValue
+                              minCompare:NSOrderedSame
+                              maxCompare:NSOrderedDescending];
 }

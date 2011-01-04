@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCStringEndsWith.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -14,8 +14,6 @@
     @ingroup text_matchers
  */
 @interface HCStringEndsWith : HCSubstringMatcher
-{
-}
 
 + (id) stringEndsWith:(NSString*)aSubstring;
 

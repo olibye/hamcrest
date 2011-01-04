@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCMatcherAssert.mm
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -80,18 +80,19 @@ NSException* createAssertThatFailure(const char* fileName, int lineNumber, NSStr
 - (void)failWithException:(NSException *)exception;
 @end
 
-
 OBJC_EXPORT void HC_assertThatWithLocation(id testCase, id actual, id<HCMatcher> matcher,
                                            const char* fileName, int lineNumber)
 {
     if (![matcher matches:actual])
     {
         HCStringDescription* description = [HCStringDescription stringDescription];
-        [[[[description appendText:@"Expected "]
-                        appendDescriptionOf:matcher]
-                        appendText:@", got "]
-                        appendValue:actual];
-        NSException* assertThatFailure = createAssertThatFailure(fileName, lineNumber, [description description]);
+        [[[description appendText:@"Expected "]
+                       appendDescriptionOf:matcher]
+                       appendText:@", but "];
+        [matcher describeMismatchOf:actual to:description];
+        
+        NSException* assertThatFailure = createAssertThatFailure(fileName, lineNumber,
+                                                                 [description description]);
         [testCase failWithException:assertThatFailure];
     }
 }

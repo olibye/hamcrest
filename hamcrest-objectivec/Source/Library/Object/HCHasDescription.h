@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCHasDescription.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -14,8 +14,6 @@
     @ingroup object_matchers
  */
 @interface HCHasDescription : HCInvocationMatcher
-{
-}
 
 + (id) hasDescription:(id<HCMatcher>)descriptionMatcher;
 - (id) initWithDescription:(id<HCMatcher>)descriptionMatcher;

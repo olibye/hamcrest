@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - HCDescribedAs.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -25,8 +25,8 @@
         overValues:(NSArray*)templateValues;
 
 - (id) initWithDescription:(NSString*)description
-                    forMatcher:(id<HCMatcher>)aMatcher
-                    overValues:(NSArray*)templateValues;
+                forMatcher:(id<HCMatcher>)aMatcher
+                overValues:(NSArray*)templateValues;
 
 @end
 

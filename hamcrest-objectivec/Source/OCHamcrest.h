@@ -1,6 +1,6 @@
 //
 //  OCHamcrest - OCHamcrest.h
-//  Copyright 2010 www.hamcrest.org. See LICENSE.txt
+//  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
@@ -36,6 +36,7 @@
  
 	@ingroup library
  */
+#import <OCHamcrest/HCHasCount.h>
 #import <OCHamcrest/HCIsCollectionContaining.h>
 #import <OCHamcrest/HCIsCollectionContainingInAnyOrder.h>
 #import <OCHamcrest/HCIsCollectionContainingInOrder.h>
@@ -43,6 +44,7 @@
 #import <OCHamcrest/HCIsDictionaryContaining.h>
 #import <OCHamcrest/HCIsDictionaryContainingKey.h>
 #import <OCHamcrest/HCIsDictionaryContainingValue.h>
+#import <OCHamcrest/HCIsEmptyCollection.h>
 #import <OCHamcrest/HCIsIn.h>
 
 /**

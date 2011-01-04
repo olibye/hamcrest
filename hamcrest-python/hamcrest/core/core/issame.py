@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from hamcrest.core.base_matcher import BaseMatcher
 
@@ -16,13 +15,13 @@ class IsSame(BaseMatcher):
         return item is self.object
 
     def describe_to(self, description):
-        description.append_text('same_instance(')   \
-                    .append_value(self.object)      \
-                    .append_text(')')
+        description.append_text('same_instance(')           \
+                   .append_description_of(self.object)      \
+                   .append_text(')')
 
     def describe_mismatch(self, item, mismatch_description):
-        mismatch_description.append_text('was ')        \
-                            .append_value(item)         \
+        mismatch_description.append_text('was ')            \
+                            .append_description_of(item)    \
                             .append_text(' with id ')
         mismatch_description.append(str(id(item)))
 

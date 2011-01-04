@@ -1,10 +1,12 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from description import Description
 from selfdescribingvalue import SelfDescribingValue
+from helpers.hasmethod import hasmethod
+
+import warnings
 
 
 class BaseDescription(Description):
@@ -18,10 +20,19 @@ class BaseDescription(Description):
         return self
 
     def append_description_of(self, value):
-        value.describe_to(self)
+        if hasmethod(value, 'describe_to'):
+            value.describe_to(self)
+        elif isinstance(value, str):
+            self.append_string_in_python_syntax(value)
+        else:
+            self.append('<')
+            self.append(str(value))
+            self.append('>')
         return self
 
     def append_value(self, value):
+        warnings.warn('Call append_description_of instead of append_value',
+                      DeprecationWarning)
         if isinstance(value, str):
             self.append_string_in_python_syntax(value)
         else:
@@ -31,6 +42,8 @@ class BaseDescription(Description):
         return self
 
     def append_value_list(self, start, separator, end, list):
+        warnings.warn('Call append_list instead of append_value_list',
+                      DeprecationWarning)
         return self.append_list(start, separator, end,
                                 map(SelfDescribingValue, list))
 

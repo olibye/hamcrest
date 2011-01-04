@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from hamcrest.core.base_matcher import BaseMatcher
 
@@ -32,9 +31,9 @@ class IsCloseTo(BaseMatcher):
 
     def describe_to(self, description):
         description.append_text('a numeric value within ')  \
-                    .append_value(self.error)               \
-                    .append_text(' of ')                    \
-                    .append_value(self.value)
+                   .append_description_of(self.error)       \
+                   .append_text(' of ')                     \
+                   .append_description_of(self.value)
 
 
 def close_to(value, error):

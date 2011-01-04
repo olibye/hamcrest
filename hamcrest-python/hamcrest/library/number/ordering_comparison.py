@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from hamcrest.core.base_matcher import BaseMatcher
 
@@ -27,10 +26,13 @@ class OrderingComparison(BaseMatcher):
         return self.min_compare <= compare and compare <= self.max_compare
 
     def describe_to(self, description):
-        description.append_text('a value ').append_text(_comparison(self.min_compare))
+        description.append_text('a value ')                         \
+                   .append_text(_comparison(self.min_compare))
         if self.min_compare != self.max_compare:
-            description.append_text(' or ').append_text(_comparison(self.max_compare))
-        description.append_text(' ').append_value(self.value)
+            description.append_text(' or ')                         \
+                       .append_text(_comparison(self.max_compare))
+        description.append_text(' ')                                \
+                   .append_description_of(self.value)
 
 
 

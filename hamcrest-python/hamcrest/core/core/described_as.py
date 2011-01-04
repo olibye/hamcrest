@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 import re
 
@@ -28,7 +27,7 @@ class DescribedAs(BaseMatcher):
         for match in re.finditer(ARG_PATTERN, self.template):
             description.append_text(self.template[text_start:match.start()])
             arg_index = int(match.group()[1:])
-            description.append_value(self.values[arg_index])
+            description.append_description_of(self.values[arg_index])
             text_start = match.end()
 
         if text_start < len(self.template):

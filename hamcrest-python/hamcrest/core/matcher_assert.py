@@ -1,9 +1,8 @@
 """Unit test integration"""
 
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from matcher import Matcher
 from string_description import StringDescription
@@ -46,9 +45,9 @@ def _assert_match(actual, matcher, reason):
         description.append_text(reason)             \
                    .append_text('\nExpected: ')     \
                    .append_description_of(matcher)  \
-                   .append_text('\n     got: ')     \
-                   .append_value(actual)            \
-                   .append_text('\n')
+                   .append_text('\n     but: ')
+        matcher.describe_mismatch(actual, description)
+        description.append_text('\n')
         raise AssertionError(str(description))
 
 

@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from hamcrest.core.base_matcher import BaseMatcher
 from hamcrest.core.helpers.hasmethod import hasmethod
@@ -38,8 +37,8 @@ class MatchingInOrder(object):
     def isnotsurplus(self, item):
         if len(self.matchers) <= self.next_match_index:
             if self.mismatch_description:
-                self.mismatch_description.append_text('Not matched: ') \
-                                         .append_value(item)
+                self.mismatch_description.append_text('Not matched: ')  \
+                                         .append_description_of(item)
             return False
         return True
 

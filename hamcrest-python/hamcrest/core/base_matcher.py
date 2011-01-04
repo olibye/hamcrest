@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from matcher import Matcher
 from string_description import tostring
@@ -31,4 +30,4 @@ class BaseMatcher(Matcher):
         return match_result
 
     def describe_mismatch(self, item, mismatch_description):
-        mismatch_description.append_text('was ').append_value(item)
+        mismatch_description.append_text('was ').append_description_of(item)

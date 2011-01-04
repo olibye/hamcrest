@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 if __name__ == "__main__":
     import sys
@@ -19,7 +18,7 @@ class MatcherAssertTest(unittest.TestCase):
         expected = 'expected'
         actual = 'actual'
 
-        expectedMessage = "identifier\nExpected: 'expected'\n     got: 'actual'\n"
+        expectedMessage = "identifier\nExpected: 'expected'\n     but: was 'actual'\n"
 
         try:
             assert_that(actual, equal_to(expected), 'identifier')
@@ -33,7 +32,7 @@ class MatcherAssertTest(unittest.TestCase):
         expected = 'expected'
         actual = 'actual'
 
-        expectedMessage = "\nExpected: 'expected'\n     got: 'actual'\n"
+        expectedMessage = "\nExpected: 'expected'\n     but: was 'actual'\n"
 
         try:
             assert_that(actual, equal_to(expected))

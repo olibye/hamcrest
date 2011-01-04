@@ -1,7 +1,6 @@
 __author__ = "Jon Reid"
-__copyright__ = "Copyright 2010 www.hamcrest.org"
+__copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-__version__ = "1.0"
 
 from hamcrest.core.base_matcher import BaseMatcher
 
@@ -22,8 +21,8 @@ class IsEqualIgnoringWhiteSpace(BaseMatcher):
 
     def describe_to(self, description):
         description.append_text('equal_to_ignoring_whitespace(')    \
-                    .append_value(self.original_string)             \
-                    .append_text(')')
+                   .append_description_of(self.original_string)    \
+                   .append_text(')')
 
 
 def stripspace(string):

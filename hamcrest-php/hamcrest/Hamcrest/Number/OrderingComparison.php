@@ -132,7 +132,7 @@ class Hamcrest_Number_OrderingComparison extends Hamcrest_TypeSafeMatcher
     }
     elseif ($compare == 0)
     {
-      return 'equal to ';
+      return 'equal to';
     }
     else
     {

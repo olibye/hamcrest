@@ -1,12 +1,12 @@
 //
-//  OCHamcrest - HCMatcherAssert.mm
+//  OCHamcrest - HCAssertThat.mm
 //  Copyright 2011 hamcrest.org. See LICENSE.txt
 //
 //  Created by: Jon Reid
 //
 
     // Self
-#import "HCMatcherAssert.h"
+#import "HCAssertThat.h"
 
     // OCHamcrest
 #import "HCStringDescription.h"
@@ -33,16 +33,16 @@ namespace {
 @endcode
     except we use an NSInvocation so that OCUnit (SenTestingKit) does not have to be linked.
  */
-NSException* createOCUnitException(const char* fileName, int lineNumber, NSString* description)
+NSException *createOCUnitException(const char* fileName, int lineNumber, NSString *description)
 {
-    NSException* result = nil;
+    NSException *result = nil;
 
     // See http://www.omnigroup.com/mailman/archive/macosx-dev/2001-February/021441.html
     // for an explanation of how to use create an NSInvocation of a class method.
     SEL selector = @selector(failureInFile:atLine:withDescription:);
-    NSMethodSignature* signature =
+    NSMethodSignature *signature =
         [[NSException class]->isa instanceMethodSignatureForSelector:selector];
-    NSInvocation* invocation = [NSInvocation invocationWithMethodSignature:signature];
+    NSInvocation *invocation = [NSInvocation invocationWithMethodSignature:signature];
     [invocation setTarget:[NSException class]];
     [invocation setSelector:selector];
     
@@ -57,19 +57,20 @@ NSException* createOCUnitException(const char* fileName, int lineNumber, NSStrin
 }
 
 
-NSException* createAssertThatFailure(const char* fileName, int lineNumber, NSString* description)
+NSException *createAssertThatFailure(const char *fileName, int lineNumber, NSString *description)
 {
     // If the Hamcrest client has linked to OCUnit, generate an OCUnit failure.
     if (NSClassFromString(@"SenTestCase") != Nil)
         return createOCUnitException(fileName, lineNumber, description);
 
-    NSString* failureReason = [NSString stringWithFormat:@"%s:%d: matcher error: %@",
+    NSString *failureReason = [NSString stringWithFormat:@"%s:%d: matcher error: %@",
                                                         fileName, lineNumber, description];
     return [NSException exceptionWithName:@"Hamcrest Error" reason:failureReason userInfo:nil];
 }
 
 }   // namespace
 
+//--------------------------------------------------------------------------------------------------
 
 // As of 2010-09-09, the iPhone simulator has a bug where you can't catch
 // exceptions when they are thrown across NSInvocation boundaries. (See
@@ -81,17 +82,17 @@ NSException* createAssertThatFailure(const char* fileName, int lineNumber, NSStr
 @end
 
 OBJC_EXPORT void HC_assertThatWithLocation(id testCase, id actual, id<HCMatcher> matcher,
-                                           const char* fileName, int lineNumber)
+                                           const char *fileName, int lineNumber)
 {
     if (![matcher matches:actual])
     {
-        HCStringDescription* description = [HCStringDescription stringDescription];
+        HCStringDescription *description = [HCStringDescription stringDescription];
         [[[description appendText:@"Expected "]
                        appendDescriptionOf:matcher]
                        appendText:@", but "];
         [matcher describeMismatchOf:actual to:description];
         
-        NSException* assertThatFailure = createAssertThatFailure(fileName, lineNumber,
+        NSException *assertThatFailure = createAssertThatFailure(fileName, lineNumber,
                                                                  [description description]);
         [testCase failWithException:assertThatFailure];
     }

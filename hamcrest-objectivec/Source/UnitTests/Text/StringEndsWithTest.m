@@ -5,67 +5,89 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCStringEndsWith.h>
 
+    // Test support
+#import "AbstractMatcherTest.h"
 
-static NSString* EXCERPT = @"EXCERPT";
+
+static NSString *EXCERPT = @"EXCERPT";
 
 
 @interface StringEndsWithTest : AbstractMatcherTest
+{
+    id<HCMatcher> matcher;
+}
 @end
 
 @implementation StringEndsWithTest
 
-- (id<HCMatcher>) createMatcher
+- (void)setUp
 {
-    return endsWith(@"irrelevant");
+    matcher = [endsWith(EXCERPT) retain];
 }
 
 
-- (void) testEvaluatesToTrueIfArgumentContainsSpecifiedSubstring
+- (void)tearDown
 {
-    id<HCMatcher> stringEndsWith = endsWith(EXCERPT);
-    
-    STAssertFalse([stringEndsWith matches:[EXCERPT stringByAppendingString:@"END"]],
-                  @"should be false if excerpt at beginning");
-    STAssertTrue([stringEndsWith matches:[@"START" stringByAppendingString:EXCERPT]],
-                 @"should be true if excerpt at end");
-    STAssertFalse([stringEndsWith matches:
-                    [[@"START" stringByAppendingString:EXCERPT] stringByAppendingString:@"END"]],
-                  @"should be false if excerpt in middle");
-    STAssertTrue([stringEndsWith matches:[EXCERPT stringByAppendingString:EXCERPT]],
-                 @"should be true if excerpt is at end and repeated");
-    
-    STAssertFalse([stringEndsWith matches:@"Something else"],
-                  @"should not be true if excerpt is not in string");
-    STAssertFalse([stringEndsWith matches:[EXCERPT substringFromIndex:1]],
-                  @"should not be true if part of excerpt is at start of string");
+    [matcher release];
 }
 
 
-- (void) testEvaluatesToTrueIfArgumentIsEqualToSubstring
+- (id<HCMatcher>)createMatcher
 {
-    id<HCMatcher> stringEndsWith = endsWith(EXCERPT);
-    
-    STAssertTrue([stringEndsWith matches:EXCERPT],
-                 @"should be true if excerpt is entire string");
+    return matcher;
 }
 
 
-- (void) testMatcherCreationRequiresNonNilArgument
+- (void)testEvaluatesToTrueIfArgumentContainsSpecifiedSubstring
+{
+    assertDoesNotMatch(@"excerpt at beginning", matcher, [EXCERPT stringByAppendingString:@"END"]);
+    assertMatches(@"excerpt at end", matcher, [@"START" stringByAppendingString:EXCERPT]);
+    assertDoesNotMatch(@"excerpt in middle", matcher,
+                  [[@"START" stringByAppendingString:EXCERPT] stringByAppendingString:@"END"]);
+    assertMatches(@"excerpt repeated", matcher, [EXCERPT stringByAppendingString:EXCERPT]);
+    
+    assertDoesNotMatch(@"excerpt not in string", matcher, @"whatever");
+    assertDoesNotMatch(@"only part of excerpt", matcher, [EXCERPT substringFromIndex:1]);
+}
+
+
+- (void)testEvaluatesToTrueIfArgumentIsEqualToSubstring
+{
+    assertMatches(@"excerpt is entire string", matcher, EXCERPT);
+}
+
+
+- (void)testMatcherCreationRequiresNonNilArgument
 {    
-    STAssertThrows(endsWith(nil), @"should require non-nil argument");
+    STAssertThrows(endsWith(nil), @"Should require non-nil argument");
 }
 
 
-- (void) testHasAReadableDescription
+- (void)testHasAReadableDescription
 {
-    assertDescription(@"a string ending with \"a\"", endsWith(@"a"));
+    assertDescription(@"a string ending with \"EXCERPT\"", matcher);
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(matcher, EXCERPT);
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"bad\"", matcher, @"bad");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"bad\"", matcher, @"bad");
 }
 
 @end

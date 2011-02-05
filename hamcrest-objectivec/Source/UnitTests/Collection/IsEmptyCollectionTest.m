@@ -5,17 +5,14 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsEmptyCollection.h>
-#import <OCHamcrest/HCMatcherAssert.h>
 
     // Test support
-#import "FakeCountingObject.h"
-#import "FakeNonCountingObject.h"
+#import "AbstractMatcherTest.h"
+#import "FakeWithCount.h"
+#import "FakeWithoutCount.h"
 
 
 @interface IsEmptyCollectionTest : AbstractMatcherTest
@@ -24,39 +21,45 @@
 
 @implementation IsEmptyCollectionTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return empty();
 }
 
 
-- (void) testMatchesEmptyCollection
+- (void)testMatchesEmptyCollection
 {
-    assertMatches(@"empty", empty(), [FakeCountingObject fakeWithCount:0]);
+    assertMatches(@"empty", empty(), [FakeWithCount fakeWithCount:0]);
 }
 
 
-- (void) testDoesNotMatchesNonEmptyCollection
+- (void)testDoesNotMatchesNonEmptyCollection
 {
-    assertDoesNotMatch(@"non-empty", empty(), [FakeCountingObject fakeWithCount:1]);
+    assertDoesNotMatch(@"non-empty", empty(), [FakeWithCount fakeWithCount:1]);
 }
 
 
-- (void) testDoesNotMatchItemWithoutCount
+- (void)testDoesNotMatchItemWithoutCount
 {
-    assertDoesNotMatch(@"no count", empty(), [FakeNonCountingObject fake]);
+    assertDoesNotMatch(@"no count", empty(), [FakeWithoutCount fake]);
 }
 
 
-- (void) testHasReadableDescription
+- (void)testHasReadableDescription
 {
     assertDescription(@"empty collection", empty());
 }
 
 
-- (void) testDescribesMismatch
+- (void)testMismatchDescriptionShowsActualArgument
 {
-    assertDescribeMismatch(@"was <counting>", empty(), [FakeCountingObject fakeWithCount:1]);
+    assertMismatchDescription(@"was \"bad\"", empty(), @"bad");
+}
+
+
+- (void)testDescribesMismatch
+{
+    assertDescribeMismatch(@"was <FakeWithCount>", empty(), [FakeWithCount fakeWithCount:1]);
 }
 
 @end

@@ -21,11 +21,12 @@
     id object;
 }
 
-+ (id) isEqualTo:(id)anObject;
-- (id) initEqualTo:(id)anObject;
++ (id)isEqualTo:(id)anObject;
+- (id)initEqualTo:(id)anObject;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Is the object equal to another object, as tested by the @c -isEqual: method?

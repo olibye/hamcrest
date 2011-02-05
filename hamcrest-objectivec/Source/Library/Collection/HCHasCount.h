@@ -18,11 +18,12 @@
     id<HCMatcher> countMatcher;
 }
 
-+ (id) hasCount:(id<HCMatcher>)matcher;
-- (id) initWithCount:(id<HCMatcher>)matcher;
++ (id)hasCount:(id<HCMatcher>)matcher;
+- (id)initWithCount:(id<HCMatcher>)matcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches collections for which @c -count satisfies a given matcher.

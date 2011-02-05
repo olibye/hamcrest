@@ -18,11 +18,12 @@
     id<HCMatcher> elementMatcher;
 }
 
-+ (id) isCollectionContaining:(id<HCMatcher>)anElementMatcher;
-- (id) initWithMatcher:(id<HCMatcher>)anElementMatcher;
++ (id)isCollectionContaining:(id<HCMatcher>)anElementMatcher;
+- (id)initWithMatcher:(id<HCMatcher>)anElementMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches a collection if any element satifies a given matcher.

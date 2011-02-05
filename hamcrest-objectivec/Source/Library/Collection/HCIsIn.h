@@ -18,11 +18,12 @@
     id collection;
 }
 
-+ (id) isInCollection:(id)aCollection;
-- (id) initWithCollection:(id)aCollection;
++ (id)isInCollection:(id)aCollection;
+- (id)initWithCollection:(id)aCollection;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Is the object present in the given collection?

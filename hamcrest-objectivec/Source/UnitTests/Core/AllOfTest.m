@@ -5,15 +5,15 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCAllOf.h>
+
+    // Other OCHamcrest
 #import <OCHamcrest/HCIsEqual.h>
-#import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
+
+    // Test support
+#import "AbstractMatcherTest.h"
 
 
 @interface AllOfTest : AbstractMatcherTest
@@ -21,54 +21,66 @@
 
 @implementation AllOfTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return allOf(equalTo(@"irrelevant"), equalTo(@"irrelevant"), nil);
 }
 
 
-- (void) testEvaluatesToTheTheLogicalConjunctionOfTwoOtherMatchers
+- (void)testMatchesIfArgumentSatisfiesBothOfTwoOtherMatchers
 {
-    assertThat(@"good", allOf(equalTo(@"good"), equalTo(@"good"), nil));
-
-    assertThat(@"good", isNot(allOf(equalTo(@"bad"), equalTo(@"good"), nil)));
-    assertThat(@"good", isNot(allOf(equalTo(@"good"), equalTo(@"bad"), nil)));
-    assertThat(@"good", isNot(allOf(equalTo(@"bad"), equalTo(@"bad"), nil)));
+    assertMatches(@"both matchers", allOf(equalTo(@"good"), equalTo(@"good"), nil), @"good");
 }
 
 
-- (void) testEvaluatesToTheTheLogicalConjunctionOfManyOtherMatchers
+- (void)testNoMatchIfArgumentFailsToSatisfyEitherOfTwoOtherMatchers
 {
-    assertThat(@"good", allOf(equalTo(@"good"),
-                              equalTo(@"good"),
-                              equalTo(@"good"),
-                              equalTo(@"good"),
-                              equalTo(@"good"),
-                              nil));
-    assertThat(@"good", isNot(allOf(equalTo(@"good"),
-                                    equalTo(@"good"),
-                                    equalTo(@"bad"),
-                                    equalTo(@"good"),
-                                    equalTo(@"good"),
-                                    nil)));
+    assertDoesNotMatch(@"first matcher", allOf(equalTo(@"bad"), equalTo(@"good"), nil), @"good");
+    assertDoesNotMatch(@"second matcher", allOf(equalTo(@"good"), equalTo(@"bad"), nil), @"good");
+    assertDoesNotMatch(@"either matcher", allOf(equalTo(@"bad"), equalTo(@"bad"), nil), @"good");
+}
+
+- (void)testMatchesIfArgumentSatisfiesAllOfManyOtherMatchers
+{
+    assertMatches(@"all matchers",
+                  allOf(equalTo(@"good"),
+                        equalTo(@"good"),
+                        equalTo(@"good"),
+                        equalTo(@"good"),
+                        equalTo(@"good"),
+                        nil),
+                  @"good");
 }
 
 
-- (void) testHasAReadableDescription
+- (void)testNoMatchIfArgumentFailsToSatisfyAllOfManyOtherMatchers
+{
+    assertDoesNotMatch(@"matcher in the middle",
+                  allOf(equalTo(@"good"),
+                        equalTo(@"good"),
+                        equalTo(@"bad"),
+                        equalTo(@"good"),
+                        equalTo(@"good"),
+                        nil),
+                  @"good");
+}
+
+
+- (void)testHasAReadableDescription
 {
     assertDescription(@"(\"good\" and \"bad\" and \"ugly\")",
                       allOf(equalTo(@"good"), equalTo(@"bad"), equalTo(@"ugly"), nil));
 }
 
 
-- (void) testSuccessfulMatchDoesNotGenerateMismatchDescription
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
 {
     assertNoMismatchDescription(allOf(equalTo(@"good"), equalTo(@"good"), nil),
                                 @"good");
 }
 
 
-- (void) testMismatchDescriptionDescribesFirstFailingMatch
+- (void)testMismatchDescriptionDescribesFirstFailingMatch
 {
     assertMismatchDescription(@"\"good\" was \"bad\"",
                               allOf(equalTo(@"bad"), equalTo(@"good"), nil),
@@ -76,7 +88,7 @@
 }
 
 
-- (void) testDescribeMismatch
+- (void)testDescribeMismatch
 {
     assertDescribeMismatch(@"\"good\" was \"bad\"",
                            allOf(equalTo(@"bad"), equalTo(@"good"), nil),
@@ -84,7 +96,7 @@
 }
 
 
-- (void) testMatcherCreationRequiresNonNilArgument
+- (void)testMatcherCreationRequiresNonNilArgument
 {    
     STAssertThrows(allOf(nil), @"Should require non-nil list");
 }

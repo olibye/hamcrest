@@ -21,11 +21,12 @@
     id<HCMatcher> matcher;
 }
 
-+ (id) isCollectionOnlyContaining:(id<HCMatcher>)aMatcher;
-- (id) initWithMatcher:(id<HCMatcher>)aMatcher;
++ (id)isCollectionOnlyContaining:(id<HCMatcher>)aMatcher;
+- (id)initWithMatcher:(id<HCMatcher>)aMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches collections that only contain elements satisfying any of a list of matchers.

@@ -5,14 +5,12 @@
 //  Created by: Jon Reid
 //
 
-    // Self
+    // Inherited
 #import "AbstractMatcherTest.h"
 
     // OCHamcrest
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsInstanceOf.h>
-#import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
 
 
 @interface IsInstanceOfTest : AbstractMatcherTest
@@ -20,25 +18,51 @@
 
 @implementation IsInstanceOfTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return instanceOf([NSNumber class]);
 }
 
 
-- (void) testEvaluatesToTrueIfArgumentIsInstanceOfASpecificClass
+- (void)testEvaluatesToTrueIfArgumentIsInstanceOfASpecificClass
 {
-    NSNumber* number = [NSNumber numberWithInt:1];
-    assertThat(number, instanceOf([NSNumber class]));
-    assertThat(number, instanceOf([NSValue class]));
-    assertThat(nil, isNot(instanceOf([NSNumber class])));
-    assertThat(@"hello", isNot(instanceOf([NSNumber class])));
+    NSNumber *number = [NSNumber numberWithInt:1];
+    
+    assertMatches(@"same class", instanceOf([NSNumber class]), number);
+    assertMatches(@"subclass", instanceOf([NSValue class]), number);
+
+    assertDoesNotMatch(@"different class", instanceOf([NSNumber class]), @"hi");
+    assertDoesNotMatch(@"nil", instanceOf([NSNumber class]), nil);
 }
 
 
-- (void) testHasAReadableDescription
+- (void)testMatcherCreationRequiresNonNilArgument
+{
+    STAssertThrows(instanceOf(nil), @"Should require non-nil argument");
+}
+
+
+- (void)testHasAReadableDescription
 {
     assertDescription(@"an instance of NSNumber", instanceOf([NSNumber class]));
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(instanceOf([NSString class]), @"hi");
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"bad\"", instanceOf([NSNumber class]), @"bad");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"bad\"", instanceOf([NSNumber class]), @"bad");
 }
 
 @end

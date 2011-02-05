@@ -15,14 +15,15 @@
  */
 @interface HCIsCollectionContainingInOrder : HCBaseMatcher
 {
-    NSArray* matchers;
+    NSArray *matchers;
 }
 
-+ (id) isCollectionContainingInOrder:(NSArray*)itemMatchers;
-- (id) initWithMatchers:(NSArray*)itemMatchers;
++ (id)isCollectionContainingInOrder:(NSArray *)itemMatchers;
+- (id)initWithMatchers:(NSArray *)itemMatchers;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches a collection if its elements, in order, satisfy a list of matchers.

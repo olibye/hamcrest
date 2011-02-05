@@ -18,11 +18,12 @@
     id<HCMatcher> matcher;
 }
 
-+ (id) isNot:(id<HCMatcher>)aMatcher;
-- (id) initNot:(id<HCMatcher>)aMatcher;
++ (id)isNot:(id<HCMatcher>)aMatcher;
+- (id)initNot:(id<HCMatcher>)aMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).

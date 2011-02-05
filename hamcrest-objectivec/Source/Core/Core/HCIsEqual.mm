@@ -14,13 +14,13 @@
 
 @implementation HCIsEqual
 
-+ (HCIsEqual*) isEqualTo:(id)anObject;
++ (id)isEqualTo:(id)anObject;
 {
     return [[[self alloc] initEqualTo:anObject] autorelease];
 }
 
 
-- (id) initEqualTo:(id)anObject
+- (id)initEqualTo:(id)anObject
 {
     self = [super init];
     if (self != nil)
@@ -29,15 +29,14 @@
 }
 
 
-- (void) dealloc
+- (void)dealloc
 {
     [object release];
-    
     [super dealloc];
 }
 
 
-- (BOOL) matches:(id)item
+- (BOOL)matches:(id)item
 {
     if (item == nil)
         return object == nil;
@@ -46,18 +45,21 @@
 }
 
 
-- (void) describeTo:(id<HCDescription>)description
+- (void)describeTo:(id<HCDescription>)description
 {
-    BOOL nestedMatcher = [object conformsToProtocol:@protocol(HCMatcher)];
-    if (nestedMatcher)
-        [description appendText:@"<"];
-    [description appendDescriptionOf:object];
-    if (nestedMatcher)
-        [description appendText:@">"];
+    if ([object conformsToProtocol:@protocol(HCMatcher)])
+    {
+        [[[description appendText:@"<"]
+                       appendDescriptionOf:object]
+                       appendText:@">"];
+    }
+    else
+        [description appendDescriptionOf:object];
 }
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 OBJC_EXPORT id<HCMatcher> HC_equalTo(id object)
 {

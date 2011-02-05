@@ -15,21 +15,22 @@
  */
 @interface HCDescribedAs : HCBaseMatcher
 {
-    NSString* descriptionTemplate;
+    NSString *descriptionTemplate;
     id<HCMatcher> matcher;
-    NSArray* values;
+    NSArray *values;
 }
 
-+ (id) describedAs:(NSString*)description
-        forMatcher:(id<HCMatcher>)aMatcher
-        overValues:(NSArray*)templateValues;
++ (id)describedAs:(NSString *)description
+       forMatcher:(id<HCMatcher>)aMatcher
+       overValues:(NSArray *)templateValues;
 
-- (id) initWithDescription:(NSString*)description
-                forMatcher:(id<HCMatcher>)aMatcher
-                overValues:(NSArray*)templateValues;
+- (id)initWithDescription:(NSString *)description
+               forMatcher:(id<HCMatcher>)aMatcher
+               overValues:(NSArray *)templateValues;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Wraps an existing matcher and overrides the description when it fails.
@@ -42,7 +43,7 @@
     @see HCDescribedAs
     @ingroup core_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_describedAs(NSString* description, id<HCMatcher> matcher, ...);
+OBJC_EXPORT id<HCMatcher> HC_describedAs(NSString *description, id<HCMatcher> matcher, ...);
 
 /**
     Synonym for @ref HC_describedAs, available if @c HC_SHORTHAND is defined.

@@ -16,13 +16,13 @@
 
 @implementation HCIsDictionaryContainingValue
 
-+ (id) isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher
++ (id)isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher
 {
     return [[[self alloc] initWithValueMatcher:theValueMatcher] autorelease];
 }
 
 
-- (id) initWithValueMatcher:(id<HCMatcher>)theValueMatcher
+- (id)initWithValueMatcher:(id<HCMatcher>)theValueMatcher
 {
     self = [super init];
     if (self != nil)
@@ -31,15 +31,14 @@
 }
 
 
-- (void) dealloc
+- (void)dealloc
 {
     [valueMatcher release];
-    
     [super dealloc];
 }
 
 
-- (BOOL) matches:(id)dict
+- (BOOL)matches:(id)dict
 {
     if ([dict respondsToSelector:@selector(allValues)])
     {
@@ -53,14 +52,15 @@
 }
 
 
-- (void) describeTo:(id<HCDescription>)description
+- (void)describeTo:(id<HCDescription>)description
 {
-    [[description appendText:@"dictionary with value "]
+    [[description appendText:@"dictionary containing value "]
                   appendDescriptionOf:valueMatcher];
 }
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 OBJC_EXPORT id<HCMatcher> HC_hasValue(id matcherOrValue)
 {

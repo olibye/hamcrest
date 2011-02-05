@@ -10,9 +10,9 @@
 
     // OCHamcrest
 #define HC_SHORTHAND
+#import <OCHamcrest/HCAssertThat.h>
 #import <OCHamcrest/HCIsSame.h>
 #import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
 #import <OCHamcrest/HCStringDescription.h>
 
 
@@ -21,13 +21,13 @@
 
 @implementation IsSameTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return sameInstance(@"irrelevant");
 }
 
 
-- (void) testEvaluatesToTrueIfArgumentIsReferenceToASpecifiedObject
+- (void)testEvaluatesToTrueIfArgumentIsReferenceToASpecifiedObject
 {
     id o1 = [[[NSObject alloc] init] autorelease];
     id o2 = [[[NSObject alloc] init] autorelease];
@@ -37,22 +37,55 @@
 }
 
 
-- (void) testReturnsReadableDescriptionFromToString
+- (void)testDoesNotMatchEqualObjects
 {
-    assertDescription(@"sameInstance(\"ARG\")", sameInstance(@"ARG"));
+    NSString *string1 = @"foobar";
+    NSString *string2 = [@"foo" stringByAppendingString:@"bar"];
+
+    assertDoesNotMatch(@"not the same object", sameInstance(string1), string2);
 }
 
 
-- (void) testDescribeMismatch
+- (void)testDescriptionIncludesMemoryAddress
 {
-    id s1 = [NSString stringWithString:@"foo"];
-    id s2 = [NSString stringWithString:@"foo"];
-    id<HCMatcher> matcher = sameInstance(s1);
-    HCStringDescription* description = [HCStringDescription stringDescription];
+    HCStringDescription *description = [HCStringDescription stringDescription];
+    NSPredicate *expected = [NSPredicate predicateWithFormat:
+                             @"SELF MATCHES 'same instance as 0x[0-9a-fA-F]+ \"abc\"'"];
     
-    [matcher describeMismatchOf:s2 to:description];
-    NSString* expected = @"was \"foo\": 0x";
-    STAssertEqualObjects(expected, [[description description] substringToIndex:[expected length]], nil);
+    [description appendDescriptionOf:sameInstance(@"abc")];
+    STAssertTrue([expected evaluateWithObject:[description description]], nil);
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    id o1 = [[[NSObject alloc] init] autorelease];
+    assertNoMismatchDescription(sameInstance(o1), o1);
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgumentAddress
+{
+    id<HCMatcher> matcher = sameInstance(@"foo");
+    HCStringDescription *description = [HCStringDescription stringDescription];
+    NSPredicate *expected = [NSPredicate predicateWithFormat:
+                             @"SELF MATCHES 'was 0x[0-9a-fA-F]+ \"hi\"'"];
+    
+    BOOL result = [matcher matches:@"hi" describingMismatchTo:description];
+    STAssertFalse(result, @"Precondition: Matcher should not match item");
+    STAssertTrue([expected evaluateWithObject:[description description]], nil);
+}
+
+
+- (void)testDescribeMismatch
+{
+    id<HCMatcher> matcher = sameInstance(@"foo");
+    HCStringDescription *description = [HCStringDescription stringDescription];
+    NSPredicate *expected = [NSPredicate predicateWithFormat:
+                             @"SELF MATCHES 'was 0x[0-9a-fA-F]+ \"hi\"'"];
+    
+    [matcher describeMismatchOf:@"hi" to:description];
+    STAssertTrue([expected evaluateWithObject:[description description]], nil);
 }
 
 @end

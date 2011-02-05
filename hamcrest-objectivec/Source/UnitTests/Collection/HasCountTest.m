@@ -5,20 +5,18 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCHasCount.h>
-#import <OCHamcrest/HCIsEqual.h>
+
+    // Other OCHamcrest
 #import <OCHamcrest/HCIsEqualToNumber.h>
-#import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
+#import <OCHamcrest/HCOrderingComparison.h>
 
     // Test support
-#import "FakeCountingObject.h"
-#import "FakeNonCountingObject.h"
+#import "AbstractMatcherTest.h"
+#import "FakeWithCount.h"
+#import "FakeWithoutCount.h"
 
 
 @interface HasCountTest : AbstractMatcherTest
@@ -27,55 +25,116 @@
 
 @implementation HasCountTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
-    return hasCount(equalTo(@"irrelevant"));
+    return hasCount(equalToUnsignedInteger(42));
 }
 
 
-- (void) testConvertCountToNSNumberAndPassToNestedMatcher
+- (void)testConvertsCountToNSNumberAndPassesToNestedMatcher
 {
-    NSUInteger fakeCount = 5;
-    FakeCountingObject* fakeCountingObject = [FakeCountingObject fakeWithCount:fakeCount];
-    assertThat(fakeCountingObject, hasCount(equalToUnsignedInteger(fakeCount)));
-    assertThat(fakeCountingObject, isNot(hasCount(equalTo(equalToUnsignedInteger(fakeCount + 1)))));
-}
-
-
-- (void) testHasCountOfIsShortcutForEqualToUnsignedInteger
-{
-    NSUInteger fakeCount = 6;
-    FakeCountingObject* fakeCountingObject = [FakeCountingObject fakeWithCount:fakeCount];
-    assertThat(fakeCountingObject, hasCountOf(fakeCount));
-    assertThat(fakeCountingObject, isNot(hasCountOf(fakeCount + 1)));
-}
-
-
-- (void) testHasReadableDescription
-{
-    id<HCMatcher> countMatcher = equalToUnsignedInteger(7);
-    id<HCMatcher> matcher = hasCount(countMatcher);
+    FakeWithCount *fakeWithCount = [FakeWithCount fakeWithCount:5];
     
-    STAssertEqualObjects([matcher description],
-                         ([NSString stringWithFormat:@"collection with count %@",
-                                                    [countMatcher description]]),
-                         nil);
+    assertMatches(@"same number", hasCount(equalToUnsignedInteger(5)), fakeWithCount);
+    assertDoesNotMatch(@"different number", hasCount(equalToUnsignedInteger(6)), fakeWithCount);
 }
 
 
-- (void) testDescribesMismatchForItemWithWrongCount
+- (void)testHasReadableDescription
 {
-    assertDescribeMismatch(@"was <counting> with count <42>",
-                           hasCount(equalToUnsignedInteger(1)),
-                           [FakeCountingObject fakeWithCount:42]);
+    assertDescription(@"collection with count of a value greater than <5>",
+                      hasCount(greaterThan([NSNumber numberWithUnsignedInteger:5])));
 }
 
 
-- (void) testDescribesMismatchForItemWithoutCount
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
 {
-    assertDescribeMismatch(@"was <non-counting>",
-                           hasCount(equalToUnsignedInteger(1)),
-                           [FakeNonCountingObject fake]);
+    assertNoMismatchDescription(hasCountOf(2), ([NSSet setWithObjects:@"a", @"b", nil]));
+}
+
+
+- (void)testMismatchDescriptionForItemWithWrongCount
+{
+    assertMismatchDescription(@"was <FakeWithCount> with count of <42>",
+                              hasCount(equalToUnsignedInteger(1)),
+                              [FakeWithCount fakeWithCount:42]);
+}
+
+
+- (void)testMismatchDescriptionForItemWithoutCount
+{
+    assertMismatchDescription(@"was <FakeWithoutCount>",
+                              hasCount(equalToUnsignedInteger(1)), [FakeWithoutCount fake]);
+}
+
+
+- (void)testDescribesMismatchForItemWithWrongCount
+{
+    assertDescribeMismatch(@"was <FakeWithCount> with count of <42>",
+                           hasCount(equalToUnsignedInteger(1)), [FakeWithCount fakeWithCount:42]);
+}
+
+
+- (void)testDescribesMismatchForItemWithoutCount
+{
+    assertDescribeMismatch(@"was <FakeWithoutCount>",
+                           hasCount(equalToUnsignedInteger(1)), [FakeWithoutCount fake]);
+}
+
+@end
+
+//--------------------------------------------------------------------------------------------------
+
+@interface HasCountOfTest : AbstractMatcherTest
+@end
+
+
+@implementation HasCountOfTest
+
+- (id<HCMatcher>)createMatcher
+{
+    return hasCountOf(42);
+}
+
+
+- (void)testHasCountOfIsShortcutForEqualToUnsignedInteger
+{
+    FakeWithCount *fakeWithCount = [FakeWithCount fakeWithCount:5];
+    
+    assertMatches(@"same number", hasCountOf(5), fakeWithCount);
+    assertDoesNotMatch(@"different number", hasCountOf(6), fakeWithCount);
+}
+
+
+- (void)testHasReadableDescription
+{
+    assertDescription(@"collection with count of <5>", hasCountOf(5));
+}
+
+
+- (void)testMismatchDescriptionForItemWithWrongCount
+{
+    assertMismatchDescription(@"was <FakeWithCount> with count of <42>",
+                              hasCountOf(1), [FakeWithCount fakeWithCount:42]);
+}
+
+
+- (void)testMismatchDescriptionForItemWithoutCount
+{
+    assertMismatchDescription(@"was <FakeWithoutCount>", hasCountOf(1), [FakeWithoutCount fake]);
+}
+
+
+- (void)testDescribesMismatchForItemWithWrongCount
+{
+    assertDescribeMismatch(@"was <FakeWithCount> with count of <42>",
+                           hasCountOf(1), [FakeWithCount fakeWithCount:42]);
+}
+
+
+- (void)testDescribesMismatchForItemWithoutCount
+{
+    assertDescribeMismatch(@"was <FakeWithoutCount>", hasCountOf(1), [FakeWithoutCount fake]);
 }
 
 @end

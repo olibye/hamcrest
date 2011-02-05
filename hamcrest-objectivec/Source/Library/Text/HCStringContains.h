@@ -15,10 +15,11 @@
  */
 @interface HCStringContains : HCSubstringMatcher
 
-+ (id) stringContains:(NSString*)aSubstring;
++ (id)stringContains:(NSString *)aSubstring;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Tests if the argument is a string that contains a substring.
@@ -27,7 +28,7 @@
     @see HCStringContains
     @ingroup text_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_containsString(NSString* aSubstring);
+OBJC_EXPORT id<HCMatcher> HC_containsString(NSString *aSubstring);
 
 /**
     Synonym for @ref HC_containsString, available if @c HC_SHORTHAND is defined.

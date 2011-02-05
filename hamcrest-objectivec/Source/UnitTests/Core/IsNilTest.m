@@ -10,9 +10,9 @@
 
     // OCHamcrest
 #define HC_SHORTHAND
+#import <OCHamcrest/HCAssertThat.h>
 #import <OCHamcrest/HCIsNil.h>
 #import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
 
 
 @interface IsNilTest : AbstractMatcherTest
@@ -20,28 +20,100 @@
 
 @implementation IsNilTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return nilValue();
 }
 
 
-- (void) testEvaluatesToTrueIfArgumentIsNil
+- (void)testEvaluatesToTrueIfArgumentIsNil
 {
-    id ANY_NON_NULL_ARGUMENT = [[[NSObject alloc] init] autorelease];
-    
-    assertThat(nil, nilValue());
-    assertThat(ANY_NON_NULL_ARGUMENT, isNot(nilValue()));
-
-    assertThat(ANY_NON_NULL_ARGUMENT, notNilValue());
-    assertThat(nil, isNot(notNilValue()));
+    assertMatches(@"nil", nilValue(), nil);
 }
 
 
-- (void) testHasAReadableDescription
+- (void)testEvaluatesToFalseIfArgumentIsNotNil
+{
+    id ANY_NON_NULL_ARGUMENT = [[[NSObject alloc] init] autorelease];
+
+    assertDoesNotMatch(@"not nil", nilValue(), ANY_NON_NULL_ARGUMENT);
+}
+
+
+- (void)testHasAReadableDescription
 {
     assertDescription(@"nil", nilValue());
-    assertDescription(@"not nil", notNilValue());
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(nilValue(), nil);
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"bad\"", nilValue(), @"bad");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"bad\"", nilValue(), @"bad");
 }
 
 @end
+
+//==================================================================================================
+
+@interface NotNilTest : AbstractMatcherTest
+@end
+
+@implementation NotNilTest
+
+- (id<HCMatcher>)createMatcher
+{
+    return notNilValue();
+}
+
+
+- (void)testEvaluatesToTrueIfArgumentIsNotNil
+{
+    id ANY_NON_NULL_ARGUMENT = [[[NSObject alloc] init] autorelease];
+    
+    assertMatches(@"not nil", notNilValue(), ANY_NON_NULL_ARGUMENT);
+}
+
+
+- (void)testEvaluatesToFalseIfArgumentIsNil
+{
+    assertDoesNotMatch(@"nil", notNilValue(), nil);
+}
+
+
+- (void)testHasAReadableDescription
+{
+    assertDescription(@"not nil", notNilValue());
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(notNilValue(), @"hi");
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was nil", notNilValue(), nil);
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was nil", notNilValue(), nil);
+}
+
+@end
+

@@ -19,14 +19,15 @@
  */
 @interface HCAllOf : HCBaseMatcher
 {
-    NSArray* matchers;
+    NSArray *matchers;
 }
 
-+ (id) allOf:(NSArray*)theMatchers;
-- (id) initWithMatchers:(NSArray*)theMatchers;
++ (id)allOf:(NSArray *)theMatchers;
+- (id)initWithMatchers:(NSArray *)theMatchers;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Evaluates to @c YES only if @em all of the passed in matchers evaluate to @c YES.

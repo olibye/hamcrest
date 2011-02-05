@@ -5,13 +5,16 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsCollectionContainingInOrder.h>
+
+    // Other OCHamcrest
 #import <OCHamcrest/HCIsEqual.h>
+
+    // Test support
+#import "AbstractMatcherTest.h"
+
 
 
 @interface IsCollectionContainingInOrderTest : AbstractMatcherTest
@@ -19,20 +22,20 @@
 
 @implementation IsCollectionContainingInOrderTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return contains(equalTo(@"irrelevant"), nil);
 }
 
 
-- (void) testMatchingSingleItemCollection
+- (void)testMatchingSingleItemCollection
 {
     assertMatches(@"Single item collection",
                   (contains(equalTo(@"a"), nil)), ([NSArray arrayWithObjects:@"a", nil]));
 }
 
 
-- (void) testMatchingMultipleItemSequence
+- (void)testMatchingMultipleItemSequence
 {
     assertMatches(@"Multiple item sequence",
                   (contains(equalTo(@"a"), equalTo(@"b"), equalTo(@"c"), nil)),
@@ -40,7 +43,7 @@
 }
 
 
-- (void) testProvidesConvenientShortcutForMatchingWithIsEqualTo
+- (void)testProvidesConvenientShortcutForMatchingWithIsEqualTo
 {
     assertMatches(@"Values automatically wrapped with equalTo",
                   (contains(@"a", @"b", @"c", nil)),
@@ -48,30 +51,30 @@
 }
 
 
-- (void) testDoesNotMatchWithMoreElementsThanExpected
+- (void)testDoesNotMatchWithMoreElementsThanExpected
 {
-    assertMismatchDescription(@"Not matched: \"d\"",
+    assertMismatchDescription(@"not matched: \"d\"",
                               (contains(@"a", @"b", @"c", nil)),
                               ([NSArray arrayWithObjects:@"a", @"b", @"c", @"d", nil]));
 }
 
 
-- (void) testDoesNotMatchWithFewerElementsThanExpected
+- (void)testDoesNotMatchWithFewerElementsThanExpected
 {
-    assertMismatchDescription(@"No item matched: \"c\"",
+    assertMismatchDescription(@"no item matched: \"c\"",
                               (contains(@"a", @"b", @"c", nil)),
                               ([NSArray arrayWithObjects:@"a", @"b", nil]));
 }
 
 
-- (void) testDoesNotMatchIfSingleItemMismatches
+- (void)testDoesNotMatchIfSingleItemMismatches
 {
     assertMismatchDescription(@"item 0: was \"c\"",
                               (contains(@"d", nil)), [NSArray arrayWithObject:@"c"]);
 }
 
 
-- (void) testDoesNotMatchIfOneOfMultipleItemsMismatch
+- (void)testDoesNotMatchIfOneOfMultipleItemsMismatch
 {
     assertMismatchDescription(@"item 2: was \"d\"",
                               (contains(@"a", @"b", @"c", nil)),
@@ -79,35 +82,42 @@
 }
 
 
-- (void) testDoesNotMatchNil
+- (void)testDoesNotMatchNil
 {
     assertDoesNotMatch(@"Should not match nil", contains(@"a", nil), nil);
 }
 
 
-- (void) testDoesNotMatchEmptyCollection
+- (void)testDoesNotMatchEmptyCollection
 {
-    assertMismatchDescription(@"No item matched: \"d\"", (contains(@"d", nil)), [NSArray array]);
+    assertMismatchDescription(@"no item matched: \"d\"", (contains(@"d", nil)), [NSArray array]);
 }
 
 
-- (void) testDescribeMismatch
+- (void)testDoesNotMatchObjectWithoutEnumerator
+{
+    assertDoesNotMatch(@"should not match object without enumerator",
+                       contains(@"a", nil), [[[NSObject alloc] init] autorelease]);
+}
+
+
+- (void)testHasAReadableDescription
+{
+    assertDescription(@"a collection containing [\"a\", \"b\"]", contains(@"a", @"b", nil));
+}
+
+
+- (void)testDescribeMismatch
 {
     assertDescribeMismatch(@"item 1: was \"c\"",
                            (contains(@"a", @"b", nil)),
                            ([NSArray arrayWithObjects:@"a", @"c", nil]));
 }
 
-- (void) testHasAReadableDescription
-{
-    assertDescription(@"collection containing [\"a\", \"b\"]", contains(@"a", @"b", nil));
-}
 
-
-- (void) testDoesNotMatchObjectWithoutEnumerator
+- (void)testDescribeMismatchOfNonCollection
 {
-    assertDoesNotMatch(@"should not match object without enumerator",
-                       contains(@"a", nil), [[[NSObject alloc] init] autorelease]);
+    assertDescribeMismatch(@"was nil", (contains(@"a", @"b", nil)), nil);
 }
 
 @end

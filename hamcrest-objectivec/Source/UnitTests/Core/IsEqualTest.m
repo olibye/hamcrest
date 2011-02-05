@@ -5,81 +5,82 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsEqual.h>
-#import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
+
+    // Test support
+#import "AbstractMatcherTest.h"
 
 
 @interface FakeArgument : NSObject
 @end
 
 @implementation FakeArgument
-- (NSString*) description  { return @"ARGUMENT DESCRIPTION"; }
+- (NSString *)description  { return @"ARGUMENT DESCRIPTION"; }
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 @interface AlwaysEqual : NSObject
 @end
 
 @implementation AlwaysEqual
-- (BOOL) isEqual:(id)anObject  { return YES; }
+- (BOOL)isEqual:(id)anObject  { return YES; }
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 @interface NeverEqual : NSObject
 @end
 
 @implementation NeverEqual
-- (BOOL) isEqual:(id)anObject  { return NO; }
+- (BOOL)isEqual:(id)anObject  { return NO; }
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 @interface IsEqualTest : AbstractMatcherTest
 @end
 
 @implementation IsEqualTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return equalTo(@"irrelevant");
 }
 
 
-- (void) testComparesObjectsUsingIsEqualMethod
+- (void)testComparesObjectsUsingIsEqualMethod
 {
-    assertThat(@"hi", equalTo(@"hi"));
-    assertThat(@"bye", isNot(equalTo(@"hi")));
+    assertMatches(@"equal strings", equalTo(@"hi"), @"hi");
+    assertDoesNotMatch(@"unequal strings", equalTo(@"hi"), @"bye");
 }
 
 
-- (void) testCanCompareNilValues
+- (void)testCanCompareNilValues
 {
-    assertThat(nil, equalTo(nil));
+    assertMatches(@"nil equals nil", equalTo(nil), nil);
 
-    assertThat(nil, isNot(equalTo(@"hi")));
-    assertThat(@"hi", isNot(equalTo(nil)));
+    assertDoesNotMatch(@"nil as argument", equalTo(@"hi"), nil);
+    assertDoesNotMatch(@"nil in equalTo", equalTo(nil), @"hi");
 }
 
 
-- (void) testHonoursIsEqualImplementationEvenWithNilValues
+- (void)testHonorsIsEqualImplementationEvenWithNilValues
 {
-    assertThat([[[AlwaysEqual alloc] init] autorelease], equalTo(nil));
-    assertThat([[[NeverEqual alloc] init] autorelease], isNot(equalTo(nil)));
+    assertMatches(@"always equal", equalTo(nil), [[[AlwaysEqual alloc] init] autorelease]);
+    assertDoesNotMatch(@"never equal", equalTo(nil), [[[NeverEqual alloc] init] autorelease]);
 }
 
 
-- (void) testIncludesTheResultOfCallingDescriptionOnItsArgumentInTheDescription
+- (void)testIncludesTheResultOfCallingDescriptionOnItsArgumentInTheDescription
 {
     assertDescription(@"<ARGUMENT DESCRIPTION>", equalTo([[[FakeArgument alloc] init] autorelease]));
 }
 
 
-- (void) testReturnsAnObviousDescriptionIfCreatedWithANestedMatcherByMistake
+- (void)testReturnsAnObviousDescriptionIfCreatedWithANestedMatcherByMistake
 {
     id innerMatcher = equalTo(@"NestedMatcher");
     assertDescription(([[NSArray arrayWithObjects:@"<", [innerMatcher description], @">", nil]
@@ -88,9 +89,27 @@
 }
 
 
-- (void) testReturnsGoodDescriptionIfCreatedWithNilReference
+- (void)testReturnsGoodDescriptionIfCreatedWithNilReference
 {
     assertDescription(@"nil", equalTo(nil));
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(equalTo(@"hi"), @"hi");
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"bad\"", equalTo(@"good"), @"bad");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"bad\"", equalTo(@"good"), @"bad");
 }
 
 @end

@@ -5,13 +5,15 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsNot.h>
+
+    // Other OCHamcrest
 #import <OCHamcrest/HCIsEqual.h>
+
+    // Inherited
+#import "AbstractMatcherTest.h"
 
 
 @interface IsNotTest : AbstractMatcherTest
@@ -19,26 +21,47 @@
 
 @implementation IsNotTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return isNot(@"something");
 }
 
 
-- (void) testEvaluatesToTheTheLogicalNegationOfAnotherMatcher
+- (void)testEvaluatesToTheTheLogicalNegationOfAnotherMatcher
 {
-    assertMatches(@"should match", isNot(equalTo(@"A")), @"B");
-    assertDoesNotMatch(@"should not match", isNot(equalTo(@"B")), @"B");
+    assertMatches(@"invert mismatch", isNot(equalTo(@"A")), @"B");
+    assertDoesNotMatch(@"invert match", isNot(equalTo(@"A")), @"A");
 }
 
 
-- (void) testProvidesConvenientShortcutForNotEqualTo
+- (void)testProvidesConvenientShortcutForNotEqualTo
 {
-    assertMatches(@"should match", isNot(@"A"), @"B");
-    assertMatches(@"should match", isNot(@"B"), @"A");
-    assertDoesNotMatch(@"should not match", isNot(@"A"), @"A");
-    assertDoesNotMatch(@"should not match", isNot(@"B"), @"B");
+    assertMatches(@"invert mismatch", isNot(@"A"), @"B");
+    assertDoesNotMatch(@"invert match", isNot(@"A"), @"A");
+}
+
+
+- (void)testHasAReadableDescription
+{
     assertDescription(@"not \"A\"", isNot(@"A"));
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(isNot(@"A"), @"B");
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"A\"", isNot(@"A"), @"A");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"A\"", isNot(@"A"), @"A");
 }
 
 @end

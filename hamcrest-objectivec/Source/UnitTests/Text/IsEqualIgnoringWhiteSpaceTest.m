@@ -5,14 +5,12 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
-#import "AbstractMatcherTest.h"
-
-    // OCHamcrest
+    // Class under test
 #define HC_SHORTHAND
 #import <OCHamcrest/HCIsEqualIgnoringWhiteSpace.h>
-#import <OCHamcrest/HCIsNot.h>
-#import <OCHamcrest/HCMatcherAssert.h>
+
+    // Test support
+#import "AbstractMatcherTest.h"
 
 
 @interface IsEqualIgnoringWhiteSpaceTest : AbstractMatcherTest
@@ -21,63 +19,83 @@
 }
 @end
 
+
 @implementation IsEqualIgnoringWhiteSpaceTest
 
-- (void) setUp
+- (void)setUp
 {
     matcher = [equalToIgnoringWhiteSpace(@"Hello World   how\n are we? ") retain];
 }
 
 
-- (void) tearDown
+- (void)tearDown
 {
     [matcher release];
 }
 
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return matcher;
 }
 
 
-- (void) testPassesIfWordsAreSameButWhitespaceDiffers
+- (void)testPassesIfWordsAreSameButWhitespaceDiffers
 {
-    assertThat(@"Hello World how are we?", matcher);
-    assertThat(@"   Hello World   how are \n\n\twe?", matcher);
+    assertMatches(@"less whitespace", matcher, @"Hello World how are we?");
+    assertMatches(@"more whitespace", matcher, @"   Hello World   how are \n\n\twe?");
 }
 
 
-- (void) testFailsIfTextOtherThanWhitespaceDiffers
+- (void)testFailsIfTextOtherThanWhitespaceDiffers
 {
-    assertThat(@"Hello PLANET how are we?", isNot(matcher));
-    assertThat(@"Hello World how are we", isNot(matcher));
+    assertDoesNotMatch(@"wrong word", matcher, @"Hello PLANET how are we?");
+    assertDoesNotMatch(@"incomplete", matcher, @"Hello World how are we");
 }
 
 
-- (void) testFailsIfWhitespaceIsAddedOrRemovedInMidWord
+- (void)testFailsIfWhitespaceIsAddedOrRemovedInMidWord
 {
-    assertThat(@"HelloWorld how are we?", isNot(matcher));
-    assertThat(@"Hello Wo rld how are we?", isNot(matcher));
+    assertDoesNotMatch(@"need whitespace between Hello and World",
+                       matcher, @"HelloWorld how are we?");
+    assertDoesNotMatch(@"wrong whitespace within World",
+                       matcher, @"Hello Wo rld how are we?");
 }
 
 
-- (void) testFailsIfMatchingAgainstNil
-{
-    assertThat(nil, isNot(matcher));
-}
-
-
-- (void) testMatcherCreationRequiresNonNilArgument
+- (void)testMatcherCreationRequiresNonNilArgument
 {    
-    STAssertThrows(equalToIgnoringWhiteSpace(nil), @"should require non-nil argument");
+    STAssertThrows(equalToIgnoringWhiteSpace(nil), @"Should require non-nil argument");
 }
 
 
-- (void) testHasAReadableDescription
+- (void)testFailsIfMatchingAgainstNonString
 {
-    assertDescription(@"equalToIgnoringWhiteSpace(\"Hello World   how\\n are we? \")",
-                        matcher);
+    assertDoesNotMatch(@"non-string", matcher, [NSNumber numberWithInt:3]);
+}
+
+
+- (void)testHasAReadableDescription
+{
+    assertDescription(@"\"Hello World   how\\n are we? \" ignoring whitespace", matcher);
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(equalToIgnoringWhiteSpace(@"foo\nbar"), @"foo bar");
+}
+
+
+- (void)testMismatchDescriptionShowsActualArgument
+{
+    assertMismatchDescription(@"was \"bad\"", matcher, @"bad");
+}
+
+
+- (void)testDescribeMismatch
+{
+    assertDescribeMismatch(@"was \"bad\"", matcher, @"bad");
 }
 
 @end

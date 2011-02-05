@@ -18,11 +18,12 @@
     id object;
 }
 
-+ (id) isSameAs:(id)anObject;
-- (id) initSameAs:(id)anObject;
++ (id)isSameAs:(id)anObject;
+- (id)initSameAs:(id)anObject;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Evaluates to @c YES only when the argument is this same object.

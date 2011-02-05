@@ -15,17 +15,18 @@
  */
 @interface HCIsAnything : HCBaseMatcher
 {
-    NSString* description;
+    NSString *description;
 }
 
-+ (id) isAnything;
-+ (id) isAnythingWithDescription:(NSString*)aDescription;
++ (id)isAnything;
++ (id)isAnythingWithDescription:(NSString *)aDescription;
 
-- (id) init;
-- (id) initWithDescription:(NSString*)aDescription;
+- (id)init;
+- (id)initWithDescription:(NSString *)aDescription;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     This matcher always evaluates to @c YES.
@@ -52,7 +53,7 @@ OBJC_EXPORT id<HCMatcher> HC_anything();
     @see HCIsAnything
     @ingroup core_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_anythingWithDescription(NSString* aDescription);
+OBJC_EXPORT id<HCMatcher> HC_anythingWithDescription(NSString *aDescription);
 
 /**
     Synonym for @ref HC_anythingWithDescription, available if @c HC_SHORTHAND is defined.

@@ -18,11 +18,12 @@
     id<HCMatcher> valueMatcher;
 }
 
-+ (id) isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher;
-- (id) initWithValueMatcher:(id<HCMatcher>)theValueMatcher;
++ (id)isDictionaryContainingValue:(id<HCMatcher>)theValueMatcher;
+- (id)initWithValueMatcher:(id<HCMatcher>)theValueMatcher;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches dictionaries containing a value satisfying a given matcher.

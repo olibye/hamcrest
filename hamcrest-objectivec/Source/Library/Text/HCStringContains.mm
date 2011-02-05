@@ -14,13 +14,13 @@
 
 @implementation HCStringContains
 
-+ (id) stringContains:(NSString*)aSubstring
++ (id)stringContains:(NSString *)aSubstring
 {
     return [[[self alloc] initWithSubstring:aSubstring] autorelease];
 }
 
 
-- (BOOL) matches:(id)item
+- (BOOL)matches:(id)item
 {
     if (![item respondsToSelector:@selector(rangeOfString:)])
         return NO;
@@ -28,20 +28,17 @@
     return [item rangeOfString:substring].location != NSNotFound;
 }
 
-@end
 
-
-@implementation HCStringContains (SubclassResponsibility)
-
-- (NSString*) relationship
+- (NSString *)relationship
 {
     return @"containing";
 }
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
-OBJC_EXPORT id<HCMatcher> HC_containsString(NSString* aSubstring)
+OBJC_EXPORT id<HCMatcher> HC_containsString(NSString *aSubstring)
 {
     return [HCStringContains stringContains:aSubstring];
 }

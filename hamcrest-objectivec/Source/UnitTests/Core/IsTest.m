@@ -13,19 +13,22 @@
 #import <OCHamcrest/HCIs.h>
 #import <OCHamcrest/HCIsEqual.h>
 
+    // Test support
+#import "NeverMatch.h"
+
 
 @interface IsTest : AbstractMatcherTest
 @end
 
 @implementation IsTest
 
-- (id<HCMatcher>) createMatcher
+- (id<HCMatcher>)createMatcher
 {
     return is(@"something");
 }
 
 
-- (void) testJustMatchesTheSameWayTheUnderylingMatcherDoes
+- (void)testDelegatesMatchingToNestedMatcher
 {
     assertMatches(@"should match", is(equalTo(@"A")), @"A");
     assertMatches(@"should match", is(equalTo(@"B")), @"B");
@@ -34,19 +37,41 @@
 }
 
 
-- (void) testGeneratesIsPrefixInDescription
+- (void)testGeneratesIsPrefixInDescription
 {
     assertDescription(@"is \"A\"", is(equalTo(@"A")));
 }
 
 
-- (void) testProvidesConvenientShortcutForIsEqualTo
+- (void)testProvidesConvenientShortcutForIsEqualTo
 {
     assertMatches(@"should match", is(@"A"), @"A");
     assertMatches(@"should match", is(@"B"), @"B");
     assertDoesNotMatch(@"should not match", is(@"A"), @"B");
     assertDoesNotMatch(@"should not match", is(@"B"), @"A");
     assertDescription(@"is \"A\"", is(@"A"));
+}
+
+
+- (void)testSuccessfulMatchDoesNotGenerateMismatchDescription
+{
+    assertNoMismatchDescription(is(@"A"), @"A");
+}
+
+
+- (void)testDelegatesMismatchDescriptionToNestedMatcher
+{
+    assertMismatchDescription([NeverMatch mismatchDescription],
+                              is([NeverMatch neverMatch]),
+                              @"hi");
+}
+
+
+- (void)testDelegatesDescribeMismatchToNestedMatcher
+{
+    assertDescribeMismatch([NeverMatch mismatchDescription],
+                           is([NeverMatch neverMatch]),
+                           @"hi");
 }
 
 @end

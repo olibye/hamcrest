@@ -18,11 +18,12 @@
     Class theClass;
 }
 
-+ (id) isInstanceOf:(Class)type;
-- (id) initWithType:(Class)type;
++ (id)isInstanceOf:(Class)type;
+- (id)initWithType:(Class)type;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Is the value an instance of a particular type?

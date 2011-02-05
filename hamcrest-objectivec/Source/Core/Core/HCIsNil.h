@@ -15,10 +15,11 @@
 */
 @interface HCIsNil : HCBaseMatcher
 
-+ (id) isNil;
++ (id)isNil;
 
 @end
 
+//--------------------------------------------------------------------------------------------------
 
 /**
     Matches if the value is @c nil.

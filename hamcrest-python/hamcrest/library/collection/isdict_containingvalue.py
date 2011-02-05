@@ -14,16 +14,17 @@ class IsDictContainingValue(BaseMatcher):
         self.value_matcher = value_matcher
 
     def _matches(self, dictionary):
-        if hasmethod(dictionary, 'itervalues'):
-            for value in dictionary.itervalues():
+        if hasmethod(dictionary, 'values'):
+            for value in dictionary.values():
                 if self.value_matcher.matches(value):
                     return True
         return False
 
     def describe_to(self, description):
-        description.append_text('dictionary with value ')       \
+        description.append_text('a dictionary containing value ')   \
                     .append_description_of(self.value_matcher)
 
+#------------------------------------------------------------------------------
 
 def has_value(value):
     """Matches dictionaries containing a value satisfying a given matcher.

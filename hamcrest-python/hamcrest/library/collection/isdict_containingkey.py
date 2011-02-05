@@ -14,16 +14,17 @@ class IsDictContainingKey(BaseMatcher):
         self.key_matcher = key_matcher
 
     def _matches(self, dictionary):
-        if hasmethod(dictionary, 'iterkeys'):
-            for key in dictionary.iterkeys():
+        if hasmethod(dictionary, 'keys'):
+            for key in dictionary.keys():
                 if self.key_matcher.matches(key):
                     return True
         return False
 
     def describe_to(self, description):
-        description.append_text('dictionary with key ')          \
+        description.append_text('a dictionary containing key ')     \
                     .append_description_of(self.key_matcher)
 
+#------------------------------------------------------------------------------
 
 def has_key(key):
     """Matches dictionaries containing a key satisfying a given matcher.

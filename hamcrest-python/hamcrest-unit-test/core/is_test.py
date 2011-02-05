@@ -7,17 +7,17 @@ if __name__ == '__main__':
     sys.path.insert(0, '..')
     sys.path.insert(0, '../..')
 
-import unittest
+from hamcrest.core.core.is_ import *
 
 from hamcrest.core.core.isequal import equal_to
-from hamcrest.core.core.is_ import is_
-
 from matcher_test import MatcherTest
+from nevermatch import NeverMatch
+import unittest
 
 
 class IsTest(MatcherTest):
 
-    def testJustMatchesTheSameWayTheUnderylingMatcherDoes(self):
+    def testDelegatesMatchingToNestedMatcher(self):
         self.assert_matches('should match', is_(equal_to(True)), True)
         self.assert_matches('should match', is_(equal_to(False)), False)
         self.assert_does_not_match('should not match', is_(equal_to(True)), False)
@@ -36,6 +36,21 @@ class IsTest(MatcherTest):
     def testProvidesConvenientShortcutForIsInstanceOf(self):
         self.assert_matches('should match', is_(str), 'A');
         self.assert_does_not_match('should not match', is_(int), 'A');
+
+    def testSuccessfulMatchDoesNotGenerateMismatchDescription(self):
+        self.assert_no_mismatch_description(is_('A'), 'A')
+
+    def testDelegatesMismatchDescriptionToNestedMatcher(self):
+        self.assert_mismatch_description(
+                                NeverMatch.mismatch_description,
+                                is_(NeverMatch()),
+                                'hi')
+
+    def testDelegatesDescribeMismatchToNestedMatcher(self):
+        self.assert_describe_mismatch(
+                                NeverMatch.mismatch_description,
+                                is_(NeverMatch()),
+                                'hi')
 
 
 if __name__ == '__main__':

@@ -18,19 +18,20 @@ class IsDictContaining(BaseMatcher):
         self.value_matcher = value_matcher
 
     def _matches(self, dictionary):
-        if hasmethod(dictionary, 'iteritems'):
-            for key, value in dictionary.iteritems():
+        if hasmethod(dictionary, 'items'):
+            for key, value in dictionary.items():
                 if self.key_matcher.matches(key) and self.value_matcher.matches(value):
                     return True
         return False
 
     def describe_to(self, description):
-        description.append_text('dictionary containing [')          \
+        description.append_text('a dictionary containing [')        \
                     .append_description_of(self.key_matcher)        \
                     .append_text(': ')                              \
                     .append_description_of(self.value_matcher)      \
                     .append_text(']')
 
+#------------------------------------------------------------------------------
 
 def has_entry(key, value):
     """Matches dictionaries containing a key-value pair satisfying a given pair

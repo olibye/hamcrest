@@ -7,29 +7,53 @@ if __name__ == '__main__':
     sys.path.insert(0, '..')
     sys.path.insert(0, '../..')
 
-import unittest
-
-from hamcrest.core.core.isnone import none, not_none
-from hamcrest.core.core.isnot import is_not
-from hamcrest.core.matcher_assert import assert_that
+from hamcrest.core.core.isnone import *
 
 from matcher_test import MatcherTest
+import unittest
 
 
 class IsNoneTest(MatcherTest):
 
     def testEvaluatesToTrueIfArgumentIsNone(self):
-        ANY_NON_NULL_ARGUMENT = object()
+        self.assert_matches('None', none(), None)
 
-        assert_that(None, none())
-        assert_that(ANY_NON_NULL_ARGUMENT, is_not(none()))
-
-        assert_that(ANY_NON_NULL_ARGUMENT, not_none())
-        assert_that(None, is_not(not_none()))
+    def testEvaluatesToFalseIfArgumentIsNotNone(self):
+        self.assert_does_not_match('not None', none(), object())
 
     def testHasAReadableDescription(self):
         self.assert_description('None', none());
+
+    def testSuccessfulMatchDoesNotGenerateMismatchDescription(self):
+        self.assert_no_mismatch_description(none(), None)
+
+    def testMismatchDescriptionShowsActualArgument(self):
+        self.assert_mismatch_description("was 'bad'", none(), 'bad')
+
+    def testDescribeMismatch(self):
+        self.assert_describe_mismatch("was 'bad'", none(), 'bad')
+
+#------------------------------------------------------------------------------
+
+class NotNoneTest(MatcherTest):
+
+    def testEvaluatesToTrueIfArgumentIsNotNone(self):
+        self.assert_matches('not None', not_none(), object())
+
+    def testEvaluatesToFalseIfArgumentIsNone(self):
+        self.assert_does_not_match('None', not_none(), None)
+
+    def testHasAReadableDescription(self):
         self.assert_description('not None', not_none());
+
+    def testSuccessfulMatchDoesNotGenerateMismatchDescription(self):
+        self.assert_no_mismatch_description(not_none(), 'hi')
+
+    def testMismatchDescriptionShowsActualArgument(self):
+        self.assert_mismatch_description("was None", not_none(), None)
+
+    def testDescribeMismatch(self):
+        self.assert_describe_mismatch("was None", not_none(), None)
 
 
 if __name__ == '__main__':

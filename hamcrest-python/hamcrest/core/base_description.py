@@ -20,14 +20,20 @@ class BaseDescription(Description):
         return self
 
     def append_description_of(self, value):
-        if hasmethod(value, 'describe_to'):
+        if value is None:
+            self.append_text('None')
+        elif hasmethod(value, 'describe_to'):
             value.describe_to(self)
         elif isinstance(value, str):
             self.append_string_in_python_syntax(value)
         else:
-            self.append('<')
-            self.append(str(value))
-            self.append('>')
+            description = str(value)
+            if description[:1] == '<' and description[-1:] == '>':
+                self.append(description)
+            else:
+                self.append('<')
+                self.append(description)
+                self.append('>')
         return self
 
     def append_value(self, value):

@@ -19,7 +19,7 @@ class MatchInAnyOrder(object):
         if not self.matchers:
             return True
         if self.mismatch_description:
-            self.mismatch_description.append_text('No item matches: ')      \
+            self.mismatch_description.append_text('no item matches: ')      \
                                 .append_list('', ', ', '', self.matchers)   \
                                 .append_text(' in ')                        \
                                 .append_list('[', ', ', ']', sequence)
@@ -28,7 +28,7 @@ class MatchInAnyOrder(object):
     def isnotsurplus(self, item):
         if not self.matchers:
             if self.mismatch_description:
-                self.mismatch_description.append_text('Not matched: ')  \
+                self.mismatch_description.append_text('not matched: ')  \
                                          .append_description_of(item)
             return False
         return True
@@ -41,10 +41,11 @@ class MatchInAnyOrder(object):
                 return True
             index += 1
         if self.mismatch_description:
-            self.mismatch_description.append_text('Not matched: ')  \
+            self.mismatch_description.append_text('not matched: ')  \
                                      .append_description_of(item)
         return False
 
+#------------------------------------------------------------------------------
 
 class IsSequenceContainingInAnyOrder(BaseMatcher):
     """Matches a sequence if its elements, in any order, satisfy a list of
@@ -57,6 +58,9 @@ class IsSequenceContainingInAnyOrder(BaseMatcher):
 
     def matches(self, sequence, mismatch_description=None):
         if not hasmethod(sequence, '__iter__'):
+            if mismatch_description:
+                super(IsSequenceContainingInAnyOrder, self)             \
+                    .describe_mismatch(sequence, mismatch_description)
             return False
         matchsequence = MatchInAnyOrder(self.matchers, mismatch_description)
         for item in sequence:
@@ -72,6 +76,7 @@ class IsSequenceContainingInAnyOrder(BaseMatcher):
                    .append_list('[', ', ', ']', self.matchers) \
                    .append_text(' in any order')
 
+#------------------------------------------------------------------------------
 
 def contains_inanyorder(*items):
     """Matches a sequence if its elements, in any order, satisfy a list of

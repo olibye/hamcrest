@@ -7,47 +7,50 @@ if __name__ == '__main__':
     sys.path.insert(0, '..')
     sys.path.insert(0, '../..')
 
-import unittest
-
-from hamcrest.core.core.isequal import equal_to
-from hamcrest.core.core.isnot import is_not
-from hamcrest.core.matcher_assert import assert_that
+from hamcrest.core.core.isequal import *
 
 from matcher_test import MatcherTest
+import unittest
 
 
 class IsEqualTest(MatcherTest):
 
     def testComparesObjectsUsingEquality(self):
-        assert_that('hi', equal_to('hi'))
-        assert_that('bye', is_not(equal_to('hi')))
-
-        assert_that(1, equal_to(1))
-        assert_that(1, is_not(equal_to(2)))
+        self.assert_matches('equal numbers', equal_to(1), 1)
+        self.assert_does_not_match('unequal numbers', equal_to(1), 2)
 
     def testCanCompareNoneValues(self):
-        assert_that(None, equal_to(None));
+        self.assert_matches('None equals None', equal_to(None), None)
 
-        assert_that(None, is_not(equal_to("hi")));
-        assert_that("hi", is_not(equal_to(None)));
+        self.assert_does_not_match('None as argument', equal_to('hi'), None)
+        self.assert_does_not_match('None in equal_to', equal_to(None), 'hi')
 
-    def testHonoursEqImplementation(self):
+    def testHonorsArgumentEqImplementationEvenWithNone(self):
         class AlwaysEqual:
             def __eq__(self, obj): return True
         class NeverEqual:
             def __eq__(self, obj): return False
-        assert_that(AlwaysEqual(), equal_to(1));
-        assert_that(NeverEqual(), is_not(equal_to(1)));
+        self.assert_matches("always equal", equal_to(None), AlwaysEqual())
+        self.assert_does_not_match("never equal", equal_to(None), NeverEqual())
 
     def testIncludesTheResultOfCallingToStringOnItsArgumentInTheDescription(self):
         argument_description = 'ARGUMENT DESCRIPTION'
         class Argument:
             def __str__(self): return argument_description
-        self.assert_description('<' + argument_description + '>', equal_to(Argument()))
+        self.assert_description('<ARGUMENT DESCRIPTION>', equal_to(Argument()))
 
     def testReturnsAnObviousDescriptionIfCreatedWithANestedMatcherByMistake(self):
         inner_matcher = equal_to('NestedMatcher')
-        self.assert_description('<' + str(inner_matcher) + '>', equal_to(inner_matcher))
+        self.assert_description("<'NestedMatcher'>", equal_to(inner_matcher))
+
+    def testSuccessfulMatchDoesNotGenerateMismatchDescription(self):
+        self.assert_no_mismatch_description(equal_to('hi'), 'hi')
+
+    def testMismatchDescriptionShowsActualArgument(self):
+        self.assert_mismatch_description("was 'bad'", equal_to('good'), 'bad')
+
+    def testDescribeMismatch(self):
+        self.assert_describe_mismatch("was 'bad'", equal_to('good'), 'bad')
 
 
 if __name__ == '__main__':

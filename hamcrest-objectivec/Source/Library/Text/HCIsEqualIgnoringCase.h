@@ -35,7 +35,11 @@
 OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringCase(NSString *string);
 
 /**
+    equalToIgnoringCase(string) -
+    Tests if a string is equal to another string, regardless of the case.
+
     Synonym for @ref HC_equalToIgnoringCase, available if @c HC_SHORTHAND is defined.
+    @see HCIsEqualIgnoringCase
     @ingroup text_matchers
  */
 #ifdef HC_SHORTHAND

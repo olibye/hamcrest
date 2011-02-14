@@ -31,7 +31,11 @@
 OBJC_EXPORT id<HCMatcher> HC_containsString(NSString *aSubstring);
 
 /**
+    containsString(substring) -
+    Tests if the argument is a string that contains a substring.
+
     Synonym for @ref HC_containsString, available if @c HC_SHORTHAND is defined.
+    @see HCStringContains
     @ingroup text_matchers
  */
 #ifdef HC_SHORTHAND

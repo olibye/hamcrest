@@ -35,10 +35,9 @@
 /**
     Wraps an existing matcher and overrides the description when it fails.
 
-    Optional values following the matcher are substituted for \%0, \%1, etc.
+    Optional values following the matcher are substituted for \%0, \%1, etc., in the description.
     The last argument must be nil.
 
- 
     @b Synonym: @ref describedAs
     @see HCDescribedAs
     @ingroup core_matchers
@@ -46,7 +45,14 @@
 OBJC_EXPORT id<HCMatcher> HC_describedAs(NSString *description, id<HCMatcher> matcher, ...);
 
 /**
+    describedAs(description, matcher, ...) -
+    Wraps an existing matcher and overrides the description when it fails.
+
+    Optional values following the matcher are substituted for \%0, \%1, etc., in the description.
+    The last argument must be nil.
+
     Synonym for @ref HC_describedAs, available if @c HC_SHORTHAND is defined.
+    @see HCDescribedAs
     @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND

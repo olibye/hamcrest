@@ -44,7 +44,20 @@ assertThat(cheese, isNot(smelly))
 OBJC_EXPORT id<HCMatcher> HC_isNot(id matcherOrValue);
 
 /**
+    isNot(matcherOrValue) -
+    Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).
+
+    For example:
+@code
+assertThat(cheese, isNot(equalTo(smelly)))
+@endcode
+    vs.
+@code
+assertThat(cheese, isNot(smelly))
+@endcode
+
     Synonym for @ref HC_isNot, available if @c HC_SHORTHAND is defined.
+    @see HCIsNot
     @ingroup core_matchers
  */
 #ifdef HC_SHORTHAND

@@ -29,14 +29,19 @@
     Matches a collection if its elements, in order, satisfy a list of matchers.
  
     @b Synonym: @ref contains
-    @param items  Comma-separated list of matchers - or values for @ref equalTo matching - ending with @c nil.
+    @param itemMatcher1  Comma-separated list of matchers - or values for @ref equalTo matching - ending with @c nil.
     @see HCIsCollectionContainingInOrder
     @ingroup collection_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_contains(id items, ...);
+OBJC_EXPORT id<HCMatcher> HC_contains(id itemMatcher1, ...);
 
 /**
+    contains(itemMatcher1, ...)
+    matches a collection if its elements, in order, satisfy a list of matchers.
+
     Synonym for @ref HC_contains, available if @c HC_SHORTHAND is defined.
+    @param itemMatcher1  Comma-separated list of matchers - or values for @ref equalTo matching - ending with @c nil.
+    @see HCIsCollectionContainingInOrder
     @ingroup collection_matchers
  */
 #ifdef HC_SHORTHAND

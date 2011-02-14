@@ -35,9 +35,13 @@
 OBJC_EXPORT id<HCMatcher> HC_isIn(id aCollection);
 
 /**
+    isIn(collection) -
+    Is the object present in the given collection?
+
     Synonym for @ref HC_isIn, available if @c HC_SHORTHAND is defined.
+    @see HCIsIn
     @ingroup collection_matchers
  */
 #ifdef HC_SHORTHAND
-    #define isIn HC_isIn
+    #define isIn  HC_isIn
 #endif

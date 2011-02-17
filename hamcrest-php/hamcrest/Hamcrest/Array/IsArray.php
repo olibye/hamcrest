@@ -54,7 +54,7 @@ class Hamcrest_Array_IsArray extends Hamcrest_TypeSafeMatcher
       $mismatchDescription->appendText('array length was ' . count($actual));
       return;
     }
-    elseif (array_keys($actual) != array_keys($this->_elementMatcher))
+    elseif (array_keys($actual) != array_keys($this->_elementMatchers))
     {
       $mismatchDescription->appendText('array keys were ')
                           ->appendValueList(

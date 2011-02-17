@@ -1,6 +1,6 @@
 == Version 1.0.0: Not Released ==
 
-Issues Fixed: 119
+Issues Fixed: 119, 136
 
 * Moved hamcrest.php into hamcrest folder and renamed to Hamcrest.php.
   This is more in line with PEAR packaging standards.

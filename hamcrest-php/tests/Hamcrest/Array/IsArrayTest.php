@@ -57,6 +57,14 @@ class Hamcrest_Array_IsArrayTest extends Hamcrest_AbstractMatcherTest
     );
   }
   
+  public function testHasAReadableMismatchDescriptionWhenKeysDontMatch()
+  {
+    $this->assertMismatchDescription(
+      'array keys were [<1>, <2>]', anArray(array(equalTo('a'), equalTo('b'))),
+      array(1 => 'a', 2 => 'b')
+    );
+  }
+  
   public function testSupportsMatchesAssociativeArrays()
   {
     $this->assertMatches(

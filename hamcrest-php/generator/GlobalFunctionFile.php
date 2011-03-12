@@ -23,6 +23,10 @@ class GlobalFunctionFile extends FactoryFile
   public function generateMethodClass(FactoryMethod $method) {
     return 'Hamcrest_Matchers';
   }
+  
+  public function generateImport(FactoryMethod $method) {
+    // omit import
+  }
 
   public function build() {
     $this->addFileHeader();

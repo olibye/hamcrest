@@ -89,8 +89,10 @@ class FactoryMethod
   }
 
   public function extractFactoryNamesFromLine($line) {
-    if (preg_match('/^\s*@factory(\s+(.*))?$/', $line, $match)) {
-      $this->createCalls($this->extraceFactoryNamesFromAnnotation(trim($match[2])));
+    if (preg_match('/^\s*@factory(\s+(.+))?$/', $line, $match)) {
+      $this->createCalls($this->extraceFactoryNamesFromAnnotation(
+        isset($match[2]) ? trim($match[2]) : null
+      ));
       return true;
     }
     return false;

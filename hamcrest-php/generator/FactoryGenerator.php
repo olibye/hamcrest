@@ -91,8 +91,8 @@ class FactoryGenerator
 
   public function getFactoryClassName($file) {
     $content = file_get_contents($file);
-    if (preg_match('/\n\s*class\s+(\w+)\s+extends\b/', $content, $match) !== false
-        && preg_match('/@factory\b/', $content) !== false) {
+    if (preg_match('/\n\s*class\s+(\w+)\s+extends\b/', $content, $match)
+        && preg_match('/@factory\b/', $content)) {
       return $match[1];
     }
     return null;

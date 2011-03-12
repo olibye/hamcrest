@@ -49,6 +49,7 @@ abstract class FactoryFile
     $method = $call->getMethod();
     $code = $method->getComment($this->indent) . PHP_EOL;
     $code .= $this->generateDeclaration($call->getName(), $method);
+    $code .= $this->generateImport($method);
     $code .= $this->generateCall($method);
     $code .= $this->generateClosing();
     return $code;
@@ -59,9 +60,6 @@ abstract class FactoryFile
         . 'function ' . $name . '('
         . $this->generateDeclarationArguments($method)
         . ')' . PHP_EOL . $this->indent . '{' . PHP_EOL;
-    if ($method->acceptsVariableArguments()) {
-      $code .= $this->indent . self::INDENT . '$args = func_get_args();' . PHP_EOL;
-    }
     return $code;
   }
 
@@ -77,8 +75,17 @@ abstract class FactoryFile
       return $method->getParameterDeclarations();
     }
   }
-
+  
+  public function generateImport(FactoryMethod $method) {
+    return $this->indent . self::INDENT 
+          . "require_once '" . $method->getClass()->getFile() . "';" . PHP_EOL;
+  }
+  
   public function generateCall(FactoryMethod $method) {
+    $code = '';
+    if ($method->acceptsVariableArguments()) {
+      $code .= $this->indent . self::INDENT . '$args = func_get_args();' . PHP_EOL;
+    }
     $code .= $this->indent . self::INDENT . 'return ';
     if ($method->acceptsVariableArguments()) {
       $code .= 'call_user_func_array(array(\''

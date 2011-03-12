@@ -34,7 +34,7 @@ class StaticMethodFile extends FactoryFile
   public function build() {
     $this->addFileHeader();
     $this->addPart('matchers_imports');
-    $this->addImports();
+//    $this->addImports();
     $this->addPart('matchers_header');
     $this->addCode($this->methods);
     $this->addPart('matchers_footer');
@@ -42,7 +42,7 @@ class StaticMethodFile extends FactoryFile
 
   public function addImports() {
     $this->imports = array_unique($this->imports, SORT_STRING);
-    foreach ($this->imports as &$import) {
+    foreach ($this->imports as $import) {
       $this->addCode(PHP_EOL . 'require_once \'' . $import . '\';');
     }
   }

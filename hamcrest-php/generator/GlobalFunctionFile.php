@@ -20,14 +20,6 @@ class GlobalFunctionFile extends FactoryFile
     $this->functions .= PHP_EOL . $this->generateFactoryCall($call);
   }
 
-  public function generateMethodClass(FactoryMethod $method) {
-    return 'Hamcrest_Matchers';
-  }
-  
-  public function generateImport(FactoryMethod $method) {
-    // omit import
-  }
-
   public function build() {
     $this->addFileHeader();
     $this->addPart('functions_imports');

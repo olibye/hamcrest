@@ -89,19 +89,15 @@ abstract class FactoryFile
     $code .= $this->indent . self::INDENT . 'return ';
     if ($method->acceptsVariableArguments()) {
       $code .= 'call_user_func_array(array(\''
-          . $this->generateMethodClass($method) . '\', \''
+          . $method->getClassName() . '\', \''
           . $method->getName() . '\'), $args);' . PHP_EOL;
     }
     else {
-      $code .= $this->generateMethodClass($method) . '::'
+      $code .= $method->getClassName() . '::'
           . $method->getName() . '('
           . $method->getParameterInvocations() . ');' . PHP_EOL;
     }
     return $code;
-  }
-
-  public function generateMethodClass(FactoryMethod $method) {
-    return $method->getClassName();
   }
 
   public function generateClosing() {

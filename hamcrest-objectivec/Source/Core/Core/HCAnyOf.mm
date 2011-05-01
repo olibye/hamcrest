@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCAnyOf.h"
 
-    // OCHamcrest
 #import "HCCollectMatchers.h"
 #import "HCDescription.h"
 
@@ -55,13 +53,14 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
 
-OBJC_EXPORT id<HCMatcher> HC_anyOf(id<HCMatcher> matcher, ...)
+#pragma mark -
+
+OBJC_EXPORT id<HCMatcher> HC_anyOf(id item, ...)
 {
     va_list args;
-    va_start(args, matcher);
-    NSArray *matcherList = HCCollectMatchers(matcher, args);
+    va_start(args, item);
+    NSArray *matcherList = HCCollectMatchers(item, args);
     va_end(args);
     
     return [HCAnyOf anyOf:matcherList];

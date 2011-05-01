@@ -5,14 +5,11 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCAssertThat.h"
 
-    // OCHamcrest
 #import "HCStringDescription.h"
 #import "HCMatcher.h"
 
-    // Objective-C
 #if TARGET_OS_IPHONE
     #import <objc/runtime.h>
 #else
@@ -70,7 +67,8 @@ NSException *createAssertThatFailure(const char *fileName, int lineNumber, NSStr
 
 }   // namespace
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 // As of 2010-09-09, the iPhone simulator has a bug where you can't catch
 // exceptions when they are thrown across NSInvocation boundaries. (See

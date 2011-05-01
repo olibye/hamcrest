@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Tests whether the value is an instance of a class (including subclasses).
+
+    @b Factory: @ref instanceOf
     @ingroup core_matchers
  */
 @interface HCIsInstanceOf : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Is the value an instance of a particular type?

@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsEqualIgnoringCase.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCRequireNonNilObject.h"
 
@@ -56,7 +54,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringCase(NSString *string)
 {

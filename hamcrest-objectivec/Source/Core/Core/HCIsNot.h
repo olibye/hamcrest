@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Calculates the logical negation of a matcher.
+
+    @b Factory: @ref isNot
     @ingroup core_matchers
 */
 @interface HCIsNot : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Inverts the rule, or provides a shortcut to the frequently used isNot(equalTo(x)).

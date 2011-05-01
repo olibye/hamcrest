@@ -5,7 +5,6 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
@@ -14,6 +13,7 @@
  
     If the given object is @c nil, the matcher will match @c nil.
  
+    @b Factory: @ref equalTo
     @ingroup core_matchers
  */
 @interface HCIsEqual : HCBaseMatcher
@@ -26,7 +26,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Is the object equal to another object, as tested by the @c -isEqual: method?

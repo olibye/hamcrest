@@ -5,7 +5,6 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
@@ -29,7 +28,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Is value > expected?

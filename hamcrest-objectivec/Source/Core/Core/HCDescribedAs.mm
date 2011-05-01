@@ -5,13 +5,9 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import "HCDescribedAs.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
-
-    // C++
 #import <cstdarg>
 #import <cctype>
 #import <utility>
@@ -47,7 +43,8 @@ pair<int, NSString*> separate(NSString *component)
 
 }   // namespace
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 @implementation HCDescribedAs
 
@@ -125,7 +122,8 @@ pair<int, NSString*> separate(NSString *component)
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_describedAs(NSString *description, id<HCMatcher> matcher, ...)
 {

@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCHasCount.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCIsEqualToNumber.h"
 
@@ -66,7 +64,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_hasCount(id<HCMatcher> matcher)
 {

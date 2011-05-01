@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Matches a collection if its elements, in order, satisfy a list of matchers.
+
+    @b Factory: @ref contains
     @ingroup collection_matchers
  */
 @interface HCIsCollectionContainingInOrder : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Matches a collection if its elements, in order, satisfy a list of matchers.

@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsEmptyCollection.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCIsEqualToNumber.h"
 
@@ -41,7 +39,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_empty()
 {

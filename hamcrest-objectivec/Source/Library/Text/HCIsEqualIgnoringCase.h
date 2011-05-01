@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Tests if a string is equal to another string, regardless of the case.
+
+    @b Factory: @ref equalToIgnoringCase
     @ingroup text_matchers
  */
 @interface HCIsEqualIgnoringCase : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Tests if a string is equal to another string, regardless of the case.

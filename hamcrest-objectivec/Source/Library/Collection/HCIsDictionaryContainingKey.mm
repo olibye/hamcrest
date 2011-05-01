@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsDictionaryContainingKey.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCRequireNonNilObject.h"
 #import "HCWrapInMatcher.h"
@@ -60,7 +58,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_hasKey(id matcherOrValue)
 {

@@ -5,7 +5,6 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
@@ -15,6 +14,7 @@
     Evaluation is shortcut, so the subsequent matchers are not called if an earlier matcher returns
     @c YES.
 
+    @b Factory: @ref anyOf
     @ingroup core_matchers
  */
 @interface HCAnyOf : HCBaseMatcher
@@ -27,24 +27,25 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Evaluates to @c YES if @em any of the given matchers evaluate to @c YES.
  
     @b Synonym: @ref anyOf
-    @param matcher1  Comma-separated list of matchers ending with @c nil.
+    @param matcherOrValue1  Comma-separated list of matchers - or values for @ref equalTo matching - ending with @c nil.
     @see HCAnyOf
     @ingroup core_matchers
  */
-OBJC_EXPORT id<HCMatcher> HC_anyOf(id<HCMatcher> matcher1, ...);
+OBJC_EXPORT id<HCMatcher> HC_anyOf(id matcherOrValue1, ...);
 
 /**
-    anyOf(matcher1, ...) -
+    anyOf(matcherOrValue1, ...) -
     Evaluates to @c YES if @em any of the given matchers evaluate to @c YES.
  
     Synonym for @ref HC_anyOf, available if @c HC_SHORTHAND is defined.
-    @param matcher1  Comma-separated list of matchers ending with @c nil.
+    @param matcherOrValue1  Comma-separated list of matchers - or values for @ref equalTo matching - ending with @c nil.
     @see HCAnyOf
     @ingroup core_matchers
  */

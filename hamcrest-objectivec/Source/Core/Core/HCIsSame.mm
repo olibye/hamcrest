@@ -5,16 +5,14 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsSame.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 
 
 @implementation HCIsSame
 
-+ (id)isSameAs:(id)anObject;
++ (id)isSameAs:(id)anObject
 {
     return [[[self alloc] initSameAs:anObject] autorelease];
 }
@@ -32,7 +30,7 @@
 - (void)dealloc
 {
     [object release];
-    
+
     [super dealloc];
 }
 
@@ -45,8 +43,10 @@
 
 - (void)describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
-    [[mismatchDescription appendText:[NSString stringWithFormat:@"was 0x%0x ", item]]
-                 appendDescriptionOf:item];
+    [mismatchDescription appendText:@"was "];
+    if (item != nil)
+        [mismatchDescription appendText:[NSString stringWithFormat:@"0x%0x ", item]];
+    [mismatchDescription appendDescriptionOf:item];
 }
 
 
@@ -58,7 +58,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_sameInstance(id object)
 {

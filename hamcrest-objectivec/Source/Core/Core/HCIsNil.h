@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Is the value @c nil?
+
+    @b Factory: @ref nilValue, @ref notNilValue
     @ingroup core_matchers
 */
 @interface HCIsNil : HCBaseMatcher
@@ -19,7 +20,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Matches if the value is @c nil.

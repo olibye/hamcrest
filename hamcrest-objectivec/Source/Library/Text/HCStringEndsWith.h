@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCSubstringMatcher.h>
 
 
 /**
     Tests if the argument is a string that ends with a substring.
+
+    @b Factory: @ref endsWith
     @ingroup text_matchers
  */
 @interface HCStringEndsWith : HCSubstringMatcher
@@ -19,7 +20,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Tests if the argument is a string that ends with a substring.

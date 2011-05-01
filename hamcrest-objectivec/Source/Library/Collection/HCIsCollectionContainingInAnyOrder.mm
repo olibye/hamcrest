@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsCollectionContainingInAnyOrder.h"
 
-    // OCHamcrest
 #import "HCAllOf.h"
 #import "HCDescription.h"
 #import "HCWrapInMatcher.h"
@@ -98,17 +96,18 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 @implementation HCIsCollectionContainingInAnyOrder
 
-+ (id)isCollectionContainingInAnyOrder:(NSMutableArray *)itemMatchers;
++ (id)isCollectionContainingInAnyOrder:(NSMutableArray *)itemMatchers
 {
     return [[[self alloc] initWithMatchers:itemMatchers] autorelease];
 }
 
 
-- (id)initWithMatchers:(NSMutableArray *)itemMatchers;
+- (id)initWithMatchers:(NSMutableArray *)itemMatchers
 {
     self = [super init];
     if (self != nil)
@@ -165,7 +164,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_containsInAnyOrder(id items, ...)
 {

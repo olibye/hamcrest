@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Matches dictionaries containing a value satisfying a given matcher.
+
+    @b Factory: @ref hasValue
     @ingroup collection_matchers
  */
 @interface HCIsDictionaryContainingValue : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Matches dictionaries containing a value satisfying a given matcher.

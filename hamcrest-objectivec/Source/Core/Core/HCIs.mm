@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIs.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCWrapInMatcher.h"
 
@@ -56,7 +54,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_is(id matcherOrValue)
 {

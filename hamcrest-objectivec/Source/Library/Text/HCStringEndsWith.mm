@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCStringEndsWith.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 
 
@@ -36,7 +34,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_endsWith(NSString *aSubstring)
 {

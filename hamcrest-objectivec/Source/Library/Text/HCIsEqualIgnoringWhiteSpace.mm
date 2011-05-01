@@ -5,14 +5,10 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsEqualIgnoringWhiteSpace.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCRequireNonNilObject.h"
-
-    // C++
 #import <cctype>
 using namespace std;
 
@@ -58,7 +54,8 @@ NSMutableString *stripSpace(NSString *string)
 
 }   // namespace
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 @implementation HCIsEqualIgnoringWhiteSpace
 
@@ -108,7 +105,8 @@ NSMutableString *stripSpace(NSString *string)
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringWhiteSpace(NSString *string)
 {

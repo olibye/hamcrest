@@ -5,13 +5,9 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsCloseTo.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
-
-    // C++
 #import <cmath>
 using namespace std;
 
@@ -69,7 +65,8 @@ using namespace std;
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_closeTo(double aValue, double anError)
 {

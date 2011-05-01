@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCStringStartsWith.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 
 
@@ -36,7 +34,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_startsWith(NSString *aSubstring)
 {

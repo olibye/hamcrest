@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Is the item the same object as another?
+
+    @b Factory: @ref sameInstance
     @ingroup core_matchers
 */
 @interface HCIsSame : HCBaseMatcher
@@ -23,7 +24,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Evaluates to @c YES only when the argument is this same object.

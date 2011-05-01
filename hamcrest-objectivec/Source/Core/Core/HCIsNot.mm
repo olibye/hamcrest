@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import "HCIsNot.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCWrapInMatcher.h"
 
@@ -51,7 +49,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_isNot(id matcherOrValue)
 {

@@ -5,15 +5,16 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCWrapInMatcher.h"
 
-    // OCHamcrest
 #import "HCIsEqual.h"
 
 
 OBJC_EXPORT id<HCMatcher> HCWrapInMatcher(id matcherOrValue)
 {
+    if (!matcherOrValue)
+        return nil;
+    
     if ([matcherOrValue conformsToProtocol:@protocol(HCMatcher)])
         return matcherOrValue;
     else

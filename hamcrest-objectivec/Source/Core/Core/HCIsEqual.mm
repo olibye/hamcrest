@@ -5,16 +5,14 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsEqual.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 
 
 @implementation HCIsEqual
 
-+ (id)isEqualTo:(id)anObject;
++ (id)isEqualTo:(id)anObject
 {
     return [[[self alloc] initEqualTo:anObject] autorelease];
 }
@@ -59,7 +57,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_equalTo(id object)
 {

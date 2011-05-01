@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsDictionaryContainingEntries.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCWrapInMatcher.h"
 
@@ -117,7 +115,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 static void requirePairedObject(id obj)
 {

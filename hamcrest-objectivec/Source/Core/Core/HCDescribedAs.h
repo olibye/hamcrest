@@ -5,12 +5,13 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
 /**
     Provides a custom description to another matcher.
+
+    @b Factory: @ref describedAs
     @ingroup core_matchers
  */
 @interface HCDescribedAs : HCBaseMatcher
@@ -30,7 +31,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Wraps an existing matcher and overrides the description when it fails.

@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCHasDescription.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCWrapInMatcher.h"
 
@@ -21,7 +19,7 @@
 }
 
 
-- (id)initWithDescription:(id<HCMatcher>)descriptionMatcher;
+- (id)initWithDescription:(id<HCMatcher>)descriptionMatcher
 {
     NSInvocation *anInvocation = [HCInvocationMatcher invocationForSelector:@selector(description)
                                                                     onClass:[NSObject class]];

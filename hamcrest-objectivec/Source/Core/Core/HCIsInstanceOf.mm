@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsInstanceOf.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 #import "HCRequireNonNilObject.h"
 
@@ -46,7 +44,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_instanceOf(Class type)
 {

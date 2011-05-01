@@ -5,7 +5,6 @@
 //  Created by: Jon Reid
 //
 
-    // Inherited
 #import <OCHamcrest/HCBaseMatcher.h>
 
 
@@ -13,6 +12,7 @@
     Matches dictionaries containing key-value pairs satisfying given lists of keys and value
     matchers.
  
+    @b Factory: @ref hasEntries
     @ingroup collection_matchers
  */
 @interface HCIsDictionaryContainingEntries : HCBaseMatcher
@@ -29,7 +29,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 /**
     Matches dictionaries containing key-value pairs satisfying a given lists of alternating keys and

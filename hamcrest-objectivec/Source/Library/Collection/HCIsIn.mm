@@ -5,10 +5,8 @@
 //  Created by: Jon Reid
 //
 
-    // Self
 #import "HCIsIn.h"
 
-    // OCHamcrest
 #import "HCDescription.h"
 
 
@@ -57,7 +55,8 @@
 
 @end
 
-//--------------------------------------------------------------------------------------------------
+
+#pragma mark -
 
 OBJC_EXPORT id<HCMatcher> HC_isIn(id aCollection)
 {

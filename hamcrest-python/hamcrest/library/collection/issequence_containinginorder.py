@@ -11,7 +11,7 @@ class MatchingInOrder(object):
     def __init__(self, matchers, mismatch_description):
         self.matchers = matchers
         self.mismatch_description = mismatch_description
-        self.next_match_index = 0;
+        self.next_match_index = 0
 
     def matches(self, item):
         return self.isnotsurplus(item) and self.ismatched(item)
@@ -42,7 +42,6 @@ class MatchingInOrder(object):
             return False
         return True
 
-#------------------------------------------------------------------------------
 
 class IsSequenceContainingInOrder(BaseMatcher):
     """Matches a sequence if its elements, in order, satisfy a list of
@@ -72,7 +71,6 @@ class IsSequenceContainingInOrder(BaseMatcher):
         description.append_text('a sequence containing ')   \
                    .append_list('[', ', ', ']', self.matchers)
 
-#------------------------------------------------------------------------------
 
 def contains(*items):
     """Matches a sequence if its elements, in order, satisfy a list of matchers.

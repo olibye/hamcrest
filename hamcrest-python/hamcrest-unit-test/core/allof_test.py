@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -13,12 +9,21 @@ from hamcrest.core.core.isequal import equal_to
 from matcher_test import MatcherTest
 import unittest
 
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
+
 
 class AllOfTest(MatcherTest):
 
     def testMatchesIfArgumentSatisfiesBothOfTwoOtherMatchers(self):
         self.assert_matches('both matchers',
                             all_of(equal_to('good'), equal_to('good')),
+                            'good')
+
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
+        self.assert_matches('both matchers',
+                            all_of('good', 'good'),
                             'good')
 
     def testNoMatchIfArgumentFailsToSatisfyEitherOfTwoOtherMatchers(self):

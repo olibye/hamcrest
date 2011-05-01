@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -13,6 +9,10 @@ from hamcrest.core.core.isequal import equal_to
 from matcher_test import MatcherTest
 from quasisequence import QuasiSequence
 import unittest
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsSequenceContainingInAnyOrderTest(MatcherTest):
@@ -30,7 +30,7 @@ class IsSequenceContainingInAnyOrderTest(MatcherTest):
                             contains_inanyorder(equal_to(1), equal_to(2)),
                             [2,1])
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         self.assert_matches("Values automatically wrapped with equal_to",
                             contains_inanyorder(1,2), [2,1])
 

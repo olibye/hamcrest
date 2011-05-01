@@ -18,15 +18,15 @@ class IsSame(BaseMatcher):
         description.append_text('same instance as ')            \
                    .append_text(hex(id(self.object)))           \
                    .append_text(' ')                            \
-                   .append_description_of(self.object)          \
+                   .append_description_of(self.object)
 
     def describe_mismatch(self, item, mismatch_description):
-        mismatch_description.append_text('was ')                \
-                            .append_text(hex(id(item)))         \
-                            .append_text(' ')                   \
-                            .append_description_of(item)
+        mismatch_description.append_text('was ')
+        if item is not None:
+            mismatch_description.append_text(hex(id(item)))         \
+                                .append_text(' ')
+        mismatch_description.append_description_of(item)
 
-#------------------------------------------------------------------------------
 
 def same_instance(object):
     """Evaluates to ``True`` only when the argument is this same object."""

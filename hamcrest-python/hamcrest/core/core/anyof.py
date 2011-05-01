@@ -1,8 +1,9 @@
+from hamcrest.core.base_matcher import BaseMatcher
+from hamcrest.core.helpers.wrap_matcher import wrap_matcher
+
 __author__ = "Jon Reid"
 __copyright__ = "Copyright 2011 hamcrest.org"
 __license__ = "BSD, see License.txt"
-
-from hamcrest.core.base_matcher import BaseMatcher
 
 
 class AnyOf(BaseMatcher):
@@ -25,11 +26,13 @@ class AnyOf(BaseMatcher):
     def describe_to(self, description):
         description.append_list('(', ' or ', ')', self.matchers)
 
-#------------------------------------------------------------------------------
 
-def any_of(*matchers):
+def any_of(*items):
     """Evaluates to ``True`` if *any* of the passed in matchers evaluate to
     ``True``.
 
+    :param items: Each item is a matcher, or a value for
+        :py:func:`~hamcrest.core.core.isequal.equal_to` matching.
+
     """
-    return AnyOf(*matchers)
+    return AnyOf(*[wrap_matcher(item) for item in items])

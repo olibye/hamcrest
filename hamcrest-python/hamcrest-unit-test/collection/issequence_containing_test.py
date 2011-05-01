@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -13,6 +9,10 @@ from hamcrest.core.core.isequal import equal_to
 from matcher_test import MatcherTest
 from quasisequence import QuasiSequence
 import unittest
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsSequenceContainingTest(MatcherTest):
@@ -26,7 +26,7 @@ class IsSequenceContainingTest(MatcherTest):
                                     has_item(equal_to('a')), ['b', 'c'])
         self.assert_does_not_match('empty', has_item(equal_to('a')), [])
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         self.assert_matches("sequence contains 'a'",
                             has_item('a'), ['a', 'b', 'c'])
         self.assert_does_not_match("sequence without 'a'",
@@ -48,7 +48,6 @@ class IsSequenceContainingTest(MatcherTest):
     def testDescribeMismatch(self):
         self.assert_describe_mismatch("was <42>", has_item('a'), 42)
 
-#------------------------------------------------------------------------------
 
 class IsSequenceContainingItemsTest(MatcherTest):
 
@@ -57,7 +56,7 @@ class IsSequenceContainingItemsTest(MatcherTest):
                             has_items(equal_to('a'), equal_to('b'), equal_to('c')),
                             ('a', 'b', 'c'))
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         self.assert_matches('Values automatically wrapped with equal_to',
                             has_items('a', 'b', 'c'),
                             ('a', 'b', 'c'))

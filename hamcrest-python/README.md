@@ -23,6 +23,12 @@ right." Such tests fail when the behavior of the aspect under test deviates
 from the expected behavior, yet continue to pass when minor, unrelated changes
 to the behaviour are made.
 
+Installation
+============
+
+Hamcrest can be installed using the usual Python packaging tools. It depends on
+distribute, but as long as you have a network connection when you install, the
+installation process will take care of that for you.
 
 My first PyHamcrest test
 ========================
@@ -67,8 +73,7 @@ it's a standalone function, it offers greater flexibility in test writing.
 A tour of common matchers
 =========================
 
-PyHamcrest comes with a library of useful matchers. Here are some of the most
-important ones.
+PyHamcrest comes with a library of useful matchers:
 
 * Core
 
@@ -98,7 +103,7 @@ important ones.
 
   * ``has_entry``, ``has_entries``, ``has_key``, ``has_value`` - tests that a dictionary
     contains an entry, key or value
-  * ``has_item``, ``contains``, ``contains_inanyorder`` - tests that a sequence contains elements
+  * ``has_item``, ``contains``, ``contains_inanyorder``, ``only_contains`` - tests that a sequence contains elements
 
 * Number
 
@@ -111,7 +116,7 @@ important ones.
   * ``equal_to_ignoring_case`` - tests string equality ignoring case
   * ``equal_to_ignoring_whitespace`` - test strings equality ignoring
     differences in runs of whitespace
-  * ``contains_string``, ``ends_with``, ``starts_with`` - tests string matching
+  * ``contains_string``, ``ends_with``, ``starts_with``, ``string_contains_in_order`` - tests string matching
 
 
 Syntactic sugar
@@ -132,6 +137,9 @@ with ``equal_to``. But if the argument is a type, it is wrapped with
     assert_that(theBiscuit, instance_of(Biscuit))
     assert_that(theBiscuit, is_(instance_of(Biscuit)))
     assert_that(theBiscuit, is_(Biscuit))
+
+*Note that PyHamcrest's ``is_`` matcher is unrelated to Python's ``is``
+operator. The matcher for object identity is ``same_instance``.*
 
 
 Writing custom matchers

@@ -1,10 +1,10 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 from hamcrest.core.base_matcher import BaseMatcher
 from hamcrest.core.helpers.hasmethod import hasmethod
 from hamcrest.core.helpers.wrap_matcher import wrap_matcher
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsDictContainingEntries(BaseMatcher):
@@ -55,7 +55,7 @@ class IsDictContainingEntries(BaseMatcher):
         """Describes key-value pair at given index."""
         description.append_description_of(self.keys[index])             \
                    .append_text(': ')                                   \
-                   .append_description_of(self.value_matchers[index])   \
+                   .append_description_of(self.value_matchers[index])
 
     def describe_to(self, description):
         description.append_text('a dictionary containing {')
@@ -66,7 +66,6 @@ class IsDictContainingEntries(BaseMatcher):
         self.describe_keyvalue(index, description)
         description.append_text('}')
 
-#------------------------------------------------------------------------------
 
 def has_entries(*keys_valuematchers):
     """Matches dictionaries containing key-value pairs satisfying a given list
@@ -81,7 +80,7 @@ def has_entries(*keys_valuematchers):
         raise SyntaxError('has_entries requires key-value pairs')
     keys = []
     value_matchers = []
-    for index in range(len(keys_valuematchers)/2):
+    for index in range(int(len(keys_valuematchers) / 2)):
         keys.append(keys_valuematchers[2 * index])
         value_matchers.append(wrap_matcher(keys_valuematchers[2 * index + 1]))
     return IsDictContainingEntries(keys, value_matchers)

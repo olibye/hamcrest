@@ -67,8 +67,7 @@ offers greater flexibility in test writing.
 A tour of common matchers
 -------------------------
 
-PyHamcrest comes with a library of useful matchers. Here are some of the most
-important ones.
+PyHamcrest comes with a library of useful matchers:
 
 * Core
 
@@ -110,7 +109,8 @@ important ones.
     tests that a dictionary contains an entry, key or value
   * :py:func:`~hamcrest.library.collection.issequence_containing.has_item`,
     :py:func:`~hamcrest.library.collection.issequence_containinginorder.contains`,
-    :py:func:`~hamcrest.library.collection.issequence_containinginanyorder.contains_inanyorder` -
+    :py:func:`~hamcrest.library.collection.issequence_containinginanyorder.contains_inanyorder`,
+    :py:func:`~hamcrest.library.collection.issequence_onlycontaining.only_contains` -
     tests that a sequence contains elements
 
 * Number
@@ -131,8 +131,9 @@ important ones.
     - test strings equality ignoring differences in runs of whitespace
   * :py:func:`~hamcrest.library.text.stringcontains.contains_string`,
     :py:func:`~hamcrest.library.text.stringendswith.ends_with`,
-    :py:func:`~hamcrest.library.text.stringstartswith.starts_with` - tests
-    string matching
+    :py:func:`~hamcrest.library.text.stringstartswith.starts_with`,
+    :py:func:`~hamcrest.library.text.stringcontainsinorder.string_contains_in_order`
+    - tests string matching
 
 
 .. _sugar:
@@ -158,3 +159,7 @@ also equivalent::
     assert_that(theBiscuit, instance_of(Biscuit))
     assert_that(theBiscuit, is_(instance_of(Biscuit)))
     assert_that(theBiscuit, is_(Biscuit))
+
+*Note that PyHamcrest's ``is_`` matcher is unrelated to Python's ``is``
+operator. The matcher for object identity is
+:py:func:`~hamcrest.core.core.issame.same_instance`.*

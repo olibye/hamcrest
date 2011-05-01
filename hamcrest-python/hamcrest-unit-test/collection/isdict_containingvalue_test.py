@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -13,6 +9,10 @@ from hamcrest.core.core.isequal import equal_to
 from matcher_test import MatcherTest
 from quasidict import QuasiDictionary
 import unittest
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsDictContainingValueTest(MatcherTest):
@@ -26,7 +26,7 @@ class IsDictContainingValueTest(MatcherTest):
         self.assert_matches('Matches 1', has_value(equal_to(1)), dict)
         self.assert_matches('Matches 3', has_value(equal_to(3)), dict)
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         dict = {'a': 1, 'b': 2, 'c': 3}
         self.assert_matches('Matches 3', has_value(3), dict)
 

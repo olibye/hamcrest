@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -14,6 +10,10 @@ from matcher_test import MatcherTest
 from quasidict import QuasiDictionary
 import unittest
 
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
+
 
 class IsDictContainingTest(MatcherTest):
 
@@ -23,7 +23,7 @@ class IsDictContainingTest(MatcherTest):
         self.assert_matches('has b:2', has_entry(equal_to('b'), equal_to(2)), dict)
         self.assert_does_not_match('no c:3', has_entry(equal_to('c'), equal_to(3)), dict)
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         dict = {'a': 1, 'b': 2}
         self.assert_matches('has a:1', has_entry('a', equal_to(1)), dict)
         self.assert_matches('has b:2', has_entry(equal_to('b'), 2), dict)

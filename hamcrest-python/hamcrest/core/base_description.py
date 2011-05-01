@@ -1,12 +1,12 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 from description import Description
 from selfdescribingvalue import SelfDescribingValue
 from helpers.hasmethod import hasmethod
 
 import warnings
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class BaseDescription(Description):
@@ -56,7 +56,8 @@ class BaseDescription(Description):
 
         self.append(start)
         for item in list:
-            if separate: self.append(separator)
+            if separate:
+                self.append(separator)
             self.append_description_of(item)
             separate = True
         self.append(end)

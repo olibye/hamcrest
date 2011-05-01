@@ -1,15 +1,16 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 import re
 
 from hamcrest.core.base_matcher import BaseMatcher, Matcher
 from isequal import equal_to
 from isinstanceof import instance_of
 
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
+
 
 ARG_PATTERN = re.compile('%([0-9]+)')
+
 
 class DescribedAs(BaseMatcher):
     """Provides a custom description to another matcher."""
@@ -36,7 +37,6 @@ class DescribedAs(BaseMatcher):
         if text_start < len(self.template):
             description.append_text(self.template[text_start:])
 
-#------------------------------------------------------------------------------
 
 def described_as(matcher, *values):
     """Wraps an existing matcher and overrides the description when it fails.

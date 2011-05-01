@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -12,6 +8,10 @@ from hamcrest.library.collection.isdict_containingentries import *
 from hamcrest.core.core.isequal import equal_to
 from matcher_test import MatcherTest
 import unittest
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsDictContainingEntriesTest(MatcherTest):
@@ -39,7 +39,7 @@ class IsDictContainingEntriesTest(MatcherTest):
         self.assert_does_not_match('no d:3',
                         has_entries('b', equal_to(3), 'd', equal_to(3)), dict)
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         dict = {'a': 1, 'b': 2, 'c': 3}
         self.assert_matches('has a & b', has_entries('a', 1, 'b', 2), dict)
         self.assert_matches('has c & a', has_entries('c', 3, 'a', 1), dict)

@@ -1,7 +1,3 @@
-__author__ = "Jon Reid"
-__copyright__ = "Copyright 2011 hamcrest.org"
-__license__ = "BSD, see License.txt"
-
 if __name__ == '__main__':
     import sys
     sys.path.insert(0, '..')
@@ -14,6 +10,10 @@ from hamcrest.library.number.ordering_comparison import less_than
 from matcher_test import MatcherTest
 from quasisequence import QuasiSequence
 import unittest
+
+__author__ = "Jon Reid"
+__copyright__ = "Copyright 2011 hamcrest.org"
+__license__ = "BSD, see License.txt"
 
 
 class IsSequenceOnlyContainingTest(MatcherTest):
@@ -30,7 +30,7 @@ class IsSequenceOnlyContainingTest(MatcherTest):
                             only_contains(less_than(3), equal_to(7)),
                             [0, 7, 1, 2])
 
-    def testProvidesConvenientShortcutForMatchingWithIsEqualTo(self):
+    def testProvidesConvenientShortcutForMatchingWithEqualTo(self):
         self.assert_matches('Values automatically wrapped with equal_to',
                             only_contains(less_than(3), 7),
                             [0, 7, 1, 2])

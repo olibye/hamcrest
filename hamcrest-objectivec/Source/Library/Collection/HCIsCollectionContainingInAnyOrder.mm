@@ -30,7 +30,7 @@
    mismatchDescription:(id<HCDescription, NSObject>)description
 {
     self = [super init];
-    if (self != nil)
+    if (self)
     {
         matchers = [itemMatchers retain];
         mismatchDescription = [description retain];        
@@ -38,21 +38,17 @@
     return self;
 }
 
-
 - (void)dealloc
 {
     [matchers release];
     [mismatchDescription release];
-    
     [super dealloc];
 }
-
 
 - (BOOL)matches:(id)item
 {
     return [self isNotSurplus:item] && [self isMatched:item];
 }
-
 
 - (BOOL)isFinishedWith:(NSArray *)collection
 {
@@ -66,7 +62,6 @@
     return NO;
 }
 
-
 - (BOOL)isNotSurplus:(id)item
 {
     if ([matchers count] == 0)
@@ -76,7 +71,6 @@
     }
     return YES;
 }
-
 
 - (BOOL)isMatched:(id)item
 {
@@ -106,15 +100,13 @@
     return [[[self alloc] initWithMatchers:itemMatchers] autorelease];
 }
 
-
 - (id)initWithMatchers:(NSMutableArray *)itemMatchers
 {
     self = [super init];
-    if (self != nil)
+    if (self)
         matchers = [itemMatchers retain];
     return self;
 }
-
 
 - (void)dealloc
 {
@@ -122,12 +114,10 @@
     [super dealloc];
 }
 
-
 - (BOOL)matches:(id)collection
 {
     return [self matches:collection describingMismatchTo:nil];
 }
-
 
 - (BOOL)matches:(id)collection describingMismatchTo:(id<HCDescription, NSObject>)mismatchDescription
 {
@@ -141,19 +131,16 @@
         [[[HCMatchingInAnyOrder alloc] initWithMatchers:matchers 
                                     mismatchDescription:mismatchDescription] autorelease];
     for (id item in collection)
-    {
         if (![matchSequence matches:item])
             return NO;
-    }
+    
     return [matchSequence isFinishedWith:collection];
 }
 
-
 - (void)describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
-    (void) [self matches:item describingMismatchTo:mismatchDescription];
+    [self matches:item describingMismatchTo:mismatchDescription];
 }
-
 
 - (void)describeTo:(id<HCDescription>)description
 {
@@ -167,17 +154,17 @@
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_containsInAnyOrder(id items, ...)
+OBJC_EXPORT id<HCMatcher> HC_containsInAnyOrder(id itemMatch, ...)
 {
-    NSMutableArray *matchers = [NSMutableArray arrayWithObject:HCWrapInMatcher(items)];
+    NSMutableArray *matchers = [NSMutableArray arrayWithObject:HCWrapInMatcher(itemMatch)];
     
     va_list args;
-    va_start(args, items);
-    items = va_arg(args, id);
-    while (items != nil)
+    va_start(args, itemMatch);
+    itemMatch = va_arg(args, id);
+    while (itemMatch != nil)
     {
-        [matchers addObject:HCWrapInMatcher(items)];
-        items = va_arg(args, id);
+        [matchers addObject:HCWrapInMatcher(itemMatch)];
+        itemMatch = va_arg(args, id);
     }
     va_end(args);
     

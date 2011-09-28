@@ -19,12 +19,11 @@
     return [[[self alloc] initWithKeys:theKeys valueMatchers:theValueMatchers] autorelease];
 }
 
-
 - (id)initWithKeys:(NSArray *)theKeys
      valueMatchers:(NSArray *)theValueMatchers
 {
     self = [super init];
-    if (self != nil)
+    if (self)
     {
         keys = [theKeys retain];
         valueMatchers = [theValueMatchers retain];
@@ -32,21 +31,17 @@
     return self;
 }
 
-
 - (void)dealloc
 {
     [valueMatchers release];
     [keys release];
-    
     [super dealloc];
 }
-
 
 - (BOOL)matches:(id)item
 {
     return [self matches:item describingMismatchTo:nil];
 }
-
 
 - (BOOL)matches:(id)dict describingMismatchTo:(id<HCDescription>)mismatchDescription
 {
@@ -85,14 +80,11 @@
     return YES;
 }
 
-
 - (void)describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
-    (void) [self matches:item describingMismatchTo:mismatchDescription];
+    [self matches:item describingMismatchTo:mismatchDescription];
 }
 
-
-/// Describes key-value pair at given index.
 - (void)describeKeyValueAtIndex:(NSUInteger)index to:(id<HCDescription>)description
 {
     [[[[description appendDescriptionOf:[keys objectAtIndex:index]]
@@ -100,7 +92,6 @@
                     appendDescriptionOf:[valueMatchers objectAtIndex:index]]
                     appendText:@"; "];
 }
-
 
 - (void)describeTo:(id<HCDescription>)description
 {
@@ -118,7 +109,9 @@
 
 #pragma mark -
 
-static void requirePairedObject(id obj)
+namespace {
+
+void requirePairedObject(id obj)
 {
     if (obj == nil)
     {
@@ -128,13 +121,15 @@ static void requirePairedObject(id obj)
     }
 }
 
+}   // namespace
 
-OBJC_EXPORT id<HCMatcher> HC_hasEntries(id keysAndValueMatchers, ...)
+
+OBJC_EXPORT id<HCMatcher> HC_hasEntries(id keysAndValueMatch, ...)
 {
     va_list args;
-    va_start(args, keysAndValueMatchers);
+    va_start(args, keysAndValueMatch);
     
-    id key = keysAndValueMatchers;
+    id key = keysAndValueMatch;
     id valueMatcher = va_arg(args, id);
     requirePairedObject(valueMatcher);
     NSMutableArray *keys = [NSMutableArray arrayWithObject:key];

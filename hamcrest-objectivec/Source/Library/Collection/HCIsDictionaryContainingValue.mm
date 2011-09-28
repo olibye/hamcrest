@@ -19,15 +19,13 @@
     return [[[self alloc] initWithValueMatcher:theValueMatcher] autorelease];
 }
 
-
 - (id)initWithValueMatcher:(id<HCMatcher>)theValueMatcher
 {
     self = [super init];
-    if (self != nil)
+    if (self)
         valueMatcher = [theValueMatcher retain];
     return self;
 }
-
 
 - (void)dealloc
 {
@@ -35,20 +33,14 @@
     [super dealloc];
 }
 
-
 - (BOOL)matches:(id)dict
 {
     if ([dict respondsToSelector:@selector(allValues)])
-    {
         for (id oneValue in [dict allValues])
-        {
             if ([valueMatcher matches:oneValue])
                 return YES;
-        }
-    }
     return NO;
 }
-
 
 - (void)describeTo:(id<HCDescription>)description
 {
@@ -61,8 +53,8 @@
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_hasValue(id matcherOrValue)
+OBJC_EXPORT id<HCMatcher> HC_hasValue(id valueMatch)
 {
-    HCRequireNonNilObject(matcherOrValue);
-    return [HCIsDictionaryContainingValue isDictionaryContainingValue:HCWrapInMatcher(matcherOrValue)];
+    HCRequireNonNilObject(valueMatch);
+    return [HCIsDictionaryContainingValue isDictionaryContainingValue:HCWrapInMatcher(valueMatch)];
 }

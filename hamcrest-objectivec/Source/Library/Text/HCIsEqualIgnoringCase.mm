@@ -18,24 +18,21 @@
     return [[[self alloc] initWithString:aString] autorelease];
 }
 
-
 - (id)initWithString:(NSString *)aString
 {
     HCRequireNonNilObject(aString);
     
     self = [super init];
-    if (self != nil)
+    if (self)
         string = [aString copy];
     return self;
 }
-
 
 - (void)dealloc
 {
     [string release];
     [super dealloc];
 }
-
 
 - (BOOL)matches:(id)item
 {
@@ -44,7 +41,6 @@
     
     return [string caseInsensitiveCompare:item] == NSOrderedSame;
 }
-
 
 - (void)describeTo:(id<HCDescription>)description
 {
@@ -57,7 +53,7 @@
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringCase(NSString *string)
+OBJC_EXPORT id<HCMatcher> HC_equalToIgnoringCase(NSString *aString)
 {
-    return [HCIsEqualIgnoringCase isEqualIgnoringCase:string];
+    return [HCIsEqualIgnoringCase isEqualIgnoringCase:aString];
 }

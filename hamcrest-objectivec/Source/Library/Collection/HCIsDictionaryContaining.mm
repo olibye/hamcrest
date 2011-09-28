@@ -21,12 +21,11 @@
                     initWithKeyMatcher:aKeyMatcher valueMatcher:aValueMatcher] autorelease];
 }
 
-
 - (id)initWithKeyMatcher:(id<HCMatcher>)aKeyMatcher
             valueMatcher:(id<HCMatcher>)aValueMatcher
 {
     self = [super init];
-    if (self != nil)
+    if (self)
     {
         keyMatcher = [aKeyMatcher retain];
         valueMatcher = [aValueMatcher retain];
@@ -34,29 +33,21 @@
     return self;
 }
 
-
 - (void)dealloc
 {
     [valueMatcher release];
     [keyMatcher release];
-    
     [super dealloc];
 }
-
 
 - (BOOL)matches:(id)dict
 {
     if ([dict isKindOfClass:[NSDictionary class]])
-    {
         for (id oneKey in dict)
-        {
             if ([keyMatcher matches:oneKey] && [valueMatcher matches:[dict objectForKey:oneKey]])
                 return YES;
-        }
-    }
     return NO;
 }
-
 
 - (void)describeTo:(id<HCDescription>)description
 {
@@ -72,10 +63,10 @@
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_hasEntry(id keyMatcher, id valueMatcher)
+OBJC_EXPORT id<HCMatcher> HC_hasEntry(id keyMatch, id valueMatch)
 {
-    HCRequireNonNilObject(keyMatcher);
-    HCRequireNonNilObject(valueMatcher);
-    return [HCIsDictionaryContaining isDictionaryContainingKey:HCWrapInMatcher(keyMatcher)
-                                                         value:HCWrapInMatcher(valueMatcher)];
+    HCRequireNonNilObject(keyMatch);
+    HCRequireNonNilObject(valueMatch);
+    return [HCIsDictionaryContaining isDictionaryContainingKey:HCWrapInMatcher(keyMatch)
+                                                         value:HCWrapInMatcher(valueMatch)];
 }

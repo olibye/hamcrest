@@ -13,7 +13,7 @@
     @li @ref intro
     @li @ref platforms
     @li @ref firsttest
-    @li @ref tour
+    @li @ref predefined
     @li @ref sugar
     @li @ref custom
 
@@ -61,8 +61,8 @@
     @section firsttest My first OCHamcrest test
 
     We'll start by writing a very simple Xcode unit test, but instead of using OCUnit's
-    @c STAssertEqualObjects function, we'll use OCHamcrest's @c assertThat construct and the
-    standard set of matchers.
+    @c STAssertEqualObjects function, we'll use OCHamcrest's @c assertThat construct and a
+    predefined matcher:
 
     @code
 #import <SenTestingKit/SenTestingKit.h>
@@ -98,51 +98,67 @@
     @ref assertThat.
 
 
-    @section tour A tour of common matchers
+    @section predefined Predefined matchers
 
     OCHamcrest comes with a library of useful matchers:
 
     <ul>
-    <li>Core</li>
-        <ul>
-        <li>@ref anything - always matches, useful if you don't care what the object under test is</li>
-        <li>@ref describedAs - decorator to add custom failure description</li>
-        <li>@ref is - decorator to improve readability - see @ref sugar, below</li>
-        </ul>
-    <li>Logical</li>
-        <ul>
-        <li>@ref allOf - matches if all matchers match, short circuits (like C's @c &&)</li>
-        <li>@ref anyOf - matches if any matchers match, short circuits (like C's @c ||)</li>
-        <li>@ref isNot - matches if the wrapped matcher doesn't match and vice versa</li>
-        </ul>
     <li>Object</li>
         <ul>
-        <li>@ref equalTo - tests object equality using @c -isEqual:</li>
-        <li>@ref hasDescription - tests whether @c -description satisfies a given matcher</li>
-        <li>@ref instanceOf - tests type</li>
-        <li>@ref notNilValue, @ref nilValue - tests for nil</li>
-        <li>@ref sameInstance - tests object identity</li>
-        </ul>
-    <li>Collections</li>
-        <ul>
-        <li>@ref hasEntry, @ref hasEntries, @ref hasKey, @ref hasValue - tests that an NSDictionary contains an entry, key
-            or value</li>
-        <li>@ref hasItem, @ref contains, @ref containsInAnyOrder, @ref onlyContains - tests that a collection contains elements</li>
-        <li>@ref hasCount, @ref hasCountOf - tests that a collection has a given number of elements</li>
+        <li>@ref equalTo - match equal object</li>
+        <li>@ref hasDescription - match object's @c -description</li>
+		<li>@ref hasProperty - match return value of method with given name</li>
+        <li>@ref instanceOf - match object type</li>
+        <li>@ref nilValue, @ref notNilValue - match for @c nil, or not @c nil</li>
+        <li>@ref sameInstance - match same object</li>
         </ul>
     <li>Number</li>
         <ul>
-        <li>@ref closeTo - tests that floating point values are close to a given value</li>
-        <li>@ref greaterThan, @ref greaterThanOrEqualTo, @ref lessThan, @ref lessThanOrEqualTo -
-            tests ordering</li>
+        <li>@ref closeTo - match number close to a given value</li>
+        <li>@b equalTo&lt;TypeName&gt; - match number equal to a primitive number (such as @ref equalToInt for an @c int)</li>
+        <li>@ref greaterThan, @ref greaterThanOrEqualTo, @ref lessThan, @ref lessThanOrEqualTo - match numeric ordering</li>
         </ul>
     <li>Text</li>
         <ul>
-        <li>@ref equalToIgnoringCase - tests string equality ignoring case</li>
-        <li>@ref equalToIgnoringWhiteSpace - tests string equality ignoring differences in runs of whitespace</li>
-        <li>@ref containsString, @ref endsWith, @ref startsWith, @ref stringContainsInOrder - tests string matching</li>
+        <li>@ref containsString - match part of a string</li>
+        <li>@ref endsWith - match the end of a string</li>
+        <li>@ref equalToIgnoringCase - match the complete string but ignore case</li>
+        <li>@ref equalToIgnoringWhitespace - match the complete string but ignore extra whitespace</li>
+        <li>@ref startsWith - match the beginning of a string</li>
+        <li>@ref stringContainsInOrder - match parts of a string, in relative order</li>
+        </ul>
+    <li>Logical</li>
+        <ul>
+        <li>@ref allOf - "and" together all matchers</li>
+        <li>@ref anyOf - "or" together all matchers</li>
+        <li>@ref anything - match anything, useful in composite matchers when you don't care about a particular value</li>
+        <li>@ref isNot - negate the matcher</li>
+        </ul>
+    <li>Collection</li>
+        <ul>
+        <li>@ref contains - exactly match the entire collection</li>
+        <li>@ref containsInAnyOrder - match the entire collection, but in any order</li>
+        <li>@ref empty - match empty collection</li>
+        <li>@ref hasCount - match number of elements against another matcher</li>
+        <li>@ref hasCountOf - match collection with given number of elements</li>
+        <li>@ref hasEntries - match dictionary with list of key-value pairs</li>
+        <li>@ref hasEntry - match dictionary containing a key-value pair</li>
+        <li>@ref hasKey - match dictionary with a key</li>
+        <li>@ref hasValue - match dictionary with a value</li>
+        <li>@ref hasItems - match if given item appears in the collection</li>
+        <li>@ref onlyContains -  match if collections's items appear in given list</li>
+        </ul>
+    <li>Decorator</li>
+        <ul>
+        <li>@ref describedAs - give the matcher a custom failure description</li>
+        <li>@ref is - decorator to improve readability - see @ref sugar, below</li>
         </ul>
     </ul>
+    
+    The arguments for many of these matchers accept not just a matching value, but another matcher,
+    so matchers can be composed for greater flexibility. For example,
+    <tt>only_contains(endsWith(\@"."))</tt> will match any collection where every item is a string
+    ending with period.
 
 
     @section sugar Syntactic sugar

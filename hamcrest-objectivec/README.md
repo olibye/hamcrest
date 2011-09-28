@@ -2,6 +2,12 @@
 * [Latest sources](https://github.com/jonreid/OCHamcrest)
 * [Hamcrest information](http://code.google.com/p/hamcrest/)
 
+See also:
+
+* [PyHamcrest](http://pypi.python.org/pypi/PyHamcrest) - Python version.
+* [Quality Coding](http://jonreid.blogs.com/qualitycoding/) - Tools, tips and
+techniques for _building quality in_ to your iOS programs.
+
 
 Introduction
 ============
@@ -20,7 +26,7 @@ precisely the aspect under test and describe the values it should have, to a
 controlled level of precision, helps greatly in writing tests that are "just
 right." Such tests fail when the behavior of the aspect under test deviates from
 the expected behavior, yet continue to pass when minor, unrelated changes to the
-behaviour are made.
+behavior are made.
 
 
 Cocoa and iOS
@@ -38,8 +44,8 @@ the Run Script phase that executes tests.
 
 Add:
 
-      #define HC_SHORTHAND
-      #import <OCHamcrest/OCHamcrest.h>
+    #define HC_SHORTHAND
+    #import <OCHamcrest/OCHamcrest.h>
 
 
 __iOS:__
@@ -58,8 +64,8 @@ My first OCHamcrest test
 ========================
 
 We'll start by writing a very simple Xcode unit test, but instead of using
-OCUnit's ``STAssertEqualObjects`` function, we'll use Hamcrest's ``assertThat``
-construct and the standard set of matchers:
+OCUnit's ``STAssertEqualObjects`` function, we'll use OCHamcrest's
+``assertThat`` construct and a predefined matcher:
 
     #import <SenTestingKit/SenTestingKit.h>
 
@@ -94,53 +100,70 @@ writing faster and test code more legible, shorthand macros are provided if
 instead of writing ``HC_assertThat``, simply write ``assertThat``.
 
 
-A tour of common matchers
-=========================
+Predefined matchers
+===================
 
-Hamcrest comes with a library of useful matchers:
-
-* Core
-
-  * ``anything`` - always matches, useful if you don't care what the object
-    under test is
-  * ``describedAs`` - decorator to add custom failure description
-  * ``is`` - decorator to improve readability - see `Syntactic sugar`, below
-
-* Logical
-
-  * ``allOf`` - matches if all matchers match, short circuits (like C's ``&&``)
-  * ``anyOf`` - matches if any matchers match, short circuits (like C's ``||``)
-  * ``isNot`` - matches if the wrapped matcher doesn't match and vice versa
+OCHamcrest comes with a library of useful matchers:
 
 * Object
 
-  * ``equalTo`` - tests object equality using ``-isEqual:``
-  * ``hasDescription`` - tests whether ``-description`` satisfies another
-    matcher
-  * ``instanceOf`` - tests type
-  * ``nilValue``, ``notNilValue`` - tests for nil
-  * ``sameInstance`` - tests object identity
-
-* Collections
-
-  * ``hasEntry``, ``hasEntries``, ``hasKey``, ``hasValue`` - tests that an NSDictionary
-    contains an entry, key or value
-  * ``hasItem``, ``contains``, ``containsInAnyOrder``, ``onlyContains`` - tests that a collection contains elements
-  * ``hasCount``, ``hasCountOf`` - tests that a collection has a given number of elements
+  * ``equalTo`` - match equal object
+  * ``hasDescription`` - match object's ``-description``
+  * ``hasProperty`` - match return value of method with given name
+  * ``instanceOf`` - match object type
+  * ``nilValue``, ``notNilValue`` - match @c nil, or not @nil
+  * ``sameInstance`` - match same object
 
 * Number
 
-  * ``closeTo`` - tests that numeric values are close to a given value
+  * ``closeTo`` - match number close to a given value
+  * equalTo<TypeName> - match number equal to a primitive number (such as
+  ``equalToInt`` for an ``int``)
   * ``greaterThan``, ``greaterThanOrEqualTo``, ``lessThan``,
-    ``lessThanOrEqualTo`` - tests ordering
+  ``lessThanOrEqualTo`` - match numeric ordering
 
 * Text
 
-  * ``equalToIgnoringCase`` - tests string equality ignoring case
-  * ``equalToIgnoringWhitespace`` - test strings equality ignoring
-    differences in runs of whitespace
-  * ``containsString``, ``endsWith``, ``startsWith``, ``stringContainsInOrder``,  - tests string
-    matching
+  * ``containsString`` - match part of a string
+  * ``endsWith`` - match the end of a string
+  * ``equalToIgnoringCase`` - match the complete string but ignore case
+  * ``equalToIgnoringWhitespace`` - match the complete string but ignore
+  extra whitespace
+  * ``startsWith`` - match the beginning of a string
+  * ``stringContainsInOrder`` - match parts of a string, in relative order
+
+* Logical
+
+  * ``allOf`` - "and" together all matchers
+  * ``anyOf`` - "or" together all matchers
+  * ``anything`` - match anything, useful in composite matchers when you don't
+  care about a particular value
+  * ``isNot`` - negate the matcher
+
+* Collection
+
+  * ``contains`` - exactly match the entire collection
+  * ``containsInAnyOrder`` - match the entire collection, but in any order
+  * ``empty`` - match empty collection
+  * ``hasCount`` - match number of elements against another matcher
+  * ``hasCountOf`` - match collection with given number of elements
+  * ``hasEntries`` - match dictionary with list of key-value pairs
+  * ``hasEntry`` - match dictionary containing a key-value pair
+  * ``hasKey`` - match dictionary with a key
+  * ``hasValue`` - match dictionary with a value
+  * ``hasItem`` - match if given item appears in the collection
+  * ``hasItems`` - match if all given items appear in the collection, in any order
+  * ``onlyContains`` - match if collections's items appear in given list
+
+* Decorator
+
+  * ``describedAs`` - give the matcher a custom failure description
+  * ``is`` - decorator to improve readability - see `Syntactic sugar` below
+
+The arguments for many of these matchers accept not just a matching value, but
+another matcher, so matchers can be composed for greater flexibility. For
+example, ``only_contains(endsWith(@"."))`` will match any collection where
+every item is a string ending with period.
 
 
 Syntactic sugar

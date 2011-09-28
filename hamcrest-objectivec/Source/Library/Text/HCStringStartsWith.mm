@@ -17,7 +17,6 @@
     return [[[self alloc] initWithSubstring:aSubstring] autorelease];
 }
 
-
 - (BOOL)matches:(id)item
 {
     if (![item respondsToSelector:@selector(hasPrefix:)])
@@ -25,7 +24,6 @@
     
     return [item hasPrefix:substring];
 }
-
 
 - (NSString *)relationship
 {
@@ -37,7 +35,7 @@
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_startsWith(NSString *aSubstring)
+OBJC_EXPORT id<HCMatcher> HC_startsWith(NSString *aString)
 {
-    return [HCStringStartsWith stringStartsWith:aSubstring];
+    return [HCStringStartsWith stringStartsWith:aString];
 }

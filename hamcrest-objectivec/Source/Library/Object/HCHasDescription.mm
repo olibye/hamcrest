@@ -18,7 +18,6 @@
     return [[[self alloc] initWithDescription:descriptionMatcher] autorelease];
 }
 
-
 - (id)initWithDescription:(id<HCMatcher>)descriptionMatcher
 {
     NSInvocation *anInvocation = [HCInvocationMatcher invocationForSelector:@selector(description)
@@ -31,7 +30,7 @@
 @end
 
 
-OBJC_EXPORT id<HCMatcher> HC_hasDescription(id matcherOrValue)
+OBJC_EXPORT id<HCMatcher> HC_hasDescription(id match)
 {
-    return [HCHasDescription hasDescription:HCWrapInMatcher(matcherOrValue)];
+    return [HCHasDescription hasDescription:HCWrapInMatcher(match)];
 }

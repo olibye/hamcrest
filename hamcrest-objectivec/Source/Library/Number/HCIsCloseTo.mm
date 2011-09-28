@@ -19,18 +19,16 @@ using namespace std;
     return [[[self alloc] initWithValue:aValue delta:aDelta] autorelease];
 }
 
-
 - (id)initWithValue:(double)aValue delta:(double)aDelta
 {
     self = [super init];
-    if (self != nil)
+    if (self)
     {
         value = aValue;
         delta = aDelta;
     }
     return self;
 }
-
 
 - (BOOL)matches:(id)item
 {
@@ -39,7 +37,6 @@ using namespace std;
     
     return fabs([item doubleValue] - value) <= delta;
 }
-
 
 - (void)describeMismatchOf:(id)item to:(id<HCDescription>)mismatchDescription
 {
@@ -54,7 +51,6 @@ using namespace std;
     }
 }
 
-
 - (void)describeTo:(id<HCDescription>)description
 {
     [[[[description appendText:@"a numeric value within "]
@@ -68,7 +64,7 @@ using namespace std;
 
 #pragma mark -
 
-OBJC_EXPORT id<HCMatcher> HC_closeTo(double aValue, double anError)
+OBJC_EXPORT id<HCMatcher> HC_closeTo(double value, double delta)
 {
-    return [HCIsCloseTo isCloseTo:aValue within:anError];
+    return [HCIsCloseTo isCloseTo:value within:delta];
 }

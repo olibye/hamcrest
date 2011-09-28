@@ -1,12 +1,14 @@
 Matcher Library
 ===============
 
-Library of Matcher implementations
+Library of Matcher implementations.
 
 .. toctree::
 
-    core_matchers
-    collection_matchers
-    number_matchers
     object_matchers
+    number_matchers
     text_matchers
+    logical_matchers
+    sequence_matchers
+    dictionary_matchers
+    decorator_matchers

@@ -8,35 +8,35 @@ __license__ = "BSD, see License.txt"
 
 
 class IsDictContainingEntries(BaseMatcher):
-    """Matches dictionaries containing key-value pairs satisfying given lists
-    of keys and value matchers.
 
-    """
-
-    def __init__(self, keys, value_matchers):
-        self.keys = keys
+    def __init__(self, value_matchers):
         self.value_matchers = value_matchers
 
+    def _not_a_dictionary(self, dictionary, mismatch_description):
+        if mismatch_description:
+            mismatch_description.append_description_of(dictionary) \
+                                .append_text(' is not a mapping object')
+        return False
+
     def matches(self, dictionary, mismatch_description=None):
-        if not isinstance(dictionary, dict):
-            if mismatch_description:
-                super(IsDictContainingEntries, self).   \
-                    describe_mismatch(dictionary, mismatch_description)
-            return False
+        for key in self.value_matchers:
 
-        for index in range(len(self.keys)):
-            key = self.keys[index]
+            try:
+                if not key in dictionary:
+                    if mismatch_description:
+                        mismatch_description.append_text('no ')             \
+                                            .append_description_of(key)     \
+                                            .append_text(' key in ')        \
+                                            .append_description_of(dictionary)
+                    return False
+            except TypeError:
+                return self._not_a_dictionary(dictionary, mismatch_description)
 
-            if not key in dictionary:
-                if mismatch_description:
-                    mismatch_description.append_text('no ')             \
-                                        .append_description_of(key)     \
-                                        .append_text(' key in ')        \
-                                        .append_description_of(dictionary)
-                return False
-
-            value_matcher = self.value_matchers[index]
-            actual_value = dictionary[key]
+            value_matcher = self.value_matchers[key]
+            try:
+                actual_value = dictionary[key]
+            except TypeError:
+                return self._not_a_dictionary(dictionary, mismatch_description)
 
             if not value_matcher.matches(actual_value):
                 if mismatch_description:
@@ -53,34 +53,82 @@ class IsDictContainingEntries(BaseMatcher):
 
     def describe_keyvalue(self, index, description):
         """Describes key-value pair at given index."""
-        description.append_description_of(self.keys[index])             \
+        description.append_description_of(index)                        \
                    .append_text(': ')                                   \
                    .append_description_of(self.value_matchers[index])
 
     def describe_to(self, description):
         description.append_text('a dictionary containing {')
-        for index in range(len(self.keys) - 1):
-            self.describe_keyvalue(index, description)
-            description.append_text(', ')
-        index = len(self.keys) - 1
-        self.describe_keyvalue(index, description)
+        first = True
+        for key in self.value_matchers:
+            if not first:
+                description.append_text(', ')
+            self.describe_keyvalue(key, description)
+            first = False
         description.append_text('}')
 
 
-def has_entries(*keys_valuematchers):
-    """Matches dictionaries containing key-value pairs satisfying a given list
-    of alternating keys and value matchers.
+def has_entries(*keys_valuematchers, **kv_args):
+    """Matches if dictionary contains entries satisfying a dictionary of keys
+    and corresponding value matchers.
 
-    :param keys_valuematchers: Alternating pairs of keys and value matchers (or
-        straight values for :py:func:`~hamcrest.core.core.isequal.equal_to`
-        matching.
+    :param matcher_dict: A dictionary mapping keys to associated value matchers,
+        or to expected values for
+        :py:func:`~hamcrest.core.core.isequal.equal_to` matching.
+
+    Note that the keys must be actual keys, not matchers. Any value argument
+    that is not a matcher is implicitly wrapped in an
+    :py:func:`~hamcrest.core.core.isequal.equal_to` matcher to check for
+    equality.
+
+    Examples::
+
+        has_entries({'foo':equal_to(1), 'bar':equal_to(2)})
+        has_entries({'foo':1, 'bar':2})
+
+    ``has_entries`` also accepts a list of keyword arguments:
+
+    .. function:: has_entries(keyword1=value_matcher1[, keyword2=value_matcher2[, ...]])
+
+    :param keyword1: A keyword to look up.
+    :param valueMatcher1: The matcher to satisfy for the value, or an expected
+        value for :py:func:`~hamcrest.core.core.isequal.equal_to` matching.
+
+    Examples::
+
+        has_entries(foo=equal_to(1), bar=equal_to(2))
+        has_entries(foo=1, bar=2)
+
+    Finally, ``has_entries`` also accepts a list of alternating keys and their
+    value matchers:
+
+    .. function:: has_entries(key1, value_matcher1[, ...])
+
+    :param key1: A key (not a matcher) to look up.
+    :param valueMatcher1: The matcher to satisfy for the value, or an expected
+        value for :py:func:`~hamcrest.core.core.isequal.equal_to` matching.
+
+    Examples::
+
+        has_entries('foo', equal_to(1), 'bar', equal_to(2))
+        has_entries('foo', 1, 'bar', 2)
 
     """
-    if len(keys_valuematchers) % 2:
-        raise SyntaxError('has_entries requires key-value pairs')
-    keys = []
-    value_matchers = []
-    for index in range(int(len(keys_valuematchers) / 2)):
-        keys.append(keys_valuematchers[2 * index])
-        value_matchers.append(wrap_matcher(keys_valuematchers[2 * index + 1]))
-    return IsDictContainingEntries(keys, value_matchers)
+    if len(keys_valuematchers) == 1:
+        try:
+            base_dict = keys_valuematchers[0].copy()
+            for key in base_dict:
+                base_dict[key] = wrap_matcher(base_dict[key])
+        except AttributeError:
+            raise ValueError('single-argument calls to has_entries must pass a dict as the argument')
+    else:
+        if len(keys_valuematchers) % 2:
+            raise ValueError('has_entries requires key-value pairs')
+        base_dict = {}
+        for index in range(int(len(keys_valuematchers) / 2)):
+            base_dict[keys_valuematchers[2 * index]] = wrap_matcher(keys_valuematchers[2 * index + 1])
+
+    for key, value in kv_args.items():
+        base_dict[key] = wrap_matcher(value)
+
+    return IsDictContainingEntries(base_dict)
